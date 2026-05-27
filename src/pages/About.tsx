@@ -79,7 +79,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display text-5xl font-bold sm:text-7xl mb-8 tracking-tight leading-[1.05]"
+            className="font-display text-5xl font-bold sm:text-7xl mb-8 tracking-tight leading-[1.05] text-slate-900"
           >
             Redefining <span className="text-premium-yellow italic">Financial Clarity</span> for Small Business.
           </motion.h1>
@@ -87,7 +87,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
-            className="text-xl text-gray-400 leading-relaxed max-w-3xl font-sans"
+            className="text-xl text-slate-650 leading-relaxed max-w-3xl font-sans"
           >
             TwinaronNexus was founded with an unyielding mandate: to equip high-growth ventures and sovereign entrepreneurs with world-class financial analytical models that skip the complexity of heavy enterprise software and require zero recurring fees.
           </motion.p>
@@ -96,22 +96,22 @@ export default function About() {
         {/* Two-Column Core Focus & CEO */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-36">
           <div className="space-y-8">
-            <div className="glass p-8 rounded-3xl border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors">
+            <div className="glass p-8 rounded-3xl border-slate-200/60 relative overflow-hidden group hover:border-premium-yellow/30 transition-colors">
               <div className="absolute top-0 right-0 h-24 w-24 bg-premium-yellow/5 rounded-full blur-2xl group-hover:bg-premium-yellow/10 transition-all" />
-              <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 font-display">
+              <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 font-display text-slate-900">
                 <Target className="h-6 w-6 text-premium-yellow" /> Our Mission
               </h3>
-              <p className="text-gray-400 leading-relaxed text-sm">
+              <p className="text-slate-600 leading-relaxed text-sm">
                 To bridge the structural gap between overly complex, slow web tools and manual, disorganized spreadsheets. We engineer standard-compliant, fully automated ledger designs leveraging Microsoft Excel and Google Sheets as high-performance runtimes.
               </p>
             </div>
             
-            <div className="glass p-8 rounded-3xl border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors">
+            <div className="glass p-8 rounded-3xl border-slate-200/60 relative overflow-hidden group hover:border-premium-yellow/30 transition-colors">
               <div className="absolute top-0 right-0 h-24 w-24 bg-premium-yellow/5 rounded-full blur-2xl group-hover:bg-premium-yellow/10 transition-all" />
-              <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 font-display">
+              <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 font-display text-slate-900">
                 <Heart className="h-6 w-6 text-premium-yellow" /> Our Values
               </h3>
-              <p className="text-gray-400 leading-relaxed text-sm">
+              <p className="text-slate-600 leading-relaxed text-sm">
                 Absolute transparency, sovereign data control, and lifetime utility. Your intellectual property and financial stats shouldn't be leased back to you via server gateways; they belong in a file you fully own and command.
               </p>
             </div>
@@ -146,9 +146,9 @@ export default function About() {
               <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
                 SYSTEM STANDARDS
               </span>
-              <h2 className="text-4xl font-bold font-display tracking-tight">Core Engineering Pillars</h2>
+              <h2 className="text-4xl font-bold font-display tracking-tight text-slate-900">Core Engineering Pillars</h2>
             </div>
-            <p className="text-gray-400 text-sm max-w-sm ml-0 md:ml-6 leading-relaxed">
+            <p className="text-slate-600 text-sm max-w-sm ml-0 md:ml-6 leading-relaxed">
               Every formula grid we craft must pass extremely rigorous verification tests to maximize compute optimization.
             </p>
           </div>
@@ -161,13 +161,13 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ type: "spring", stiffness: 60, damping: 14, delay: idx * 0.08 }}
-                className="glass p-8 rounded-3xl border-white/5 relative overflow-hidden group hover:border-premium-yellow/20 transition-all hover:translate-y-[-4px]"
+                className="glass p-8 rounded-3xl border-slate-200/60 relative overflow-hidden group hover:border-premium-yellow/30 transition-all hover:translate-y-[-4px]"
               >
                 <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20">
                   <pillar.icon className="h-6 w-6 text-premium-yellow" />
                 </div>
-                <h4 className="text-lg font-bold font-display mb-3 text-white group-hover:text-premium-yellow transition-colors">{pillar.title}</h4>
-                <p className="text-xs text-gray-400 leading-relaxed font-sans">{pillar.desc}</p>
+                <h4 className="text-lg font-bold font-display mb-3 text-slate-900 group-hover:text-premium-yellow transition-colors">{pillar.title}</h4>
+                <p className="text-xs text-slate-500 leading-relaxed font-sans">{pillar.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -179,8 +179,8 @@ export default function About() {
             <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase">
               CHRONICLE ROADMAP
             </span>
-            <h2 className="text-4xl font-bold font-display tracking-tight leading-tight">The Evolution of TwinaronNexus</h2>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <h2 className="text-4xl font-bold font-display tracking-tight leading-tight text-slate-900">The Evolution of TwinaronNexus</h2>
+            <p className="text-slate-600 text-sm leading-relaxed">
               A brief retrospective documenting our journey from a minimalist private utility to a global standard for sovereign financial tracking.
             </p>
             <div className="flex flex-wrap gap-2 pt-4">
@@ -191,7 +191,7 @@ export default function About() {
                   className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all border ${
                     activeChronicle === idx 
                       ? "bg-premium-yellow text-black border-premium-yellow" 
-                      : "bg-white/5 text-gray-400 border-white/10 hover:border-white/25 hover:text-white"
+                      : "bg-slate-100 text-slate-650 border-slate-200 hover:border-slate-350 hover:text-slate-800"
                   }`}
                 >
                   {chron.year}
@@ -200,8 +200,8 @@ export default function About() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 glass p-10 rounded-[2.5rem] border-white/5 relative overflow-hidden min-h-[290px] flex flex-col justify-between">
-            <div className="absolute top-0 right-0 p-10 pointer-events-none opacity-[0.03] select-none">
+          <div className="lg:col-span-2 glass p-10 rounded-[2.5rem] border-slate-200/60 relative overflow-hidden min-h-[290px] flex flex-col justify-between">
+            <div className="absolute top-0 right-0 p-10 pointer-events-none opacity-[0.03] select-none text-slate-900">
               <span className="text-9xl font-black font-display font-black">✦</span>
             </div>
             <div className="overflow-hidden">
@@ -216,16 +216,16 @@ export default function About() {
                   <span className="text-xs text-premium-yellow font-mono font-extrabold tracking-widest uppercase block mb-3">
                     {CHRONICLES[activeChronicle].year} / STAGE NOTE
                   </span>
-                  <h3 className="text-2xl font-bold font-display tracking-tight text-white mb-4">
+                  <h3 className="text-2xl font-bold font-display tracking-tight text-slate-900 mb-4">
                     {CHRONICLES[activeChronicle].title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed font-sans max-w-xl">
+                  <p className="text-slate-600 text-sm leading-relaxed font-sans max-w-xl">
                     {CHRONICLES[activeChronicle].desc}
                   </p>
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-gray-500 font-mono mt-8 border-t border-white/5 pt-4">
+            <div className="flex items-center gap-1.5 text-[10px] text-slate-500 font-mono mt-8 border-t border-slate-200/60 pt-4">
               <span>METRIC ID: TN-00{activeChronicle + 1}</span>
               <span>•</span>
               <span>VERIFIED STABLE RECORD</span>
@@ -240,11 +240,11 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0 }}
             viewport={{ once: true }}
-            className="text-center p-8 glass rounded-2xl border-white/5 relative group hover:border-premium-yellow/10 transition-colors"
+            className="text-center p-8 glass rounded-2xl border-slate-200/60 relative group hover:border-premium-yellow/30 transition-colors"
           >
             <div className="absolute top-2 right-4 text-[9px] text-premium-yellow/20 font-display font-black">✦</div>
             <p className="text-[10px] text-premium-yellow uppercase tracking-widest font-extrabold font-mono mb-2">Systems Founded</p>
-            <p className="text-4xl font-extrabold font-display text-white">
+            <p className="text-4xl font-extrabold font-display text-slate-900">
               <AnimatedCounter value={2023} decimals={0} />
             </p>
           </motion.div>
@@ -253,11 +253,11 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-center p-8 glass rounded-2xl border-white/5 relative group hover:border-premium-yellow/10 transition-colors"
+            className="text-center p-8 glass rounded-2xl border-slate-200/60 relative group hover:border-premium-yellow/30 transition-colors"
           >
             <div className="absolute top-2 right-4 text-[9px] text-premium-yellow/20 font-display font-black">✦</div>
             <p className="text-[10px] text-premium-yellow uppercase tracking-widest font-extrabold font-mono mb-2">Ledgers Executed</p>
-            <p className="text-4xl font-extrabold font-display text-white">
+            <p className="text-4xl font-extrabold font-display text-slate-900">
               <AnimatedCounter value={5000} decimals={0} suffix="+" />
             </p>
           </motion.div>
@@ -266,11 +266,11 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-center p-8 glass rounded-2xl border-white/5 relative group hover:border-premium-yellow/10 transition-colors"
+            className="text-center p-8 glass rounded-2xl border-slate-200/60 relative group hover:border-premium-yellow/30 transition-colors"
           >
             <div className="absolute top-2 right-4 text-[9px] text-premium-yellow/20 font-display font-black">✦</div>
             <p className="text-[10px] text-premium-yellow uppercase tracking-widest font-extrabold font-mono mb-2">Premium Matrices</p>
-            <p className="text-4xl font-extrabold font-display text-white">
+            <p className="text-4xl font-extrabold font-display text-slate-900">
               <AnimatedCounter value={10} decimals={0} suffix="+" />
             </p>
           </motion.div>
@@ -279,25 +279,25 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center p-8 glass rounded-2xl border-white/5 relative group hover:border-premium-yellow/10 transition-colors"
+            className="text-center p-8 glass rounded-2xl border-slate-200/60 relative group hover:border-premium-yellow/30 transition-colors"
           >
             <div className="absolute top-2 right-4 text-[9px] text-premium-yellow/20 font-display font-black">✦</div>
             <p className="text-[10px] text-premium-yellow uppercase tracking-widest font-extrabold font-mono mb-2">Formula Integrity</p>
-            <p className="text-4xl font-extrabold font-display text-white">
+            <p className="text-4xl font-extrabold font-display text-slate-900">
               <AnimatedCounter value={100} decimals={0} suffix="%" />
             </p>
           </motion.div>
         </div>
 
         {/* High-Contrast Philosophy Section */}
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto text-slate-900">
           <span className="inline-block h-2 w-2 rounded-full bg-premium-yellow mb-4" />
           <h2 className="text-4xl font-display font-bold mb-8 tracking-tight">Meet the Philosophy</h2>
-          <p className="text-gray-400 text-base leading-relaxed mb-12 font-sans max-w-2xl mx-auto">
+          <p className="text-slate-650 text-base leading-relaxed mb-12 font-sans max-w-2xl mx-auto">
             At TwinaronNexus, we don’t just build spreadsheets. We deliver absolute operational engineering. Let’s eliminate the overhead of clumsy cloud services together and unlock structural financial prosperity with robust, local tools.
           </p>
           
-          <div className="inline-flex items-center gap-4 text-left glass p-5 rounded-2xl border-white/5 transition-all hover:bg-white/[0.05]">
+          <div className="inline-flex items-center gap-4 text-left glass p-5 rounded-2xl border-slate-200/60 transition-all hover:bg-slate-100/50">
              <div className="h-14 w-14 rounded-full overflow-hidden border border-premium-yellow/25">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" 
@@ -306,17 +306,15 @@ export default function About() {
                 />
              </div>
              <div>
-                <p className="font-bold text-white flex items-center gap-1.5">
-                  Aman Vardhan
-                  <span className="text-[9px] bg-premium-yellow/10 text-premium-yellow border border-premium-yellow/30 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">FOUNDER</span>
+                <p className="font-bold text-slate-900 flex items-center gap-1.5">
+                   Aman Vardhan
+                   <span className="text-[9px] bg-premium-yellow/10 text-premium-yellow border border-premium-yellow/30 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">FOUNDER</span>
                 </p>
-                <p className="text-xs text-gray-400 font-mono">Chief Systems Architect & Quantitative Lead</p>
+                <p className="text-xs text-slate-500 font-mono">Chief Systems Architect & Quantitative Lead</p>
              </div>
           </div>
         </div>
-
       </div>
     </div>
   );
 }
-

@@ -25,7 +25,7 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <Spotlight />
-      <div className="min-h-screen bg-black text-white selection:bg-premium-yellow/30 selection:text-premium-yellow relative">
+      <div className="min-h-screen bg-white text-gray-900 selection:bg-premium-yellow/30 selection:text-premium-yellow relative">
         <Navbar />
         <main>
           <Suspense fallback={

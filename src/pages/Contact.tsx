@@ -26,23 +26,23 @@ export default function Contact() {
   };
 
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-32 pb-24 text-slate-900">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
-            <h1 className="font-display text-5xl font-bold mb-8">Let's <span className="text-premium-yellow">Talk Business.</span></h1>
-            <p className="text-lg text-gray-400 mb-12 leading-relaxed">
+            <h1 className="font-display text-5xl font-bold mb-8 text-slate-900">Let's <span className="text-premium-yellow">Talk Business.</span></h1>
+            <p className="text-lg text-slate-600 mb-12 leading-relaxed">
               Have questions about a specific template? Facing a technical issue? Our support team is ready to assist you.
             </p>
 
-            <div className="space-y-8 mb-16">
+            <div className="space-y-8 mb-16 text-slate-900">
               <div className="flex gap-6 items-start">
                 <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center flex-none mt-1">
                   <Mail className="h-6 w-6 text-premium-yellow" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Email Support</h4>
-                  <p className="text-gray-400 text-sm mb-1">General inquiries & Support</p>
+                  <h4 className="font-bold text-lg text-slate-900">Email Support</h4>
+                  <p className="text-slate-500 text-sm mb-1">General inquiries & Support</p>
                   <a href="mailto:support@twinaronnexus.com" className="text-premium-yellow font-semibold">support@twinaronnexus.com</a>
                 </div>
               </div>
@@ -53,8 +53,8 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">WhatsApp Support</h4>
-                  <p className="text-gray-400 text-sm mb-1">Instant support on the go</p>
+                  <h4 className="font-bold text-lg text-slate-900">WhatsApp Support</h4>
+                  <p className="text-slate-500 text-sm mb-1">Instant support on the go</p>
                   <a href="https://wa.me/919787333379" target="_blank" rel="noopener noreferrer" className="text-premium-yellow font-semibold">+91 97873 33379</a>
                 </div>
               </div>
@@ -63,8 +63,8 @@ export default function Contact() {
                   <MapPin className="h-6 w-6 text-premium-yellow" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Headquarters</h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <h4 className="font-bold text-lg text-slate-900">Headquarters</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed">
                     TwinaronNexus Office, Cyber Hub<br />
                     Business District, New Delhi - 110001
                   </p>
@@ -73,18 +73,18 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-bold text-xl mb-6">Quick Help</h3>
+              <h3 className="font-bold text-xl mb-6 text-slate-900">Quick Help</h3>
               {SUPPORT_FAQS.map((faq, i) => (
-                <div key={i} className="glass rounded-xl overflow-hidden border-white/5">
+                <div key={i} className="glass rounded-xl overflow-hidden border-slate-200/60">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex w-full items-center justify-between p-4 text-left"
+                    className="flex w-full items-center justify-between p-4 text-left text-slate-800 hover:text-slate-900"
                   >
                     <span className="font-semibold text-sm">{faq.q}</span>
-                    {openFaq === i ? <Minus className="h-4 w-4 text-premium-yellow" /> : <Plus className="h-4 w-4 text-gray-500" />}
+                    {openFaq === i ? <Minus className="h-4 w-4 text-premium-yellow" /> : <Plus className="h-4 w-4 text-slate-400" />}
                   </button>
                   {openFaq === i && (
-                    <div className="px-4 pb-4 text-gray-400 text-xs leading-relaxed border-t border-white/5 pt-3">
+                    <div className="px-4 pb-4 text-slate-500 text-xs leading-relaxed border-t border-slate-200/60 pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -97,9 +97,9 @@ export default function Contact() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="glass rounded-[2.5rem] p-8 lg:p-12 border-white/5 h-fit sticky top-32"
+            className="glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 h-fit sticky top-32"
           >
-            <h3 className="text-2xl font-bold mb-8 font-display">Send a Message</h3>
+            <h3 className="text-2xl font-bold mb-8 font-display text-slate-900">Send a Message</h3>
             <motion.form 
               onSubmit={handleSubmit} 
               className="space-y-6"
@@ -116,30 +116,30 @@ export default function Contact() {
             >
               <div className="grid grid-cols-2 gap-6">
                 <motion.div variants={formItemVariants}>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">First Name</label>
-                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">First Name</label>
+                  <input required type="text" className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
                 </motion.div>
                 <motion.div variants={formItemVariants}>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">Last Name</label>
-                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Last Name</label>
+                  <input required type="text" className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
                 </motion.div>
               </div>
               <motion.div variants={formItemVariants}>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">Email Address</label>
-                <input required type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Email Address</label>
+                <input required type="email" className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
               </motion.div>
               <motion.div variants={formItemVariants}>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">Subject</label>
-                <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-premium-yellow/50 transition-colors appearance-none focus:scale-[1.01] duration-300">
-                  <option className="bg-black">Pre-sales Question</option>
-                  <option className="bg-black">Technical Support</option>
-                  <option className="bg-black">Custom Template Inquiry</option>
-                  <option className="bg-black">Payment Issue</option>
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Subject</label>
+                <select className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-colors appearance-none focus:scale-[1.01] duration-300">
+                  <option>Pre-sales Question</option>
+                  <option>Technical Support</option>
+                  <option>Custom Template Inquiry</option>
+                  <option>Payment Issue</option>
                 </select>
               </motion.div>
               <motion.div variants={formItemVariants}>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">Message</label>
-                <textarea required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Message</label>
+                <textarea required rows={4} className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
               </motion.div>
               
               <motion.div variants={formItemVariants} className="flex justify-center pt-2">

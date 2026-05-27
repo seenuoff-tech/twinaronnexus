@@ -13,11 +13,11 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "online-business",
-    name: "Online Business Finance Tracker",
+    name: "Online Business Control System",
     slug: "online-business-tracker",
     price: 499,
     category: "Online Business",
-    description: "Complete financial dashboard for digital entrepreneurs, influencers, and online creators.",
+    description: "Track orders, customer payments, sales flow & business performance seamlessly.",
     features: [
       "Revenue breakdown by platform",
       "Ad spend tracking",
@@ -35,11 +35,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "boutique",
-    name: "Boutique Finance Tracker",
+    name: "Boutique Operations Tracker",
     slug: "boutique-tracker",
     price: 599,
     category: "Boutique",
-    description: "Manage inventory, sales, and expenses for your fashion or lifestyle boutique.",
+    description: "Manage inventory, sales activity, customer orders & boutique finances efficiently.",
     features: [
       "Inventory valuation",
       "Seasonal sales tracking",
@@ -57,11 +57,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "freelancer",
-    name: "Freelancer Finance Tracker",
+    name: "Freelancer Income & Project Tracker",
     slug: "freelancer-tracker",
     price: 299,
     category: "Freelancer",
-    description: "Simple yet powerful tool for solo professionals to manage projects and taxes.",
+    description: "Track clients, project workflow, invoices & payment records professionally.",
     features: [
       "Project-wise income tracking",
       "Invoicing status dashboard",
@@ -79,11 +79,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "trading",
-    name: "Traders and Distributor Finance Tracker",
+    name: "TradeFlow Business Ledger",
     slug: "traders-distributor-tracker",
     price: 1499,
     category: "Traders and distributor",
-    description: "Professional dynamic ledger tracker for stock, commodity, product traders, and distributors.",
+    description: "Monitor stock movement, distributor accounts & business transactions with clarity.",
     features: [
       "Inventory & supply logs",
       "Distribution margins calculator",

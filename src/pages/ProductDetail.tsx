@@ -108,10 +108,10 @@ export default function ProductDetail() {
     <div className="pt-24 pb-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-8">
-          <Link to="/" className="hover:text-white">Home</Link>
+        <div className="flex items-center gap-2 text-xs text-slate-500 mb-8">
+          <Link to="/" className="hover:text-slate-800">Home</Link>
           <ChevronRight className="h-3 w-3" />
-          <span className="text-white">{product.name}</span>
+          <span className="text-slate-700">{product.name}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -120,16 +120,16 @@ export default function ProductDetail() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="aspect-video glass rounded-[2rem] overflow-hidden border-white/5 relative group"
+              className="aspect-video glass rounded-[2rem] overflow-hidden border-slate-200/60 relative group"
             >
               <img 
                 src={product.image} 
                 alt={product.name} 
                 className="h-full w-full object-cover transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40" />
               <div className="absolute bottom-8 left-8">
-                <span className="text-premium-yellow text-xs font-bold uppercase tracking-widest bg-white/5 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                <span className="text-premium-yellow text-xs font-bold uppercase tracking-widest bg-slate-900/10 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200/20">
                   {product.category}
                 </span>
               </div>
@@ -137,13 +137,13 @@ export default function ProductDetail() {
 
             <div className="grid grid-cols-3 gap-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="aspect-square glass rounded-2xl border-white/5 opacity-50 overflow-hidden">
-                   <img src={product.image} className="h-full w-full object-cover blur-[2px]" />
+                <div key={i} className="aspect-square glass rounded-2xl border-slate-200/60 opacity-60 overflow-hidden">
+                   <img src={product.image} className="h-full w-full object-cover blur-[1px]" />
                 </div>
               ))}
             </div>
 
-            <div className="glass rounded-3xl p-8 border-white/5">
+            <div className="glass rounded-3xl p-8 border-slate-200/60 text-slate-900">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                 <ShieldCheck className="h-6 w-6 text-premium-yellow" />
                 Technical Specifications
@@ -151,8 +151,8 @@ export default function ProductDetail() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {Object.entries(product.specs).map(([key, value]) => (
                   <div key={key}>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">{key}</p>
-                    <p className="text-sm font-semibold">{value}</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{key}</p>
+                    <p className="text-sm font-semibold text-slate-800">{value}</p>
                   </div>
                 ))}
               </div>
@@ -171,12 +171,12 @@ export default function ProductDetail() {
                     <Star key={i} className={cn("h-4 w-4 fill-current", i === 5 && "opacity-50")} />
                   ))}
                 </div>
-                <span className="text-sm text-gray-500 font-medium">4.8 (124 reviews)</span>
+                <span className="text-sm text-slate-500 font-medium">4.8 (124 reviews)</span>
               </div>
-              <h1 className="font-display text-4xl font-bold tracking-tight mb-4 sm:text-5xl lg:text-6xl text-white">
+              <h1 className="font-display text-4xl font-bold tracking-tight mb-4 sm:text-5xl lg:text-6xl text-slate-900">
                 {product.name}
               </h1>
-              <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                 {product.description}
               </p>
 
@@ -184,21 +184,21 @@ export default function ProductDetail() {
                 {product.features.map((feature, i) => (
                   <div key={i} className="flex gap-3">
                     <CheckCircle2 className="h-5 w-5 text-premium-yellow flex-none mt-0.5" />
-                    <span className="text-gray-300">{feature}</span>
+                    <span className="text-slate-700">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="glass p-8 rounded-[2rem] border-premium-yellow/10 mb-8 relative overflow-hidden">
+              <div className="glass p-8 rounded-[2rem] border-premium-yellow/20 mb-8 relative overflow-hidden text-slate-900">
                 <div className="absolute top-0 right-0 p-8">
                   <div className="h-12 w-12 rounded-full border border-premium-yellow/20 flex items-center justify-center animate-pulse">
                     <Info className="h-5 w-5 text-premium-yellow" />
                   </div>
                 </div>
-                <p className="text-sm text-gray-500 mb-2 uppercase tracking-widest font-bold">Price</p>
+                <p className="text-sm text-slate-500 mb-2 uppercase tracking-widest font-bold">Price</p>
                 <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-5xl font-bold font-display">{formatCurrency(product.price)}</span>
-                  <span className="text-gray-500 line-through text-lg">{formatCurrency(product.price * 2)}</span>
+                  <span className="text-5xl font-bold font-display text-slate-900">{formatCurrency(product.price)}</span>
+                  <span className="text-slate-400 line-through text-lg">{formatCurrency(product.price * 2)}</span>
                   <span className="text-premium-yellow text-sm font-bold bg-premium-yellow/10 px-2 py-0.5 rounded ml-2">50% OFF</span>
                 </div>
 
@@ -233,22 +233,22 @@ export default function ProductDetail() {
 
               {/* Delivery Info */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 glass rounded-[1.5rem] border-white/5">
-                  <div className="h-10 w-10 flex-none rounded-xl bg-white/5 flex items-center justify-center">
-                    <Download className="h-5 w-5 text-gray-400" />
+                <div className="flex items-center gap-3 p-4 glass rounded-[1.5rem] border-slate-200/60 shadow-sm">
+                  <div className="h-10 w-10 flex-none rounded-xl bg-slate-100 flex items-center justify-center">
+                    <Download className="h-5 w-5 text-slate-500" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white mb-1 uppercase tracking-wider">Instant</p>
-                    <p className="text-[10px] text-gray-500">Download Link</p>
+                    <p className="text-xs font-bold text-slate-900 mb-1 uppercase tracking-wider">Instant</p>
+                    <p className="text-[10px] text-slate-500">Download Link</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 glass rounded-[1.5rem] border-white/5">
-                  <div className="h-10 w-10 flex-none rounded-xl bg-white/5 flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-gray-400" />
+                <div className="flex items-center gap-3 p-4 glass rounded-[1.5rem] border-slate-200/60 shadow-sm">
+                  <div className="h-10 w-10 flex-none rounded-xl bg-slate-100 flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-slate-500" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white mb-1 uppercase tracking-wider">Lifetime</p>
-                    <p className="text-[10px] text-gray-500">Free Updates</p>
+                    <p className="text-xs font-bold text-slate-900 mb-1 uppercase tracking-wider">Lifetime</p>
+                    <p className="text-[10px] text-slate-500">Free Updates</p>
                   </div>
                 </div>
               </div>

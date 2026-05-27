@@ -47,13 +47,13 @@ import { motion, AnimatePresence } from "motion/react";
 
 // Initial set of robust, realistic mock orders for historical tracking
 const INITIAL_ORDERS = [
-  { id: "TXN-7419", date: "2026-05-18", customer: "Aditya Hegde", email: "aditya.h@startupspace.in", productSlug: "online-business-tracker", product: "Online Business Finance Tracker", amount: 499, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-6812", date: "2026-05-17", customer: "Pooja Sharma", email: "pooja.sharma@luxe-apparel.com", productSlug: "boutique-tracker", product: "Boutique Finance Tracker", amount: 599, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-5904", date: "2026-05-17", customer: "Siddharth Mehta", email: "sid.mehta@nexusagency.org", productSlug: "traders-distributor-tracker", product: "Traders and Distributor Finance Tracker", amount: 1499, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-4311", date: "2026-05-16", customer: "David Miller", email: "david@millerfreelance.co", productSlug: "freelancer-tracker", product: "Freelancer Finance Tracker", amount: 299, status: "completed", gateway: "UPI Direct" },
-  { id: "TXN-3298", date: "2026-05-15", customer: "Rohan Varma", email: "rohan@thegourmettable.in", productSlug: "online-business-tracker", product: "Online Business Finance Tracker", amount: 499, status: "pending", gateway: "Razorpay Card" },
-  { id: "TXN-2104", date: "2026-05-14", customer: "Aparna Nair", email: "aparna@naircreations.com", productSlug: "online-business-tracker", product: "Online Business Finance Tracker", amount: 499, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-1055", date: "2026-05-12", customer: "Marcus Aurelius", email: "stoic@romeglobal.net", productSlug: "traders-distributor-tracker", product: "Traders and Distributor Finance Tracker", amount: 1499, status: "completed", gateway: "Razorpay International" }
+  { id: "TXN-7419", date: "2026-05-18", customer: "Aditya Hegde", email: "aditya.h@startupspace.in", productSlug: "online-business-tracker", product: "Online Business Control System", amount: 499, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-6812", date: "2026-05-17", customer: "Pooja Sharma", email: "pooja.sharma@luxe-apparel.com", productSlug: "boutique-tracker", product: "Boutique Operations Tracker", amount: 599, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-5904", date: "2026-05-17", customer: "Siddharth Mehta", email: "sid.mehta@nexusagency.org", productSlug: "traders-distributor-tracker", product: "TradeFlow Business Ledger", amount: 1499, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-4311", date: "2026-05-16", customer: "David Miller", email: "david@millerfreelance.co", productSlug: "freelancer-tracker", product: "Freelancer Income & Project Tracker", amount: 299, status: "completed", gateway: "UPI Direct" },
+  { id: "TXN-3298", date: "2026-05-15", customer: "Rohan Varma", email: "rohan@thegourmettable.in", productSlug: "online-business-tracker", product: "Online Business Control System", amount: 499, status: "pending", gateway: "Razorpay Card" },
+  { id: "TXN-2104", date: "2026-05-14", customer: "Aparna Nair", email: "aparna@naircreations.com", productSlug: "online-business-tracker", product: "Online Business Control System", amount: 499, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-1055", date: "2026-05-12", customer: "Marcus Aurelius", email: "stoic@romeglobal.net", productSlug: "traders-distributor-tracker", product: "TradeFlow Business Ledger", amount: 1499, status: "completed", gateway: "Razorpay International" }
 ];
 
 const CUSTOMER_NAMES = [
@@ -269,28 +269,28 @@ export default function Admin() {
   });
 
   return (
-    <div className="pt-24 min-h-screen bg-[#03060E] text-white selection:bg-premium-yellow/30 selection:text-premium-yellow">
+    <div className="pt-24 min-h-screen bg-slate-50 text-slate-800 selection:bg-premium-yellow/30 selection:text-premium-yellow">
       {/* Background Gradients */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-20">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#143265] via-[#F3AE1B]/10 to-transparent blur-[120px] rounded-full" />
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-10">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#F3AE1B]/10 via-[#F3AE1B]/20 to-transparent blur-[120px] rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* Upper Brand Badge and Control bar */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-6 border-b border-white/5 gap-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-6 border-b border-slate-200 gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[10px] bg-premium-yellow/10 text-premium-yellow font-mono px-2 py-0.5 rounded-full border border-premium-yellow/20 font-bold tracking-widest uppercase">
                 Enterprise Ledger
               </span>
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-gray-500 font-mono">NODE_LIVE</span>
+              <span className="text-[10px] text-slate-500 font-mono">NODE_LIVE</span>
             </div>
-            <h1 className="text-4xl font-extrabold font-display tracking-tight text-white m-0">
+            <h1 className="text-4xl font-extrabold font-display tracking-tight text-slate-900 m-0">
               Twinaron<span className="text-premium-yellow">Nexus</span> Admin
             </h1>
-            <p className="text-sm text-gray-400 mt-1">Control sheet templates inventory, check dynamic revenue graphs, and inspect live customer checkouts.</p>
+            <p className="text-sm text-slate-600 mt-1">Control sheet templates inventory, check dynamic revenue graphs, and inspect live customer checkouts.</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -304,7 +304,7 @@ export default function Admin() {
             </button>
             <button
               onClick={handleResetSimulation}
-              className="flex items-center gap-1.5 border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-gray-300 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all"
+              className="flex items-center gap-1.5 border border-slate-200 hover:border-slate-350 bg-slate-100/50 hover:bg-slate-100 text-slate-650 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all"
               title="Reset metrics state to system preset defaults"
             >
               <Database className="h-3.5 w-3.5" />
@@ -315,21 +315,21 @@ export default function Admin() {
 
         {/* License Promo Ribbon */}
         {licenseUpgradeNotice && (
-          <div className="mb-8 flex items-center justify-between p-4 bg-gradient-to-r from-[#0C1E43] to-[#0D1627] border border-premium-yellow/20 rounded-2xl">
+          <div className="mb-8 flex items-center justify-between p-4 bg-gradient-to-r from-slate-100 to-slate-200/50 border border-premium-yellow/30 rounded-2xl text-slate-800 shadow-sm">
             <div className="flex items-start gap-3">
-              <div className="h-8 w-8 rounded-lg bg-premium-yellow/10 flex items-center justify-center flex-none mt-0.5">
+              <div className="h-8 w-8 rounded-lg bg-premium-yellow/15 flex items-center justify-center flex-none mt-0.5">
                 <AlertCircle className="h-4.5 w-4.5 text-premium-yellow" />
               </div>
               <div>
-                <p className="text-xs font-bold font-display text-white">PROMPT-TO-BUILD SIMULATOR ENABLED</p>
-                <p className="text-[11px] text-gray-400 mt-0.5 leading-relaxed">
-                  This administrative panel is writing storage variables inside sandbox <code className="text-premium-yellow font-mono">localStorage</code>. Any products edited, deleted, or random sales triggered are preserved locally in real-time.
+                <p className="text-xs font-bold font-display text-slate-900">PROMPT-TO-BUILD SIMULATOR ENABLED</p>
+                <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
+                  This administrative panel is writing storage variables inside sandbox <code className="text-premium-yellow font-mono bg-slate-200/50 px-1 py-0.5 rounded">localStorage</code>. Any products edited, deleted, or random sales triggered are preserved locally in real-time.
                 </p>
               </div>
             </div>
             <button 
               onClick={() => setLicenseUpgradeNotice(false)}
-              className="text-gray-500 hover:text-white p-1"
+              className="text-slate-400 hover:text-slate-700 p-1"
             >
               <X className="h-4 w-4" />
             </button>
@@ -340,8 +340,8 @@ export default function Admin() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Side Menu Navigation */}
-          <nav className="lg:col-span-3 space-y-1 bg-white/[0.02] border border-white/5 rounded-3xl p-4">
-            <p className="px-4 py-2 text-[10px] font-black tracking-widest text-gray-500 uppercase font-mono">Control Modules</p>
+          <nav className="lg:col-span-3 space-y-1 bg-white border border-slate-200 shadow-sm rounded-3xl p-4">
+            <p className="px-4 py-2 text-[10px] font-black tracking-widest text-slate-400 uppercase font-mono">Control Modules</p>
             {[
               { id: "dashboard", label: "KPI Overview & Graphs", icon: LayoutDashboard },
               { id: "products", label: "Template Inventory", icon: Package, count: products.length },
@@ -355,17 +355,17 @@ export default function Admin() {
                   "w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all group",
                   activeTab === tab.id 
                     ? "bg-premium-yellow text-black font-black shadow-[0_4px_12px_rgba(243,174,27,0.15)]" 
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                    : "text-slate-655 hover:bg-slate-100 hover:text-slate-900"
                 )}
               >
                 <div className="flex items-center gap-3">
-                  <tab.icon className={cn("h-4.5 w-4.5", activeTab === tab.id ? "text-black" : "text-gray-500 group-hover:text-premium-yellow")} />
+                  <tab.icon className={cn("h-4.5 w-4.5", activeTab === tab.id ? "text-black" : "text-slate-400 group-hover:text-premium-yellow")} />
                   <span>{tab.label}</span>
                 </div>
                 {tab.count !== undefined && (
                   <span className={cn(
                     "text-[10px] font-bold px-2 py-0.5 rounded-full font-mono",
-                    activeTab === tab.id ? "bg-black/10 text-black" : "bg-white/5 text-gray-400"
+                    activeTab === tab.id ? "bg-black/10 text-black" : "bg-slate-100 text-slate-600"
                   )}>
                     {tab.count}
                   </span>
@@ -373,20 +373,20 @@ export default function Admin() {
               </button>
             ))}
 
-            <div className="pt-6 mt-6 border-t border-white/5 px-4">
-              <p className="text-[10px] font-black tracking-widest text-gray-500 uppercase font-mono mb-3">Live System Status</p>
+            <div className="pt-6 mt-6 border-t border-slate-200 px-4">
+              <p className="text-[10px] font-black tracking-widest text-slate-400 uppercase font-mono mb-3">Live System Status</p>
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Campaign Discount</span>
+                  <span className="text-slate-500">Campaign Discount</span>
                   <span className="text-premium-yellow font-extrabold font-mono">{discountValue}% Off</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Database health</span>
-                  <span className="text-emerald-500 font-bold font-mono">Optimal</span>
+                  <span className="text-slate-500">Database health</span>
+                  <span className="text-emerald-600 font-bold font-mono">Optimal</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Sandbox currency</span>
-                  <span className="text-white font-bold">{siteCurrency}</span>
+                  <span className="text-slate-500">Sandbox currency</span>
+                  <span className="text-slate-800 font-bold">{siteCurrency}</span>
                 </div>
               </div>
             </div>
@@ -438,15 +438,15 @@ export default function Admin() {
                       color: "text-amber-500"
                     }
                   ].map((stat, i) => (
-                    <div key={i} className="glass p-5 rounded-2xl border-white/5 relative overflow-hidden group hover:border-premium-yellow/20 transition-all hover:bg-white/[0.03]">
+                    <div key={i} className="glass p-5 rounded-2xl border-slate-200/60 relative overflow-hidden group hover:border-premium-yellow/30 transition-all hover:bg-slate-50/50 shadow-sm">
                       <div className="absolute top-0 right-0 p-4 pointer-events-none opacity-5">
-                        <stat.icon className="h-16 w-16" />
+                        <stat.icon className="h-16 w-16 text-slate-400" />
                       </div>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-widest font-black font-mono mb-2">{stat.label}</p>
-                      <h3 className="text-2xl font-black font-display tracking-tight text-white mb-1">{stat.value}</h3>
-                      <p className="text-[10px] text-gray-400 leading-tight block">{stat.sub}</p>
+                      <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black font-mono mb-2">{stat.label}</p>
+                      <h3 className="text-2xl font-black font-display tracking-tight text-slate-900 mb-1">{stat.value}</h3>
+                      <p className="text-[10px] text-slate-500 leading-tight block">{stat.sub}</p>
                       
-                      <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[9px] font-mono text-gray-500">
+                      <div className="mt-3 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[9px] font-mono text-slate-500">
                         <span>{stat.status}</span>
                         <ArrowUpRight className={cn("h-3 w-3", stat.color)} />
                       </div>
@@ -458,15 +458,15 @@ export default function Admin() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   
                   {/* Revenue Curve Over Time */}
-                  <div className="lg:col-span-8 glass rounded-3xl p-6 border-white/5">
+                  <div className="lg:col-span-8 glass rounded-3xl p-6 border-slate-200/60 shadow-sm">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                       <div>
-                        <h4 className="text-base font-bold font-display text-white">Dynamic Sales Revenue Runway</h4>
-                        <p className="text-[11px] text-gray-400">Total checkout earnings accumulated by receipt date (Indian Rupees)</p>
+                        <h4 className="text-base font-bold font-display text-slate-900">Dynamic Sales Revenue Runway</h4>
+                        <p className="text-[11px] text-slate-500">Total checkout earnings accumulated by receipt date (Indian Rupees)</p>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-premium-yellow" />
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider font-mono">Gross Revenue</span>
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Gross Revenue</span>
                       </div>
                     </div>
 
@@ -480,16 +480,16 @@ export default function Admin() {
                                 <stop offset="95%" stopColor="#F3AE1B" stopOpacity={0}/>
                               </linearGradient>
                             </defs>
-                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" vertical={false} />
                             <XAxis 
                               dataKey="date" 
-                              stroke="#6b7280" 
+                              stroke="#64748b" 
                               fontSize={10} 
                               fontFamily="JetBrains Mono, monospace"
                               tickLine={false} 
                             />
                             <YAxis 
-                              stroke="#6b7280" 
+                              stroke="#64748b" 
                               fontSize={10} 
                               fontFamily="JetBrains Mono, monospace"
                               tickLine={false}
@@ -498,15 +498,15 @@ export default function Admin() {
                             />
                             <Tooltip 
                               contentStyle={{ 
-                                backgroundColor: "#080D1A", 
-                                borderColor: "rgba(243,174,27,0.2)", 
+                                backgroundColor: "#FFFFFF", 
+                                borderColor: "rgba(243,174,27,0.3)", 
                                 borderRadius: "12px",
-                                color: "#fff",
+                                color: "#1e293b",
                                 fontSize: "11px",
                                 fontFamily: "sans-serif"
                               }}
                               itemStyle={{ color: "#F3AE1B" }}
-                              labelStyle={{ color: "#9ca3af", fontWeight: "bold" }}
+                              labelStyle={{ color: "#64748b", fontWeight: "bold" }}
                             />
                             <Area 
                               type="monotone" 
@@ -528,32 +528,32 @@ export default function Admin() {
                   </div>
 
                   {/* Category Spreadsheet Allocation */}
-                  <div className="lg:col-span-4 glass rounded-3xl p-6 border-white/5 flex flex-col justify-between">
+                  <div className="lg:col-span-4 glass rounded-3xl p-6 border-slate-200/60 shadow-sm flex flex-col justify-between">
                     <div>
-                      <h4 className="text-base font-bold font-display text-white">Structure Mix</h4>
-                      <p className="text-[11px] text-gray-400">Asset volume distributed by ledger categories</p>
+                      <h4 className="text-base font-bold font-display text-slate-900">Structure Mix</h4>
+                      <p className="text-[11px] text-slate-500">Asset volume distributed by ledger categories</p>
                     </div>
 
                     <div className="w-full h-52 my-4">
                       {categoriesChartData.length > 0 ? (
                         <ResponsiveContainer width="100%" height="100%">
                           <BarChart data={categoriesChartData}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" horizontal={false} vertical={false} />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" horizontal={false} vertical={false} />
                             <XAxis 
                               dataKey="name" 
-                              stroke="#6b7280" 
+                              stroke="#64748b" 
                               fontSize={8} 
                               tickLine={false} 
                               tickFormatter={(val) => val.split(' ')[0]} // abbreviate if too long
                             />
-                            <YAxis stroke="#6b7280" fontSize={8} tickLine={false} axisLine={false} />
+                            <YAxis stroke="#64748b" fontSize={8} tickLine={false} axisLine={false} />
                             <Tooltip
-                              cursor={{ fill: "rgba(255,255,255,0.02)" }}
+                              cursor={{ fill: "rgba(0,0,0,0.02)" }}
                               contentStyle={{ 
-                                backgroundColor: "#080D1A", 
-                                borderColor: "rgba(255,255,255,0.05)", 
+                                backgroundColor: "#FFFFFF", 
+                                borderColor: "rgba(0,0,0,0.05)", 
                                 borderRadius: "10px",
-                                color: "#fff",
+                                color: "#1e293b",
                                 fontSize: "10px"
                               }}
                             />
@@ -568,39 +568,39 @@ export default function Admin() {
                           </BarChart>
                         </ResponsiveContainer>
                       ) : (
-                        <div className="h-full flex items-center justify-center text-gray-500 text-xs">No dynamic data to build</div>
+                        <div className="h-full flex items-center justify-center text-slate-550 text-xs">No dynamic data to build</div>
                       )}
                     </div>
 
-                    <div className="space-y-2 pt-3 border-t border-white/5">
+                    <div className="space-y-2 pt-3 border-t border-slate-200/60">
                       <div className="flex items-center justify-between text-[11px]">
-                        <span className="flex items-center gap-1.5 text-gray-400">
+                        <span className="flex items-center gap-1.5 text-slate-500">
                           <span className="h-2 w-2 rounded-full bg-[#F3AE1B]" />
                           Core Finance Guides
                         </span>
-                        <span className="font-bold text-white font-mono">Gold Mix</span>
+                        <span className="font-bold text-slate-800 font-mono">Gold Mix</span>
                       </div>
                       <div className="flex items-center justify-between text-[11px]">
-                        <span className="flex items-center gap-1.5 text-gray-400">
+                        <span className="flex items-center gap-1.5 text-slate-500">
                           <span className="h-2 w-2 rounded-full bg-[#3b82f6]" />
                           Secondary Niches
                         </span>
-                        <span className="font-bold text-white font-mono">Blue Mix</span>
+                        <span className="font-bold text-slate-800 font-mono">Blue Mix</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Section: Live Feed / Recent Sales Feed overview */}
-                <div className="glass rounded-[2rem] p-8 border-white/5">
+                <div className="glass rounded-[2rem] p-8 border-slate-200/60 shadow-sm text-slate-800">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <h3 className="text-xl font-bold font-display text-white">Live Transactions Activity Signal</h3>
-                      <p className="text-xs text-gray-400 mt-0.5">Real-time payment gateway dispatches</p>
+                      <h3 className="text-xl font-bold font-display text-slate-900">Live Transactions Activity Signal</h3>
+                      <p className="text-xs text-slate-500 mt-0.5">Real-time payment gateway dispatches</p>
                     </div>
                     <button 
                       onClick={() => setActiveTab("orders")}
-                      className="text-premium-yellow hover:text-white transition-colors text-xs font-bold font-mono tracking-tight"
+                      className="text-premium-yellow hover:text-slate-900 transition-colors text-xs font-bold font-mono tracking-tight"
                     >
                       Inspect Full Ledger →
                     </button>
@@ -608,34 +608,34 @@ export default function Admin() {
 
                   <div className="space-y-3">
                     {orders.slice(0, 4).map((order: any, idx: number) => (
-                      <div key={order.id + idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white/[0.01] hover:bg-white/[0.04] border border-white/[0.03] rounded-2xl transition-all">
+                      <div key={order.id + idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-50/30 hover:bg-slate-50 border border-slate-200/60 rounded-2xl transition-all">
                         <div className="flex items-start gap-4">
                           <div className={cn(
                             "h-10 w-10 rounded-xl flex items-center justify-center text-xs font-black shrink-0",
-                            order.status === "completed" ? "bg-emerald-500/15 text-emerald-500 border border-emerald-500/20" : 
-                            order.status === "refunded" ? "bg-rose-500/15 text-rose-500 border border-rose-500/20" :
-                            "bg-amber-500/15 text-amber-500 border border-amber-500/20"
+                            order.status === "completed" ? "bg-emerald-500/15 text-emerald-600 border border-emerald-500/20" : 
+                            order.status === "refunded" ? "bg-rose-500/15 text-rose-600 border border-rose-500/20" :
+                            "bg-amber-500/15 text-amber-600 border border-amber-500/20"
                           )}>
                             {order.customer.split(' ').map((n: string) => n[0]).join('')}
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              <p className="font-bold text-sm text-white">{order.customer}</p>
-                              <span className="text-[9px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400 font-mono">{order.id}</span>
+                              <p className="font-bold text-sm text-slate-900">{order.customer}</p>
+                              <span className="text-[9px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-500 font-mono">{order.id}</span>
                             </div>
-                            <p className="text-xs text-gray-400 mt-0.5">{order.product}</p>
+                            <p className="text-xs text-slate-500 mt-0.5">{order.product}</p>
                           </div>
                         </div>
 
-                        <div className="flex sm:flex-col items-center sm:items-end justify-between mt-3 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-0 border-white/5">
-                          <span className="text-sm font-extrabold text-white font-mono">{formatCurrency(order.amount)}</span>
+                        <div className="flex sm:flex-col items-center sm:items-end justify-between mt-3 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-0 border-slate-200/60">
+                          <span className="text-sm font-extrabold text-slate-900 font-mono">{formatCurrency(order.amount)}</span>
                           <div className="flex items-center gap-2 mt-1">
-                            <span className="text-[10px] text-gray-500 font-mono">{order.date}</span>
+                            <span className="text-[10px] text-slate-500 font-mono">{order.date}</span>
                             <span className={cn(
                               "text-[8px] uppercase tracking-widest px-1.5 py-0.5 rounded font-black",
-                              order.status === "completed" ? "bg-emerald-950/50 text-emerald-400 border border-emerald-500/20" : 
-                              order.status === "refunded" ? "bg-rose-950/50 text-rose-400 border border-rose-500/20" :
-                              "bg-amber-950/50 text-amber-400 border border-amber-500/20"
+                              order.status === "completed" ? "bg-emerald-100 text-emerald-800 border border-emerald-500/20" : 
+                              order.status === "refunded" ? "bg-rose-100 text-rose-800 border border-rose-500/20" :
+                              "bg-amber-100 text-amber-800 border border-amber-500/20"
                             )}>
                               {order.status}
                             </span>
@@ -656,22 +656,22 @@ export default function Admin() {
                 className="space-y-6"
               >
                 {/* Product controls feed toolbar */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/[0.01] border border-white/5 p-4 rounded-2xl">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
                   
                   {/* Search Bar input */}
                   <div className="relative w-full sm:w-72">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                     <input 
                       type="text" 
                       placeholder="Filter by template name..." 
                       value={productSearch}
                       onChange={(e) => setProductSearch(e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-xs outline-none focus:border-premium-yellow/50 transition-colors" 
+                      className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl pl-10 pr-4 py-2.5 text-xs outline-none focus:border-premium-yellow/50 transition-colors text-slate-800 focus:bg-white" 
                     />
                     {productSearch && (
                       <button 
                         onClick={() => setProductSearch("")}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white text-xs"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-800 text-xs font-semibold"
                       >
                         Clear
                       </button>
@@ -680,7 +680,7 @@ export default function Admin() {
 
                   {/* Filter selectors */}
                   <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto">
-                    <Filter className="h-4 w-4 text-gray-500 block shrink-0" />
+                    <Filter className="h-4 w-4 text-slate-400 block shrink-0" />
                     <div className="flex items-center gap-1.5">
                       {categories.map((cat) => (
                         <button
@@ -689,8 +689,8 @@ export default function Admin() {
                           className={cn(
                             "px-3 py-1.5 rounded-lg text-[10px] uppercase tracking-wider font-extrabold whitespace-nowrap transition-all border",
                             productCategoryFilter === cat 
-                              ? "bg-premium-yellow text-black border-premium-yellow" 
-                              : "bg-white/5 text-gray-400 border-white/5 hover:border-white/10 hover:text-white"
+                              ? "bg-premium-yellow text-black border-premium-yellow shadow-sm" 
+                              : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-900"
                           )}
                         >
                           {cat}
@@ -701,7 +701,7 @@ export default function Admin() {
 
                   <button
                     onClick={() => setIsNewProductModalOpen(true)}
-                    className="flex items-center gap-2 bg-premium-yellow text-neutral-900 px-4 py-2.5 rounded-xl text-xs font-black hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 w-full sm:w-auto justify-center"
+                    className="flex items-center gap-2 bg-gradient-to-r from-premium-yellow to-amber-500 text-black px-4 py-2.5 rounded-xl text-xs font-black shadow-[0_4px_12px_rgba(243,174,27,0.2)] hover:shadow-[0_4px_16px_rgba(243,174,27,0.3)] hover:-translate-y-0.5 active:translate-y-0 transition-all shrink-0 w-full sm:w-auto justify-center"
                   >
                     <Plus className="h-4 w-4 stroke-[3]" />
                     ADD NEW TEMPLATE
@@ -710,42 +710,42 @@ export default function Admin() {
 
                 {/* Interactive publish form overlay modal */}
                 {isNewProductModalOpen && (
-                  <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
+                  <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
                     <motion.div 
                       initial={{ scale: 0.95, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      className="bg-[#080D1A] border border-white/10 p-8 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative"
+                      className="bg-white border border-slate-200/80 p-8 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative shadow-2xl"
                     >
                       <button 
                         onClick={() => setIsNewProductModalOpen(false)}
-                        className="absolute top-4 right-4 text-gray-400 hover:text-white"
+                        className="absolute top-4 right-4 text-slate-400 hover:text-slate-700"
                       >
                         <X className="h-5 w-5" />
                       </button>
 
-                      <h3 className="text-2xl font-bold font-display text-white mb-2">Publish New Excel Template</h3>
-                      <p className="text-xs text-gray-400 mb-6">Create another professional dashboard spreadsheet. It will appear across client storefronts instantly.</p>
+                      <h3 className="text-2xl font-bold font-display text-slate-900 mb-2">Publish New Excel Template</h3>
+                      <p className="text-xs text-slate-500 mb-6">Create another professional dashboard spreadsheet. It will appear across client storefronts instantly.</p>
 
                       <form onSubmit={handleCreateProduct} className="space-y-4">
                         <div>
-                          <label className="block text-[10px] font-black uppercase text-gray-500 tracking-wider mb-1.5">Template Commercial Title *</label>
+                          <label className="block text-[10px] font-black uppercase text-slate-500 tracking-wider mb-1.5">Template Commercial Title *</label>
                           <input 
                             required
                             type="text" 
                             placeholder="e.g., Venture Capital Runway Dashboard" 
                             value={newProductName}
                             onChange={(e) => setNewProductName(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-white"
+                            className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-slate-800 focus:bg-white transition-all"
                           />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-[10px] font-black uppercase text-gray-500 tracking-wider mb-1.5">Category *</label>
+                            <label className="block text-[10px] font-black uppercase text-slate-500 tracking-wider mb-1.5">Category *</label>
                             <select 
                               value={newProductCategory}
                               onChange={(e) => setNewProductCategory(e.target.value)}
-                              className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-white"
+                              className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-slate-800 focus:bg-white transition-all"
                             >
                               <option value="Online Business">Online Business</option>
                               <option value="Boutique">Boutique</option>
@@ -755,7 +755,7 @@ export default function Admin() {
                           </div>
 
                           <div>
-                            <label className="block text-[10px] font-black uppercase text-gray-500 tracking-wider mb-1.5">Default price (INR) *</label>
+                            <label className="block text-[10px] font-black uppercase text-slate-500 tracking-wider mb-1.5">Default price (INR) *</label>
                             <input 
                               required
                               type="number" 
@@ -764,42 +764,42 @@ export default function Admin() {
                               placeholder="499" 
                               value={newProductPrice}
                               onChange={(e) => setNewProductPrice(Number(e.target.value))}
-                              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-white font-mono"
+                              className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-slate-800 font-mono focus:bg-white transition-all"
                             />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-black uppercase text-gray-500 tracking-wider mb-1.5">Description Abstract</label>
+                          <label className="block text-[10px] font-black uppercase text-slate-500 tracking-wider mb-1.5">Description Abstract</label>
                           <textarea 
                             rows={2}
                             placeholder="Brief marketing copy summarizing spreadsheet benefits..." 
                             value={newProductDesc}
                             onChange={(e) => setNewProductDesc(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-white"
+                            className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-slate-800 focus:bg-white transition-all"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-black uppercase text-gray-500 tracking-wider mb-1.5">Features list (comma-separated)</label>
+                          <label className="block text-[10px] font-black uppercase text-slate-500 tracking-wider mb-1.5">Features list (comma-separated)</label>
                           <input 
                             type="text" 
                             placeholder="Multi-currency logs, Ad-Spend projections, Cashflow graphs" 
                             value={newProductFeatures}
                             onChange={(e) => setNewProductFeatures(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-white"
+                            className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl px-4 py-3 text-sm outline-none focus:border-premium-yellow/50 text-slate-800 focus:bg-white transition-all"
                           />
-                          <p className="text-[9px] text-gray-500 mt-1">Separate specific bullet points with commas to structure specifications automatically</p>
+                          <p className="text-[9px] text-slate-400 mt-1">Separate specific bullet points with commas to structure specifications automatically</p>
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-black uppercase text-gray-500 tracking-wider mb-1.5">Cover Image URL (Optional)</label>
+                          <label className="block text-[10px] font-black uppercase text-slate-500 tracking-wider mb-1.5">Cover Image URL (Optional)</label>
                           <input 
                             type="text" 
                             placeholder="https://images.unsplash.com/... (or left blank for standard texture)" 
                             value={newProductImage}
                             onChange={(e) => setNewProductImage(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs outline-none focus:border-premium-yellow/50 text-white font-mono"
+                            className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl px-4 py-3 text-xs outline-none focus:border-premium-yellow/50 text-slate-800 font-mono focus:bg-white transition-all"
                           />
                         </div>
 
@@ -807,13 +807,13 @@ export default function Admin() {
                           <button
                             type="button"
                             onClick={() => setIsNewProductModalOpen(false)}
-                            className="w-1/2 py-3.5 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:bg-white/5 transition-all"
+                            className="w-1/2 py-3.5 border border-slate-200 hover:border-slate-300 rounded-xl text-xs font-bold text-slate-650 hover:bg-slate-50 transition-all"
                           >
                             Cancel
                           </button>
                           <button
                             type="submit"
-                            className="w-1/2 py-3.5 bg-premium-yellow text-black rounded-xl text-xs font-black hover:bg-amber-500 transition-all"
+                            className="w-1/2 py-3.5 bg-gradient-to-r from-premium-yellow to-amber-500 text-black rounded-xl text-xs font-black hover:shadow-md transition-all"
                           >
                             Publish Template
                           </button>
@@ -824,55 +824,55 @@ export default function Admin() {
                 )}
 
                 {/* Interactive templates lists grid */}
-                <div className="glass rounded-[2.5rem] p-8 border-white/5">
-                  <h3 className="text-xl font-bold font-display text-white mb-6">Spreadsheets Inventory Catalogue</h3>
+                <div className="glass rounded-[2.5rem] p-8">
+                  <h3 className="text-xl font-bold font-display text-slate-900 mb-6">Spreadsheets Inventory Catalogue</h3>
                   
                   {filteredProducts.length > 0 ? (
                     <div className="space-y-4">
                       {filteredProducts.map((p) => (
                         <div 
                           key={p.id} 
-                          className="flex flex-col lg:flex-row lg:items-center justify-between p-5 bg-white/[0.01] hover:bg-white/[0.03] border border-white/[0.03] rounded-3xl transition-all gap-4"
+                          className="flex flex-col lg:flex-row lg:items-center justify-between p-5 bg-slate-50/50 hover:bg-slate-50 border border-slate-150 rounded-3xl transition-all gap-4 shadow-xs"
                         >
                           <div className="flex items-center gap-4">
-                            <div className="h-14 w-14 rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-neutral-900">
+                            <div className="h-14 w-14 rounded-2xl overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
                               <img src={p.image} className="h-full w-full object-cover transition-transform group-hover:scale-105" alt="" />
                             </div>
                             <div>
                               <div className="flex items-center gap-2 flex-wrap">
-                                <h4 className="font-bold text-sm text-white font-display tracking-tight leading-tight">{p.name}</h4>
+                                <h4 className="font-bold text-sm text-slate-900 font-display tracking-tight leading-tight">{p.name}</h4>
                                 <span className="text-[9px] bg-premium-yellow/10 text-premium-yellow border border-premium-yellow/20 px-2 py-0.5 rounded-full font-mono uppercase font-black">
                                   {p.category}
                                 </span>
                               </div>
-                              <p className="text-xs text-gray-400 mt-1 line-clamp-1 max-w-lg leading-relaxed">{p.description}</p>
+                              <p className="text-xs text-slate-500 mt-1 line-clamp-1 max-w-lg leading-relaxed">{p.description}</p>
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between lg:justify-end gap-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/5">
+                          <div className="flex items-center justify-between lg:justify-end gap-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-slate-150">
                             {/* Inline pricing tweaks */}
                             <div className="text-left lg:text-right">
-                              <span className="text-[10px] text-gray-500 uppercase tracking-wider block font-bold font-mono">Price (INR)</span>
+                              <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-bold font-mono">Price (INR)</span>
                               <div className="flex items-center gap-1.5 mt-1">
-                                <span className="text-xs text-gray-400 font-mono">₹</span>
+                                <span className="text-xs text-slate-400 font-mono">₹</span>
                                 <input 
                                   type="number" 
                                   value={p.price} 
                                   onChange={(e) => handleUpdatePrice(p.id, Number(e.target.value))}
-                                  className="w-16 bg-white/5 border border-white/10 rounded px-1.5 py-0.5 text-xs text-white text-center font-bold font-mono focus:border-premium-yellow/50" 
+                                  className="w-16 bg-slate-100 border border-slate-200 rounded px-1.5 py-0.5 text-xs text-slate-800 text-center font-bold font-mono focus:border-premium-yellow/50 focus:bg-white transition-all" 
                                 />
                               </div>
                             </div>
 
                             {/* Specifications breakdown preview */}
                             <div className="hidden sm:block text-left lg:text-right">
-                              <span className="text-[10px] text-gray-500 uppercase tracking-wider block font-medium">Format</span>
-                              <span className="text-xs text-gray-300 font-mono font-bold mt-1 block">{p.specs["Format"] || ".xlsx"}</span>
+                              <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-medium">Format</span>
+                              <span className="text-xs text-slate-800 font-mono font-bold mt-1 block">{p.specs["Format"] || ".xlsx"}</span>
                             </div>
 
                             <button 
                               onClick={() => handleDeleteProduct(p.id)}
-                              className="text-gray-500 hover:text-rose-500 p-2.5 rounded-xl hover:bg-rose-500/15 transition-all"
+                              className="text-slate-450 hover:text-rose-600 p-2.5 rounded-xl hover:bg-rose-50 transition-all"
                               title="Retire/Archive sheet"
                             >
                               <Trash2 className="h-4.5 w-4.5" />
@@ -882,8 +882,8 @@ export default function Admin() {
                       ))}
                     </div>
                   ) : (
-                    <div className="text-center py-16 text-gray-500">
-                      <AlertCircle className="h-10 w-10 text-white/5 mx-auto mb-3" />
+                    <div className="text-center py-16 text-slate-500">
+                      <AlertCircle className="h-10 w-10 text-slate-200 mx-auto mb-3" />
                       <p className="text-sm">No spreadsheet templates found matching your search filters.</p>
                       <button onClick={() => { setProductSearch(""); setProductCategoryFilter("all"); }} className="text-premium-yellow text-xs hover:underline mt-2">Clear search presets</button>
                     </div>
@@ -900,16 +900,16 @@ export default function Admin() {
                 className="space-y-6"
               >
                 {/* Transaction Filters toolbar */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/[0.01] border border-white/5 p-4 rounded-2xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
                   {/* Search orders */}
                   <div className="relative w-full sm:w-72">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                     <input 
                       type="text" 
                       placeholder="Search Transaction ID, email, user..." 
                       value={orderSearch}
                       onChange={(e) => setOrderSearch(e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-xs outline-none focus:border-premium-yellow/50 transition-colors" 
+                      className="w-full bg-slate-50 border border-slate-200 hover:border-slate-350 rounded-xl pl-10 pr-4 py-2.5 text-xs outline-none focus:border-premium-yellow/50 transition-colors text-slate-800 focus:bg-white" 
                     />
                   </div>
 
@@ -925,10 +925,10 @@ export default function Admin() {
                         key={status.id}
                         onClick={() => setOrderStatusFilter(status.id)}
                         className={cn(
-                          "px-3 py-1.5 rounded-lg text-[10px] uppercase tracking-wider font-extrabold whitespace-nowrap transition-all",
+                          "px-3 py-1.5 rounded-lg text-[10px] uppercase tracking-wider font-extrabold whitespace-nowrap transition-all border",
                           orderStatusFilter === status.id 
-                            ? "bg-premium-yellow text-black font-black" 
-                            : "bg-white/5 text-gray-400 hover:text-white"
+                            ? "bg-premium-yellow text-black border-premium-yellow font-black shadow-sm" 
+                            : "bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900 border-slate-200"
                         )}
                       >
                         {status.label}
@@ -938,13 +938,13 @@ export default function Admin() {
                 </div>
 
                 {/* Spreadsheet ledger representation table */}
-                <div className="glass rounded-[2rem] overflow-hidden border-white/5">
-                  <div className="p-6 border-b border-white/5 flex items-center justify-between">
+                <div className="glass rounded-[2rem] overflow-hidden">
+                  <div className="p-6 border-b border-slate-200/80 flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-bold font-display text-white">Full Financial Transactions Ledger</h3>
-                      <p className="text-xs text-gray-400 mt-0.5">Double-entry simulator reflecting customer credit card / UPI checkpoints</p>
+                      <h3 className="text-lg font-bold font-display text-slate-900">Full Financial Transactions Ledger</h3>
+                      <p className="text-xs text-slate-500 mt-0.5">Double-entry simulator reflecting customer credit card / UPI checkpoints</p>
                     </div>
-                    <span className="text-[10px] bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10 font-mono">
+                    <span className="text-[10px] bg-slate-50 text-slate-650 px-3 py-1 rounded-full border border-slate-200 font-mono">
                       {filteredOrders.length} records isolation
                     </span>
                   </div>
@@ -953,7 +953,7 @@ export default function Admin() {
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
                         <thead>
-                          <tr className="bg-white/5 text-[9px] uppercase font-bold text-gray-500 tracking-widest border-b border-white/5">
+                          <tr className="bg-slate-50 text-[9px] uppercase font-bold text-slate-500 tracking-widest border-b border-slate-200/85">
                             <th className="px-6 py-4 font-mono font-black">Transaction ID</th>
                             <th className="px-6 py-4">Fulfillment Client</th>
                             <th className="px-6 py-4">Purchased Product</th>
@@ -963,47 +963,47 @@ export default function Admin() {
                             <th className="px-6 py-4 text-right">Status State</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5">
+                        <tbody className="divide-y divide-slate-100">
                           {filteredOrders.map((order: any, idx: number) => (
-                            <tr key={order.id + idx} className="text-xs hover:bg-white/[0.02] transition-colors">
+                            <tr key={order.id + idx} className="text-xs bg-white hover:bg-slate-50/50 transition-colors">
                               {/* ID */}
-                              <td className="px-6 py-4 font-mono font-bold text-gray-400">
+                              <td className="px-6 py-4 font-mono font-bold text-slate-500">
                                 {order.id}
                               </td>
                               
                               {/* Customer */}
                               <td className="px-6 py-4">
-                                <div className="font-bold text-white">{order.customer}</div>
-                                <div className="text-[10px] text-gray-500 mt-0.5">{order.email}</div>
+                                <div className="font-bold text-slate-900">{order.customer}</div>
+                                <div className="text-[10px] text-slate-500 mt-0.5">{order.email}</div>
                               </td>
 
                               {/* Product */}
                               <td className="px-6 py-4 min-w-[180px]">
-                                <span className="font-semibold text-gray-300 leading-tight block truncate max-w-xs">{order.product}</span>
+                                <span className="font-semibold text-slate-800 leading-tight block truncate max-w-xs">{order.product}</span>
                               </td>
 
                               {/* Date */}
-                              <td className="px-6 py-4 font-mono text-gray-400 text-center">
+                              <td className="px-6 py-4 font-mono text-slate-500 text-center">
                                 {order.date}
                               </td>
 
                               {/* Amount */}
-                              <td className="px-6 py-4 font-black font-mono text-white">
+                              <td className="px-6 py-4 font-black font-mono text-slate-900">
                                 {formatCurrency(order.amount)}
                               </td>
 
                               {/* Gateway */}
-                              <td className="px-6 py-4 text-gray-400 text-[10px] font-mono">
+                              <td className="px-6 py-4 text-slate-550 text-[10px] font-mono">
                                 {order.gateway || "Razorpay API"}
                               </td>
 
                               {/* Actions / Status badges */}
                               <td className="px-6 py-4 text-right">
                                 <span className={cn(
-                                  "inline-block text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full font-extrabold font-mono",
-                                  order.status === "completed" ? "bg-emerald-950/40 text-emerald-400 border border-emerald-500/20" : 
-                                  order.status === "refunded" ? "bg-rose-950/40 text-rose-400 border border-rose-500/20" :
-                                  "bg-amber-950/40 text-amber-400 border border-amber-500/20"
+                                  "inline-block text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full font-extrabold font-mono border",
+                                  order.status === "completed" ? "bg-emerald-100 text-emerald-800 border-emerald-200" : 
+                                  order.status === "refunded" ? "bg-rose-100 text-rose-800 border-rose-200" :
+                                  "bg-amber-100 text-amber-800 border-amber-200"
                                 )}>
                                   {order.status}
                                 </span>
@@ -1014,13 +1014,13 @@ export default function Admin() {
                       </table>
                     </div>
                   ) : (
-                    <div className="text-center py-20 p-8 text-gray-500">
-                      <TrendingUp className="h-16 w-16 text-white/5 mx-auto mb-6" />
-                      <h3 className="text-xl font-bold font-display mb-2 text-white">No Ledger Entries matches</h3>
-                      <p className="text-gray-400 text-xs">There are no sales satisfying the current parameters. Trigger random sandbox receipts!</p>
+                    <div className="text-center py-20 p-8 text-slate-550">
+                      <TrendingUp className="h-16 w-16 text-slate-200 mx-auto mb-6" />
+                      <h3 className="text-xl font-bold font-display mb-2 text-slate-900">No Ledger Entries matches</h3>
+                      <p className="text-slate-500 text-xs">There are no sales satisfying the current parameters. Trigger random sandbox receipts!</p>
                       <button 
                         onClick={simulateRandomCheckout}
-                        className="mt-6 inline-flex items-center gap-2 bg-premium-yellow text-neutral-950 px-4 py-2 rounded-xl text-xs font-bold"
+                        className="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-premium-yellow to-amber-500 text-black px-4 py-2 rounded-xl text-xs font-bold shadow-sm"
                       >
                         <Sparkles className="h-4 w-4" /> Simulate sale
                       </button>
@@ -1037,31 +1037,31 @@ export default function Admin() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-8"
               >
-                <div className="glass rounded-[2rem] p-8 border-white/5 space-y-8">
+                <div className="glass rounded-[2rem] p-8 space-y-8">
                   {/* Title block */}
                   <div>
-                    <h3 className="text-xl font-bold font-display text-white">Storefront Campaigns & Controls</h3>
-                    <p className="text-xs text-gray-400 mt-1">Configure checkout systems, discount coupons, API testing, or flip site status parameters.</p>
+                    <h3 className="text-xl font-bold font-display text-slate-900">Storefront Campaigns & Controls</h3>
+                    <p className="text-xs text-slate-500 mt-1">Configure checkout systems, discount coupons, API testing, or flip site status parameters.</p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
                     
                     {/* Column 1: Promo Coupon controls */}
                     <div className="space-y-6">
-                      <h4 className="text-xs font-black uppercase text-gray-500 tracking-wider font-mono flex items-center gap-2">
+                      <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider font-mono flex items-center gap-2">
                         <DollarSign className="h-4 w-4 text-premium-yellow" />
                         PROMO CODE MANAGEMENT
                       </h4>
 
-                      <div className="bg-white/[0.01] border border-white/5 p-6 rounded-2xl space-y-4">
+                      <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
                         <div>
-                          <label className="block text-xs font-bold text-gray-400 mb-1.5 font-display">Active Global Discount Code</label>
+                          <label className="block text-xs font-bold text-slate-655 mb-1.5 font-display">Active Global Discount Code</label>
                           <div className="flex gap-2">
                             <input 
                               type="text" 
                               value={discountCode}
                               onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
-                              className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-premium-yellow/50 text-white font-mono flex-1 text-center font-extrabold" 
+                              className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-xs outline-none focus:border-premium-yellow/50 text-slate-800 font-mono flex-1 text-center font-extrabold focus:bg-white transition-all" 
                             />
                             <div className="bg-premium-yellow/15 border border-premium-yellow/20 px-4 py-2.5 rounded-xl text-xs text-premium-yellow font-black font-mono">
                               ACTIVE
@@ -1070,7 +1070,7 @@ export default function Admin() {
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-gray-400 mb-1.5 font-display flex justify-between">
+                          <label className="block text-xs font-bold text-slate-655 mb-1.5 font-display flex justify-between">
                             <span>Markdown Percents Multiplier</span>
                             <span className="text-premium-yellow font-mono">{discountValue}% OFF</span>
                           </label>
@@ -1080,27 +1080,27 @@ export default function Admin() {
                             max="80" 
                             value={discountValue}
                             onChange={(e) => setDiscountValue(Number(e.target.value))}
-                            className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-premium-yellow" 
+                            className="w-full h-1 bg-slate-250 rounded-lg appearance-none cursor-pointer accent-premium-yellow" 
                           />
-                          <p className="text-[10px] text-gray-500 mt-1">Directly overrides calculations across the checkout templates detail sheet.</p>
+                          <p className="text-[10px] text-slate-500 mt-1">Directly overrides calculations across the checkout templates detail sheet.</p>
                         </div>
                       </div>
                     </div>
 
                     {/* Column 2: Sandbox checkout settings */}
                     <div className="space-y-6">
-                      <h4 className="text-xs font-black uppercase text-gray-500 tracking-wider font-mono flex items-center gap-2">
+                      <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider font-mono flex items-center gap-2">
                         <CreditCard className="h-4 w-4 text-premium-yellow" />
                         SANDBOX ENVIRONMENT PARAMS
                       </h4>
 
-                      <div className="bg-white/[0.01] border border-white/5 p-6 rounded-2xl space-y-4">
+                      <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
                         <div>
-                          <label className="block text-xs font-bold text-gray-400 mb-1.5 font-display">System Currency</label>
+                          <label className="block text-xs font-bold text-slate-655 mb-1.5 font-display">System Currency</label>
                           <select 
                             value={siteCurrency}
                             onChange={(e) => setSiteCurrency(e.target.value)}
-                            className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-xs outline-none focus:border-premium-yellow/50 text-white font-mono"
+                            className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs outline-none focus:border-premium-yellow/50 text-slate-800 font-mono focus:ring-1 focus:ring-premium-yellow focus:border-premium-yellow transition-all"
                           >
                             <option value="INR">INR (₹) - Standard Local</option>
                             <option value="USD">USD ($) - International Base</option>
@@ -1109,20 +1109,20 @@ export default function Admin() {
                         </div>
 
                         {/* Toggle site mode */}
-                        <div className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
+                        <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
                           <div>
-                            <span className="block text-xs font-bold text-white font-display">Maintenance Safe-Lock</span>
-                            <span className="text-[9px] text-gray-400 mt-1 block">Toggles mock checkout gateways instantly</span>
+                            <span className="block text-xs font-bold text-slate-900 font-display">Maintenance Safe-Lock</span>
+                            <span className="text-[9px] text-slate-550 mt-1 block">Toggles mock checkout gateways instantly</span>
                           </div>
                           <button
                             onClick={() => setMaintenanceMode(!maintenanceMode)}
                             className={cn(
                               "w-12 h-6 rounded-full p-1 transition-colors duration-300 relative",
-                              maintenanceMode ? "bg-[#F3AE1B]" : "bg-white/10"
+                              maintenanceMode ? "bg-[#F3AE1B]" : "bg-slate-200"
                             )}
                           >
                             <div className={cn(
-                              "h-4 w-4 bg-black rounded-full transition-transform duration-300",
+                              "h-4 w-4 bg-white rounded-full transition-transform duration-300 shadow-sm",
                               maintenanceMode ? "translate-x-6" : "translate-x-0"
                             )} />
                           </button>
@@ -1133,28 +1133,28 @@ export default function Admin() {
                   </div>
 
                   {/* System API Diagnostics telemetry mock */}
-                  <div className="bg-white/[0.01] border border-white/5 p-6 rounded-2xl">
-                    <h4 className="text-xs font-black uppercase text-gray-500 tracking-wider font-mono flex items-center gap-2 mb-4">
+                  <div className="bg-slate-50 border border-slate-250 p-6 rounded-2xl">
+                    <h4 className="text-xs font-black uppercase text-slate-500 tracking-wider font-mono flex items-center gap-2 mb-4">
                       <Activity className="h-4 w-4 text-premium-yellow" />
                       PAYMENT GATEWAY DEPLOYMENT DIAGNOSTICS
                     </h4>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <span className="text-[9px] text-gray-500 block font-bold font-mono">RAZORPAY GATEWAY</span>
-                        <span className="text-xs font-extrabold text-emerald-500 mt-2 block font-mono">● ENCRYPTED (SSL)</span>
+                      <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-xs">
+                        <span className="text-[9px] text-slate-500 block font-bold font-mono">RAZORPAY GATEWAY</span>
+                        <span className="text-xs font-extrabold text-emerald-600 mt-2 block font-mono">● ENCRYPTED (SSL)</span>
                       </div>
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <span className="text-[9px] text-gray-500 block font-bold font-mono">ROUTER LATENCY</span>
-                        <span className="text-xs font-extrabold text-white mt-2 block font-mono">0.24 seconds</span>
+                      <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-xs">
+                        <span className="text-[9px] text-slate-500 block font-bold font-mono">ROUTER LATENCY</span>
+                        <span className="text-xs font-extrabold text-slate-800 mt-2 block font-mono">0.24 seconds</span>
                       </div>
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <span className="text-[9px] text-gray-500 block font-bold font-mono">AUTO SECURITY CORE</span>
-                        <span className="text-xs font-extrabold text-emerald-500 mt-2 block font-mono">TLS 1.3 PASSWAY</span>
+                      <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-xs">
+                        <span className="text-[9px] text-slate-500 block font-bold font-mono">AUTO SECURITY CORE</span>
+                        <span className="text-xs font-extrabold text-emerald-600 mt-2 block font-mono">TLS 1.3 PASSWAY</span>
                       </div>
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <span className="text-[9px] text-gray-500 block font-bold font-mono">EXCEL API PARSES</span>
-                        <span className="text-xs font-extrabold text-white mt-2 block font-mono">Active (100%)</span>
+                      <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-xs">
+                        <span className="text-[9px] text-slate-500 block font-bold font-mono">EXCEL API PARSES</span>
+                        <span className="text-xs font-extrabold text-slate-800 mt-2 block font-mono">Active (100%)</span>
                       </div>
                     </div>
                   </div>

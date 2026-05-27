@@ -4,10 +4,10 @@
 @theme {
   --color-neon-green: #F1B810;
   --color-premium-yellow: #F1B810;
-  --color-twinaron-blue: #0A0A0A;
-  --color-twinaron-blue-light: #121212;
-  --color-dark-surface: #000000;
-  --color-dark-card: #0A0A0A;
+  --color-twinaron-blue: #F8FAFC;
+  --color-twinaron-blue-light: #F1F5F9;
+  --color-dark-surface: #FFFFFF;
+  --color-dark-card: #FFFFFF;
   
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-display: "Plus Jakarta Sans", sans-serif;
@@ -15,39 +15,39 @@
 
 @layer base {
   body {
-    @apply bg-black text-white antialiased selection:bg-premium-yellow selection:text-black;
+    @apply bg-white text-gray-900 antialiased selection:bg-premium-yellow selection:text-black;
   }
 }
 
 @layer components {
   .glass {
-    @apply bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06];
+    @apply bg-white/70 backdrop-blur-2xl border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)];
   }
   
   .glass-hover {
-    @apply hover:bg-white/[0.05] hover:border-premium-yellow/20 transition-all duration-300;
+    @apply hover:bg-slate-50/90 hover:border-premium-yellow/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300;
   }
 
   .neon-glow {
-    text-shadow: 0 0 15px rgba(241, 184, 16, 0.4);
+    text-shadow: 0 0 15px rgba(241, 184, 16, 0.2);
   }
 
   .neon-border-glow {
-    box-shadow: 0 0 30px rgba(241, 184, 16, 0.15);
+    box-shadow: 0 0 30px rgba(241, 184, 16, 0.1);
   }
 
   /* Luxury background grids and overlays */
   .luxury-grid {
-    background-image: radial-gradient(rgba(241, 184, 16, 0.03) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(241, 184, 16, 0.08) 1px, transparent 1px);
     background-size: 32px 32px;
   }
 
   .luxury-gradient {
-    background: radial-gradient(circle at 50% -20%, rgba(241, 184, 16, 0.15) 0%, rgba(241, 184, 16, 0.03) 30%, rgba(0, 0, 0, 0) 70%);
+    background: radial-gradient(circle at 50% -20%, rgba(241, 184, 16, 0.12) 0%, rgba(241, 184, 16, 0.03) 40%, rgba(255, 255, 255, 0) 80%);
   }
 
   .metallic-shine {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0) 50%, rgba(241, 184, 16, 0.01) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.4) 50%, rgba(241, 184, 16, 0.02) 100%);
   }
 
   /* Luxury Keyframes & Animation utilities */

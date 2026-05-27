@@ -21,13 +21,13 @@ export default function CategoryCard({ product, index }: CategoryCardProps) {
     >
       <Link
         to={`/product/${product.slug}`}
-        className="group relative block overflow-hidden rounded-[2.5rem] bg-white/[0.01] border border-white/5 hover:border-premium-yellow/20 p-6 h-full transition-all duration-300 hover:bg-white/[0.03] shadow-xl luxury-shine-hover"
+        className="group relative block overflow-hidden rounded-[2.5rem] bg-slate-50/40 border border-slate-200/60 hover:border-premium-yellow/30 p-6 h-full transition-all duration-300 hover:bg-slate-50/85 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-[0_8px_30px_rgb(0,0,0,0.015)] luxury-shine-hover"
       >
         <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 z-10">
           <ArrowRight className="h-5 w-5 text-premium-yellow" />
         </div>
 
-        <div className="mb-6 aspect-video overflow-hidden rounded-[1.75rem] bg-white/[0.02] relative">
+        <div className="mb-6 aspect-video overflow-hidden rounded-[1.75rem] bg-slate-100/50 relative">
           <img
             src={product.image}
             alt={product.name}
@@ -39,15 +39,15 @@ export default function CategoryCard({ product, index }: CategoryCardProps) {
           <span className="text-[9px] uppercase tracking-[0.25em] text-premium-yellow font-extrabold font-mono">
             {product.category}
           </span>
-          <h3 className="font-display text-lg font-bold leading-snug text-white group-hover:text-premium-yellow transition-colors tracking-tight">
+          <h3 className="font-display text-lg font-bold leading-snug text-slate-900 group-hover:text-premium-yellow transition-colors tracking-tight">
             {product.name}
           </h3>
-          <p className="mt-2 text-xs text-gray-400 line-clamp-2 leading-relaxed font-sans font-light">
+          <p className="mt-2 text-xs text-slate-500 line-clamp-2 leading-relaxed font-sans font-light">
             {product.description}
           </p>
-          <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
-            <span className="text-base font-extrabold font-display text-white tracking-wide">{formatCurrency(product.price)}</span>
-            <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold text-gray-500 group-hover:text-white transition-colors">
+          <div className="mt-6 flex items-center justify-between border-t border-slate-200/60 pt-4">
+            <span className="text-base font-extrabold font-display text-slate-900 tracking-wide">{formatCurrency(product.price)}</span>
+            <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold text-slate-400 group-hover:text-slate-800 transition-colors">
               ACQUIRE <ChevronRight className="h-3 w-3 text-premium-yellow" />
             </span>
           </div>
