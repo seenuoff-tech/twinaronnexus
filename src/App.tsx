@@ -19,6 +19,8 @@ const Admin = lazy(() => import("./pages/Admin"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Refund = lazy(() => import("./pages/Refund"));
+const ThankYou = lazy(() => import("./pages/ThankYou"));
+
 
 export default function App() {
   return (
@@ -42,6 +44,7 @@ export default function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/refund" element={<Refund />} />
+              <Route path="/thank-you" element={<ThankYou />} />
             </Routes>
           </Suspense>
         </main>

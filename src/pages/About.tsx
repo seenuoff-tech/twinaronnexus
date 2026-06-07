@@ -139,6 +139,84 @@ export default function About() {
           </div>
         </div>
 
+        {/* Acronym Explanation Section */}
+        <div className="mb-36">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+              <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ IDENTITY DECODED ✦
+              </span>
+              <h2 className="text-4xl font-bold font-display tracking-tight text-slate-900">
+                What Does TwinaronNexus Mean?
+              </h2>
+            </div>
+            <p className="text-slate-650 text-sm max-w-sm ml-0 md:ml-6 leading-relaxed font-sans font-light">
+              Together, TwinaronNexus represents the connection between business wisdom, data-driven insights, strategic partnerships and sustainable growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+            {/* TWINARON card */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="glass p-10 rounded-[2.5rem] border-slate-200/60 flex flex-col justify-between hover:border-premium-yellow/30 transition-all bg-white"
+            >
+              <div>
+                <h3 className="text-3xl font-extrabold font-display text-premium-yellow tracking-widest mb-8 border-b border-slate-100 pb-4">
+                  TWINARON
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { letter: "T", word: "Turning" },
+                    { letter: "W", word: "Wisdom" },
+                    { letter: "I", word: "Into" },
+                    { letter: "N", word: "Next-generation" },
+                    { letter: "A", word: "Analytics," },
+                    { letter: "R", word: "Risk Management," },
+                    { letter: "O", word: "Optimization and" },
+                    { letter: "N", word: "Networked Insights." }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                      <span className="font-display font-extrabold text-2xl text-slate-900 w-8 text-center">{item.letter}</span>
+                      <span className="text-sm text-slate-650 font-sans">{item.word}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* NEXUS card */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="glass p-10 rounded-[2.5rem] border-slate-200/60 flex flex-col justify-between hover:border-premium-yellow/30 transition-all bg-white"
+            >
+              <div>
+                <h3 className="text-3xl font-extrabold font-display text-premium-yellow tracking-widest mb-8 border-b border-slate-100 pb-4">
+                  NEXUS
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { letter: "N", word: "Network of" },
+                    { letter: "E", word: "Excellence," },
+                    { letter: "X", word: "X-factor Analytics," },
+                    { letter: "U", word: "Unified Intelligence and" },
+                    { letter: "S", word: "Strategic Growth." }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                      <span className="font-display font-extrabold text-2xl text-slate-900 w-8 text-center">{item.letter}</span>
+                      <span className="text-sm text-slate-650 font-sans">{item.word}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
         {/* Interactive Engineering Pillars Bento Grid */}
         <div className="mb-36">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">

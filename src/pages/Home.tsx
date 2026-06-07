@@ -9,7 +9,14 @@ import {
   CheckCircle2,
   HelpCircle,
   Plus,
-  Minus
+  Minus,
+  Eye,
+  Brain,
+  Cpu,
+  TrendingUp,
+  Handshake,
+  Globe,
+  ChevronRight
 } from "lucide-react";
 import { useState } from "react";
 import { PRODUCTS } from "../constants/products";
@@ -19,42 +26,86 @@ import AnimatedCounter from "../components/AnimatedCounter";
 import Magnetic from "../components/Magnetic";
 
 const FEATURES = [
-  { icon: BarChart3, title: "Expense Tracking", desc: "Monitor every penny spent with granular categorization." },
-  { icon: Zap, title: "Real-time Analytics", desc: "Visual dashboards that update instantly as you enter data." },
-  { icon: ShieldCheck, title: "Tax Ready", desc: "Pre-formatted reports that make tax season a breeze." },
-  { icon: Users, title: "Payroll Manager", desc: "Manage staff salaries and benefits effortlessly." },
-  { icon: BarChart3, title: "Profit & Loss", desc: "Clear visibility into your bottom line every single month." },
-  { icon: Zap, title: "Cash Flow", desc: "Predict future cash positions and avoid shortfalls." },
+  { icon: Eye, title: "Business Visibility", desc: "Gain clarity on business performance, revenue, expenses and opportunities." },
+  { icon: Brain, title: "Smarter Decision Making", desc: "Move beyond assumptions with structured business insights." },
+  { icon: Cpu, title: "Operational Efficiency", desc: "Reduce confusion and improve day-to-day business management." },
+  { icon: TrendingUp, title: "Revenue Growth", desc: "Identify profitable opportunities and growth areas." },
+  { icon: Handshake, title: "Strategic Partnerships", desc: "Connect with relevant business opportunities and networks." },
+  { icon: Globe, title: "Global Business Opportunities", desc: "Explore expansion, sourcing, distribution and international collaboration opportunities." },
+];
+
+const SERVICES = [
+  {
+    icon: BarChart3,
+    title: "Business Intelligence & Analytics",
+    desc: "Understand where your business stands and identify growth opportunities through structured analysis and reporting."
+  },
+  {
+    icon: Cpu,
+    title: "Customized Business Dashboards",
+    desc: "Tailored solutions designed around your business processes, operational goals and reporting requirements."
+  },
+  {
+    icon: Brain,
+    title: "Business Growth Consulting",
+    desc: "Identify bottlenecks, improve performance and create practical growth strategies."
+  },
+  {
+    icon: Handshake,
+    title: "Business Matchmaking",
+    desc: "Connect with potential buyers, suppliers, distributors, investors and strategic partners."
+  },
+  {
+    icon: Globe,
+    title: "Global Business Connections",
+    desc: "Facilitating meaningful business introductions and international opportunities."
+  }
+];
+
+const PROCESS_STEPS = [
+  { step: "Step 1", title: "Submit Consultation Request", desc: "Share details of your business operations and what you want to solve." },
+  { step: "Step 2", title: "Business Requirement Discussion", desc: "We schedule a dedicated call to dive deep into your workflow." },
+  { step: "Step 3", title: "Business Assessment", desc: "Our analysts examine your tracking bottlenecks and systems." },
+  { step: "Step 4", title: "Solution Recommendation", desc: "We map out a customized dashboard or strategic growth plan." },
+  { step: "Step 5", title: "Proposal & Quotation", desc: "We deliver a detailed scope, project timeline, and pricing breakdown." },
+  { step: "Step 6", title: "Implementation", desc: "We design, build, test, and implement your customized solution." }
+];
+
+const WHY_CHOOSE_US = [
+  { t: "Business-Focused Approach", d: "Aligning analytical systems and strategy with your actual commercial and operational goals." },
+  { t: "Practical Growth Strategies", d: "Actionable growth pathways that reduce bottlenecks and build business connections." },
+  { t: "Customized Solutions", d: "Bespoke dashboards and intelligence frameworks designed uniquely around your workflows." },
+  { t: "Strategic Business Connections", d: "Connecting you to verified buyers, manufacturers, distributors, and global partners." },
+  { t: "Industry Understanding", d: "Deep expertise across manufacturing, trading, healthcare, retail, and international trade." },
+  { t: "Long-Term Value Creation", d: "Building robust infrastructure that you own forever with no hidden monthly software fees." },
+  { t: "Consultation-Based Engagement", d: "Every relationship starts with understanding your needs, not pushing generic software." },
+  { t: "Scalable Business Solutions", d: "Systems engineered to support growing volumes, multi-user entry, and complex analytics." }
 ];
 
 const FAQS = [
   {
-    q: "Are these downloadable templates?",
-    a: "Yes. Once payment is completed, the template can be downloaded and used for your business operations."
+    q: "Are the business systems downloadable?",
+    a: "Yes. Access is provided immediately after successful payment."
   },
   {
-    q: "Are these templates ready to use?",
-    a: "Yes. The templates are designed for immediate business use."
+    q: "Are these systems ready to use?",
+    a: "Yes. They are designed to help businesses start using them immediately."
   },
   {
-    q: "Can the templates be customized?",
-    a: "Our ready-made templates are standardized systems. However, businesses with specific operational requirements can contact us for customized dashboard solutions."
+    q: "Can the systems be customized?",
+    a: "Yes. Customization is available after a consultation process and is priced separately based on business requirements."
   },
   {
-    q: "Who are these templates suitable for?",
-    a: "Our templates are suitable for online businesses, freelancers, boutique owners, traders, dealers, and distributors."
+    q: "Are customized solutions downloadable?",
+    a: "No. Customized solutions are developed specifically for your business and implemented based on project scope."
   },
   {
-    q: "How do I acquire a template?",
-    a: "Select the template, complete the payment process, and download the template."
+    q: "How do I request a customized solution?",
+    a: "Submit the consultation form and our team will review your requirements before scheduling a discussion."
   },
   {
-    q: "Do you provide custom dashboards?",
-    a: "Yes. Businesses requiring customized operational dashboards can submit a business enquiry."
-  },
-  {
-    q: "How does the custom dashboard process work?",
-    a: "Businesses must first submit a business enquiry form with their basic operational requirements.\n\nAfter reviewing the enquiry, a one-to-one consultation session will be scheduled to understand the business workflow, tracking requirements, and dashboard expectations before project confirmation."
+    q: "Who are these solutions suitable for?",
+    a: "Manufacturers, Traders, Exporters, Healthcare Businesses, Consultants, Service Providers, Retail Businesses, Startups and Growing Enterprises."
   }
 ];
 
@@ -70,8 +121,15 @@ const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="relative isolate luxury-grid overflow-hidden bg-white min-h-screen text-slate-900">
+    <div className="relative isolate overflow-hidden bg-white min-h-screen text-slate-900">
       {/* Editorial Golden Backlit Radial aura */}
       <div className="absolute inset-0 -z-10 luxury-gradient animate-float-glow" />
       
@@ -118,108 +176,75 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 space-y-8"
             >
-              <div className="inline-flex items-center gap-3 rounded-full border border-premium-yellow/20 bg-premium-yellow/[0.04] px-4 py-1.5 text-[10px] font-mono tracking-[0.2em] uppercase font-bold text-premium-yellow animate-pulse">
-                <span>✦ NEW: TRADING JOURNAL V2.0 ✦</span>
+              <div className="inline-flex items-center gap-3 rounded-full border border-premium-yellow/20 bg-premium-yellow/[0.04] px-4 py-1.5 text-[10px] font-mono tracking-[0.2em] uppercase font-bold text-premium-yellow">
+                <span>✦ BUSINESS DECISION INTELLIGENCE ✦</span>
               </div>
               
-              <h1 className="font-display text-5xl font-extrabold tracking-tight sm:text-7xl leading-[1.05] text-slate-900 flex flex-wrap gap-x-4">
-                {"Sovereign Ledger Suites for".split(" ").map((word, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-block"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-display italic text-premium-yellow font-normal inline-block"
-                >
-                  Modern
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block"
-                >
-                  Dynasties
-                </motion.span>
+              <h1 className="font-display text-5xl font-extrabold tracking-tight sm:text-6xl leading-[1.1] text-slate-900">
+                Transform Data Into <br />
+                <span className="font-display italic text-premium-yellow font-normal">Business Growth</span>
               </h1>
               
-              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-sans font-light">
-                Secure total financial sovereignty with masterfully engineered, macro-free offline frameworks. Vetted for flawless formula operations beneath modern high-stakes enterprise structures.
+              <p className="text-base sm:text-lg text-slate-650 leading-relaxed font-sans font-light max-w-2xl">
+                Helping Business Owners, Manufacturers, Traders, Healthcare Professionals, Exporters and Service Businesses gain clarity, improve decisions and unlock growth opportunities through business intelligence, strategic insights and business connections.
               </p>
+
+              <div className="border-l-2 border-premium-yellow/40 pl-4 py-1">
+                <p className="text-sm text-slate-500 italic font-sans font-light">
+                  Whether you need a ready-to-use business system, a customized management dashboard or strategic business support, TwinaronNexus helps you make informed decisions with confidence.
+                </p>
+              </div>
               
-              <div className="mt-10 flex flex-wrap gap-6 items-center">
-                <Magnetic strength={0.2}>
-                  <a
-                    href="#templates"
-                    className="rounded-full bg-premium-yellow px-10 py-4.5 text-xs tracking-widest font-display font-semibold text-black transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300 block"
+              <div className="mt-10 flex flex-wrap gap-4 items-center">
+                <Magnetic strength={0.15}>
+                  <button
+                    onClick={() => scrollToSection("services")}
+                    className="rounded-full bg-premium-yellow px-8 py-4 text-xs tracking-widest font-display font-semibold text-black transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300 cursor-pointer"
                   >
-                    ACQUIRE MATRICES
-                  </a>
+                    EXPLORE SOLUTIONS
+                  </button>
                 </Magnetic>
-                <Magnetic strength={0.2}>
+                <Magnetic strength={0.15}>
                   <Link
-                    to="/about"
-                    className="rounded-full border border-slate-200 px-10 py-4.5 text-xs tracking-widest font-display font-semibold text-slate-800 transition-all hover:bg-slate-50 hover:border-slate-300 duration-300 block"
+                    to="/contact?type=Customized%20Solution"
+                    className="rounded-full bg-black border border-black px-8 py-4 text-xs tracking-widest font-display font-semibold text-white transition-all hover:bg-slate-900 duration-300 text-center"
                   >
-                    THE ORIGIN STATEMENT
+                    SCHEDULE CONSULTATION
+                  </Link>
+                </Magnetic>
+                <Magnetic strength={0.15}>
+                  <Link
+                    to="/contact?type=Business%20Matchmaking"
+                    className="rounded-full border border-slate-200 px-8 py-4 text-xs tracking-widest font-display font-semibold text-slate-800 transition-all hover:bg-slate-50 hover:border-slate-300 duration-300 text-center"
+                  >
+                    EXPLORE OPPORTUNITIES
                   </Link>
                 </Magnetic>
               </div>
 
               {/* Verified Trust Metrics Group */}
               <div className="mt-14 pt-8 border-t border-slate-200/60 flex flex-col sm:flex-row items-start sm:items-center gap-8">
-                <motion.div 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={{
-                    hidden: {},
-                    visible: { transition: { staggerChildren: 0.08 } }
-                  }}
-                  className="flex -space-x-3"
-                >
+                <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
-                    <motion.div 
-                      variants={{
-                        hidden: { opacity: 0, x: -15 },
-                        visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } }
-                      }}
+                    <div 
                       key={i} 
                       className="h-11 w-11 rounded-full border-2 border-white bg-gradient-to-tr from-slate-100 to-slate-200 relative overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-premium-yellow/10" />
-                    </motion.div>
+                    </div>
                   ))}
-                  <motion.div 
-                    variants={{
-                      hidden: { opacity: 0, x: -15 },
-                      visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } }
-                    }}
+                  <div 
                     className="h-11 w-11 rounded-full border-2 border-white bg-premium-yellow/15 flex items-center justify-center text-[10px] text-premium-yellow font-mono font-bold"
                   >
                     +5K
-                  </motion.div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-                >
+                  </div>
+                </div>
+                <div>
                   <p className="font-display font-bold text-sm tracking-wide text-slate-800 uppercase flex items-center gap-1.5">
-                    SOVEREIGN VENTURES RUNNING ACTIVE LEDGERS
+                    SOVEREIGN VENTURES EMPOWERED
                   </p>
-                  <p className="text-slate-500 text-[11px] font-mono tracking-wider">SECURED & DIRECTED BY TWINARONNEXUS FRAMEWORKS EVERY FISCAL QUARTER</p>
-                </motion.div>
+                  <p className="text-slate-550 text-[11px] font-mono tracking-wider">GUIDED BY DATA INTELLIGENCE & MATCHMAKING CHANNELS</p>
+                </div>
               </div>
             </motion.div>
  
@@ -230,26 +255,23 @@ export default function Home() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="lg:col-span-5 relative"
             >
-              {/* Luxury Frame Halo Ambient back-glow */}
               <div className="absolute -inset-4 bg-premium-yellow/10 rounded-[2.5rem] blur-2xl -z-10 shadow-[0_10px_50px_rgba(241,184,16,0.05)]" />
               
               <div className="aspect-[4/3] rounded-[2.5rem] bg-gradient-to-br from-premium-yellow/20 via-slate-100/10 to-transparent p-px shadow-2xl">
                 <div className="h-full w-full rounded-[inherit] bg-white overflow-hidden relative border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
                    <div className="absolute inset-0 metallic-shine pointer-events-none" />
                    
-                   {/* Luxury mockup header bar */}
                    <div className="p-6 h-full flex flex-col">
                       <div className="flex justify-between items-center mb-10 border-b border-slate-200/60 pb-4">
                         <div className="flex items-center gap-2">
                           <span className="h-2 w-2 rounded-full bg-premium-yellow animate-pulse" />
-                          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">ACTIVE QUANT CORE v2.09</span>
+                          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">ACTIVE QUANT CORE v3.0</span>
                         </div>
                         <div className="px-3 py-1 bg-premium-yellow/10 rounded-full border border-premium-yellow/20 text-[9px] font-mono font-bold text-premium-yellow uppercase tracking-widest">
                           UNLOCKED MATRIX
                         </div>
                       </div>
 
-                      {/* Financial visual metrics wireframe */}
                       <div className="grid grid-cols-3 gap-4 mb-8">
                         <div className="glass rounded-2xl p-4 border-slate-200/60 hover:border-premium-yellow/10 transition-colors">
                           <p className="text-[9px] text-slate-500 font-mono tracking-wider uppercase mb-1">REVISED NET FLOW</p>
@@ -269,9 +291,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      {/* Beautiful simulated high contrast ledger lines */}
                       <div className="flex-1 glass rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between border-slate-200/60">
-                        {/* Glowing sweeping scanner line */}
                         <motion.div 
                           animate={{ top: ["0%", "100%", "0%"] }}
                           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -293,7 +313,7 @@ export default function Home() {
                              >
                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-slate-800 text-[9px] font-mono p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20 shadow-md">
                                  {h * 10} pts
-                               </div>
+                                </div>
                              </motion.div>
                            ))}
                         </div>
@@ -329,20 +349,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-28 relative">
-        <div className="absolute right-1/4 top-0 w-px h-full bg-slate-200/40" />
-        
+      {/* What We Help Businesses Achieve */}
+      <section className="py-28 relative border-t border-slate-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-20">
             <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-              ✦ SYSTEM ARCHITECTURE ✦
+              ✦ CORE OUTCOMES ✦
             </span>
             <h2 className="text-4xl font-extrabold tracking-tight font-display sm:text-5xl text-slate-900">
-              Uncompromising Operational Systems
+              What We Help Businesses Achieve
             </h2>
-            <p className="mt-4 text-slate-600 max-w-lg mx-auto text-sm leading-relaxed font-sans">
-              Every tracking parameter has been meticulously balanced to supply instant analytics without database lag.
+            <p className="mt-4 text-slate-600 max-w-lg mx-auto text-sm leading-relaxed font-sans font-light">
+              Practical metrics and strategic pathways engineered to unlock absolute clarity, connections, and sustainable revenue growth.
             </p>
           </div>
           
@@ -356,7 +374,6 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="p-8 rounded-[2rem] glass border-slate-200/60 hover:border-premium-yellow/30 hover:bg-slate-50/50 transition-all duration-300 relative group overflow-hidden"
               >
-                {/* Micro ornament */}
                 <span className="absolute top-4 right-4 text-[9px] text-premium-yellow/20 font-display opacity-0 group-hover:opacity-100 transition-opacity">✦</span>
                 
                 <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20">
@@ -370,23 +387,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-28 bg-slate-50/30 relative border-t border-slate-100 scroll-mt-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+              ✦ BUSINESS SOLUTIONS ✦
+            </span>
+            <h2 className="text-4xl font-extrabold tracking-tight font-display sm:text-5xl text-slate-900">
+              Services & Custom Solutions
+            </h2>
+            <p className="mt-4 text-slate-650 max-w-lg mx-auto text-sm leading-relaxed font-sans font-light">
+              Professional business intelligence, tailored dashboards, performance consulting, and networking channels for growing ventures.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            {SERVICES.map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 60, damping: 14, delay: i * 0.05 }}
+                viewport={{ once: true }}
+                className="glass rounded-[2rem] p-8 border-slate-200/60 hover:border-premium-yellow/30 transition-all duration-300 hover:bg-white flex flex-col justify-between"
+              >
+                <div>
+                  <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20">
+                    <service.icon className="h-5 w-5 text-premium-yellow" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-slate-900 mb-3">{service.title}</h3>
+                  <p className="text-xs text-slate-550 leading-relaxed font-sans font-light">{service.desc}</p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+                  <Link 
+                    to={`/contact?type=${encodeURIComponent(service.title)}`}
+                    className="flex items-center gap-1.5 text-[10px] tracking-wider font-bold text-premium-yellow hover:text-slate-900 transition-colors uppercase"
+                  >
+                    Inquire <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Templates Section */}
-      <section id="templates" className="py-28 bg-slate-50/55 relative">
+      <section id="templates" className="py-28 bg-slate-50/55 relative border-t border-b border-slate-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
             <div className="max-w-2xl">
               <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-                THE LEDGER COLLECTION
+                ✦ READY-TO-USE BUSINESS SYSTEMS ✦
               </span>
               <h2 className="text-4xl font-extrabold font-display tracking-tight sm:text-5xl text-slate-900">
-                Engineered for Your <span className="text-premium-yellow italic font-display">Venture</span>
+                Ready-to-Use <span className="text-premium-yellow italic font-display">Business Systems</span>
               </h2>
-              <p className="mt-4 text-slate-600 text-sm max-w-lg leading-relaxed font-sans font-light">
-                Select from our benchmark financial grids, each tailored to isolate, map, and secure specific multi-tier cashflow profiles.
+              <p className="mt-4 text-slate-650 text-sm leading-relaxed font-sans font-light">
+                Affordable business management systems designed to help business owners organize operations and improve visibility. These systems are instantly downloadable after payment and can be implemented immediately.
+              </p>
+              <p className="mt-2 text-slate-500 text-xs italic font-sans font-light">
+                For businesses requiring advanced customization, we also provide tailored solutions through consultation.
               </p>
             </div>
-            <Link to="/contact" className="group flex items-center gap-2 text-premium-yellow font-display text-xs tracking-widest font-bold">
-              ACQUIRE CUSTOM BLUEPRINTS <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+            <Link to="/contact?type=Customized%20Solution" className="group flex items-center gap-2 text-premium-yellow font-display text-xs tracking-widest font-bold">
+              REQUEST CUSTOM SOLUTIONS <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
@@ -398,32 +464,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-32 relative overflow-hidden">
+      {/* Custom Solutions Section */}
+      <section className="py-28 relative overflow-hidden bg-white border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-20 max-w-3xl mx-auto">
+            <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+              ✦ BESPOKE ENGINE DEVELOPMENT ✦
+            </span>
+            <h2 className="text-4xl font-extrabold font-display sm:text-5xl text-slate-900 leading-tight">
+              Need Something Built Specifically For Your Business?
+            </h2>
+            <p className="mt-6 text-slate-600 text-sm leading-relaxed font-sans font-light">
+              Every business is unique. While our ready-to-use systems help businesses get started quickly, some organizations require solutions tailored to their specific operations, workflows and reporting requirements.
+            </p>
+            <p className="mt-3 text-slate-650 text-sm font-semibold">
+              Our custom solutions are designed after understanding your business needs through a structured consultation process.
+            </p>
+          </div>
+
+          {/* Process Timeline Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 relative">
+            {PROCESS_STEPS.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 60, damping: 14, delay: idx * 0.05 }}
+                className="glass rounded-[2rem] p-8 border-slate-200/60 relative group hover:border-premium-yellow/30 hover:bg-slate-50/30 transition-all duration-300"
+              >
+                <div className="absolute top-4 right-6 text-[32px] font-extrabold font-display text-premium-yellow/10 group-hover:text-premium-yellow/20 transition-colors">
+                  0{idx + 1}
+                </div>
+                <span className="text-[10px] font-mono tracking-widest text-premium-yellow font-bold uppercase block mb-2">{step.step}</span>
+                <h4 className="font-bold text-base text-slate-950 font-display mb-3 group-hover:text-premium-yellow transition-colors">{step.title}</h4>
+                <p className="text-xs text-slate-500 leading-relaxed font-sans font-light">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Important Note Alert */}
+          <div className="glass rounded-[2rem] border-premium-yellow/20 bg-premium-yellow/[0.02] p-8 max-w-4xl mx-auto text-center mb-12">
+            <h5 className="font-display font-bold text-sm text-slate-950 uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-premium-yellow" /> Important Note
+            </h5>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans font-light">
+              Custom solutions are not downloadable templates. They are professionally designed based on your business requirements and are priced according to project scope, complexity and implementation requirements.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <Magnetic strength={0.2}>
+              <Link
+                to="/contact?type=Customized%20Solution"
+                className="inline-block rounded-full bg-premium-yellow px-10 py-4.5 text-xs tracking-widest font-display font-semibold text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300"
+              >
+                REQUEST CUSTOM SOLUTION
+              </Link>
+            </Magnetic>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Matchmaking Section */}
+      <section className="py-28 relative overflow-hidden bg-slate-50/30 border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Column: Text & CTA */}
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center gap-3 rounded-full border border-premium-yellow/20 bg-premium-yellow/[0.04] px-4 py-1.5 text-[10px] font-mono tracking-[0.2em] uppercase font-bold text-premium-yellow">
+                <span>✦ BEYOND REPORTS & DASHBOARDS ✦</span>
+              </div>
+              
+              <h2 className="text-4xl font-extrabold font-display text-slate-900 leading-tight">
+                Looking Beyond Reports & Dashboards?
+              </h2>
+              
+              <p className="text-base text-slate-650 leading-relaxed font-sans font-light">
+                Business growth often depends on the right connections. Explore opportunities to expand your network, access new markets, and connect with global partners.
+              </p>
+              
+              <div className="pt-4">
+                <Magnetic strength={0.15}>
+                  <a
+                    href="https://aaryaworldconnect.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block rounded-full bg-black px-10 py-4.5 text-xs tracking-widest font-display font-semibold text-white hover:bg-premium-yellow hover:text-black duration-300 transition-all shadow-md"
+                  >
+                    EXPLORE BUSINESS OPPORTUNITIES
+                  </a>
+                </Magnetic>
+              </div>
+            </div>
+            
+            {/* Right Column: Connection Checklist Card */}
+            <div className="lg:col-span-6 glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-lg">
+              <p className="font-display font-bold text-sm text-slate-950 uppercase tracking-widest mb-6">
+                Explore opportunities to connect with:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  "Manufacturers",
+                  "Exporters",
+                  "Importers",
+                  "Hospitals",
+                  "Medical Equipment Suppliers",
+                  "Distributors",
+                  "Franchise Partners",
+                  "Investors",
+                  "Global Buyers",
+                  "Strategic Partners"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <span className="h-5 w-5 rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold">✔</span>
+                    <span className="text-xs text-slate-700 font-sans font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Why Businesses Choose TwinaronNexus */}
+      <section className="py-32 relative overflow-hidden bg-slate-50/20 border-b border-slate-100">
         <div className="absolute right-0 top-1/2 -z-10 h-96 w-96 -translate-y-1/2 bg-premium-yellow/5 blur-[120px] rounded-full" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
               <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-                BENCHMARK INTEGRITY
+                ✦ BENCHMARK QUALITY ✦
               </span>
               <h2 className="text-4xl font-extrabold font-display leading-[1.15] text-slate-900">
-                The Standards of <span className="text-premium-yellow font-display italic font-normal">TwinaronNexus</span>
+                Why Businesses Choose <br />
+                <span className="text-premium-yellow font-display italic font-normal">TwinaronNexus</span>
               </h2>
-              <ul className="mt-12 space-y-8">
-                {[
-                  { t: "Instant Digital Despatch", d: "Bypasses slow wait-gateways; instant automatic cryptographic download package served to your secure inbox seconds post-checkout." },
-                  { t: "Ironclad Transit Architecture", d: "Direct multi-layer encrypted transfer pipelines via Razorpay to guarantee seamless checkout safety." },
-                  { t: "Absolute Sovereign License", d: "One single transaction releases lifetime file ownership rights. Zero monthly licensing fees, zero arbitrary database checks." },
-                  { t: "Direct Personal Advisory LLC", d: "Immediate human support led directly by our primary system architects via direct VIP WhatsApp channels." }
-                ].map((item, i) => (
+              <ul className="mt-12 space-y-6">
+                {WHY_CHOOSE_US.map((item, i) => (
                   <li key={i} className="flex gap-4 items-start">
-                    <div className="mt-1.5 h-5 w-5 flex-none rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center">
-                      <span className="text-[10px] text-premium-yellow font-display font-black">✦</span>
+                    <div className="mt-1 h-5 w-5 flex-none rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center">
+                      <span className="text-[10px] text-premium-yellow font-display font-black">✔</span>
                     </div>
                     <div>
                       <h4 className="font-bold text-base text-slate-900 font-display tracking-tight">{item.t}</h4>
-                      <p className="mt-1 text-slate-600 text-xs leading-relaxed font-sans font-light">{item.d}</p>
+                      <p className="mt-1 text-slate-550 text-xs leading-relaxed font-sans font-light">{item.d}</p>
                     </div>
                   </li>
                 ))}
@@ -431,7 +618,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="h-48 glass rounded-3xl p-6 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350">
+                <div className="h-48 glass rounded-3xl p-6 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350 bg-white">
                    <div className="text-premium-yellow font-mono text-xs uppercase tracking-wider font-bold">◆ LATENCY-FREE</div>
                    <div>
                      <p className="font-bold text-3xl font-display text-slate-900">
@@ -446,20 +633,20 @@ export default function Home() {
                         <AnimatedCounter value={100} suffix="%" />
                       </p>
                       <p className="text-[11px] uppercase font-bold tracking-widest mt-2 opacity-80">UNLOCKED FORMULAS</p>
-                      <p className="text-[10px] mt-1 leading-normal opacity-60 max-w-[150px] mx-auto">Zero hidden sheets, macros, or arbitrary restrictions.</p>
+                      <p className="text-xs mt-1 leading-normal opacity-60 max-w-[150px] mx-auto">Zero hidden sheets, macros, or arbitrary restrictions.</p>
                    </div>
                 </div>
               </div>
               <div className="space-y-4 pt-12">
-                <div className="h-64 glass rounded-3xl p-8 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350">
+                <div className="h-64 glass rounded-3xl p-8 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350 bg-white">
                    <p className="font-bold text-2xl font-display text-slate-900">Ironclad<br />Payments</p>
                    <div>
                       <span className="inline-block text-[10px] bg-premium-yellow/10 text-premium-yellow border border-premium-yellow/30 px-2 py-0.5 rounded font-mono font-bold tracking-wider mb-2">RAZORPAY SECURED</span>
                       <p className="text-xs text-slate-500">256-bit SSL encrypted transit & strict multi-factor authentication protocol.</p>
                    </div>
                 </div>
-                <div className="h-48 glass rounded-3xl p-6 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350">
-                   <div className="text-premium-yellow font-mono text-xs uppercase tracking-wider font-bold">◆ RATING</div>
+                <div className="h-48 glass rounded-3xl p-6 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350 bg-white">
+                   <div className="text-premium-yellow font-mono text-xs uppercase tracking-wider font-bold">◆ SATISFACTION</div>
                    <div>
                      <p className="font-bold text-3xl font-display text-slate-900">
                        <AnimatedCounter value={4.9} decimals={1} suffix="★" />
@@ -484,12 +671,12 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {FAQS.map((faq, i) => (
-              <div key={i} className="glass rounded-2xl overflow-hidden border-slate-200/60">
+              <div key={i} className="glass rounded-2xl overflow-hidden border-slate-200/60 bg-white">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="flex w-full items-center justify-between p-6 text-left hover:bg-slate-50/50 transition-colors group"
                 >
-                  <span className="font-semibold text-base text-slate-800 group-hover:text-slate-900 transition-colors">{faq.q}</span>
+                  <span className="font-semibold text-base text-slate-800 group-hover:text-slate-950 transition-colors">{faq.q}</span>
                   <motion.div
                     animate={{ rotate: openFaq === i ? 135 : 0 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -505,7 +692,7 @@ export default function Home() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                     >
-                      <div className="px-6 pb-6 text-slate-600 text-xs leading-relaxed border-t border-slate-200/60 pt-4 font-sans font-light whitespace-pre-line">
+                      <div className="px-6 pb-6 text-slate-650 text-xs leading-relaxed border-t border-slate-200/60 pt-4 font-sans font-light whitespace-pre-line">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -521,21 +708,35 @@ export default function Home() {
       <section className="py-28 px-6 relative">
         <div className="mx-auto max-w-7xl rounded-[3rem] bg-premium-yellow p-12 lg:p-24 text-black text-center relative overflow-hidden group border border-white/10 shadow-[0_0_50px_rgba(255,221,0,0.15)]">
           <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-black/[0.03] blur-3xl transition-transform group-hover:scale-110" />
-          <h2 className="text-4xl lg:text-6xl font-display font-extrabold mb-8 tracking-tight text-black">
-            Secure Your Financial <span className="font-display italic font-normal">Sovereignty</span>
+          <h2 className="text-4xl lg:text-5xl font-display font-extrabold mb-8 tracking-tight text-black leading-tight">
+            Turn Business Data Into Better Decisions
           </h2>
-          <p className="text-black/70 text-base max-w-lg mx-auto mb-12 font-sans font-light leading-relaxed">
-            Acquire the ultimate offline frameworks trusted by 5,000+ elite business owners, consultants, and agencies globally.
+          <p className="text-black/70 text-sm sm:text-base max-w-xl mx-auto mb-12 font-sans font-light leading-relaxed">
+            Whether you’re looking for a ready-to-use business system, a customized solution or strategic business growth support, TwinaronNexus is here to help.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
-            <Magnetic strength={0.25}>
-              <a href="#templates" className="bg-black text-white rounded-full px-10 py-5 font-display text-xs tracking-widest font-bold hover:scale-105 transition-transform shadow-lg block">
-                ACQUIRE MATRICES
-              </a>
+            <Magnetic strength={0.15}>
+              <button
+                onClick={() => scrollToSection("services")}
+                className="bg-black text-white rounded-full px-8 py-4.5 font-display text-xs tracking-widest font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer"
+              >
+                EXPLORE SOLUTIONS
+              </button>
             </Magnetic>
-            <Magnetic strength={0.25}>
-              <Link to="/contact" className="border border-black/20 hover:border-black rounded-full px-10 py-5 font-display text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-all block">
-                CONTACT SUITE
+            <Magnetic strength={0.15}>
+              <Link 
+                to="/contact?type=Customized%20Solution" 
+                className="border border-black/20 hover:border-black rounded-full px-8 py-4.5 font-display text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-all text-center block"
+              >
+                REQUEST CONSULTATION
+              </Link>
+            </Magnetic>
+            <Magnetic strength={0.15}>
+              <Link 
+                to="/contact?type=Business%20Matchmaking" 
+                className="border border-black/20 hover:border-black rounded-full px-8 py-4.5 font-display text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-all text-center block"
+              >
+                EXPLORE OPPORTUNITIES
               </Link>
             </Magnetic>
           </div>

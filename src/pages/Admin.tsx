@@ -47,13 +47,13 @@ import { motion, AnimatePresence } from "motion/react";
 
 // Initial set of robust, realistic mock orders for historical tracking
 const INITIAL_ORDERS = [
-  { id: "TXN-7419", date: "2026-05-18", customer: "Aditya Hegde", email: "aditya.h@startupspace.in", productSlug: "online-business-tracker", product: "Online Business Control System", amount: 499, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-6812", date: "2026-05-17", customer: "Pooja Sharma", email: "pooja.sharma@luxe-apparel.com", productSlug: "boutique-tracker", product: "Boutique Operations Tracker", amount: 599, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-5904", date: "2026-05-17", customer: "Siddharth Mehta", email: "sid.mehta@nexusagency.org", productSlug: "traders-distributor-tracker", product: "TradeFlow Business Ledger", amount: 1499, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-4311", date: "2026-05-16", customer: "David Miller", email: "david@millerfreelance.co", productSlug: "freelancer-tracker", product: "Freelancer Income & Project Tracker", amount: 299, status: "completed", gateway: "UPI Direct" },
-  { id: "TXN-3298", date: "2026-05-15", customer: "Rohan Varma", email: "rohan@thegourmettable.in", productSlug: "online-business-tracker", product: "Online Business Control System", amount: 499, status: "pending", gateway: "Razorpay Card" },
-  { id: "TXN-2104", date: "2026-05-14", customer: "Aparna Nair", email: "aparna@naircreations.com", productSlug: "online-business-tracker", product: "Online Business Control System", amount: 499, status: "completed", gateway: "Razorpay" },
-  { id: "TXN-1055", date: "2026-05-12", customer: "Marcus Aurelius", email: "stoic@romeglobal.net", productSlug: "traders-distributor-tracker", product: "TradeFlow Business Ledger", amount: 1499, status: "completed", gateway: "Razorpay International" }
+  { id: "TXN-7419", date: "2026-05-18", customer: "Aditya Hegde", email: "aditya.h@startupspace.in", productSlug: "online-business-system", product: "Online Business System", amount: 1999, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-6812", date: "2026-05-17", customer: "Pooja Sharma", email: "pooja.sharma@luxe-apparel.com", productSlug: "boutique-business-system", product: "Boutique Business System", amount: 2999, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-5904", date: "2026-05-17", customer: "Siddharth Mehta", email: "sid.mehta@nexusagency.org", productSlug: "traders-manufacturers-system", product: "Traders & Manufacturers System", amount: 4999, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-4311", date: "2026-05-16", customer: "David Miller", email: "david@millerfreelance.co", productSlug: "freelancer-business-system", product: "Freelancer Business System", amount: 999, status: "completed", gateway: "UPI Direct" },
+  { id: "TXN-3298", date: "2026-05-15", customer: "Rohan Varma", email: "rohan@thegourmettable.in", productSlug: "online-business-system", product: "Online Business System", amount: 1999, status: "pending", gateway: "Razorpay Card" },
+  { id: "TXN-2104", date: "2026-05-14", customer: "Aparna Nair", email: "aparna@naircreations.com", productSlug: "online-business-system", product: "Online Business System", amount: 1999, status: "completed", gateway: "Razorpay" },
+  { id: "TXN-1055", date: "2026-05-12", customer: "Marcus Aurelius", email: "stoic@romeglobal.net", productSlug: "traders-manufacturers-system", product: "Traders & Manufacturers System", amount: 4999, status: "completed", gateway: "Razorpay International" }
 ];
 
 const CUSTOMER_NAMES = [

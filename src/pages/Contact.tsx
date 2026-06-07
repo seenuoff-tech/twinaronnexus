@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
-import { Mail, MessageSquare, Phone, MapPin, Send, Plus, Minus } from "lucide-react";
-import { useState, FormEvent } from "react";
+import { Mail, Phone, MapPin, Send, Plus, Minus } from "lucide-react";
+import React, { useState, useEffect, FormEvent } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { cn } from "../lib/utils";
 import Magnetic from "../components/Magnetic";
 
@@ -10,40 +11,77 @@ const formItemVariants = {
 };
 
 const SUPPORT_FAQS = [
-  { q: "My download link expired?", a: "No worries! Just reply to your order confirmation email or contact us with your Order ID, and we will send a fresh link immediately." },
-  { q: "Can I use the sheets on mobile?", a: "Yes, you can open them in the Excel or Google Sheets mobile apps. For the best experience, we recommend using a tablet or desktop for complex data entry." },
-  { q: "Do you offer custom template development?", a: "Yes, we handle custom financial modeling projects. Reach out via the form below or WhatsApp us for a quote." },
+  { q: "Are the custom solutions downloadable?", a: "No. Customized solutions are developed specifically for your business processes and are implemented directly based on project scope." },
+  { q: "How do I request a customized solution?", a: "Submit the consultation form on the right. Our team will review your business challenges and schedule a one-to-one discussion." },
+  { q: "What is the typical delivery timeline?", a: "Ready-to-use systems are delivered instantly. Custom projects vary from 1 to 4 weeks depending on complexity and customization requirements." },
 ];
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+
+  const initialSupport = searchParams.get("type") || "Customized Solution";
+
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    industry: "",
+    phone: "",
+    email: "",
+    businessSize: "1-10",
+    challenges: "",
+    support: initialSupport,
+    preferredTime: ""
+  });
+
+  useEffect(() => {
+    const type = searchParams.get("type");
+    if (type) {
+      setFormData(prev => ({ ...prev, support: type }));
+    }
+  }, [searchParams]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1500);
+    setTimeout(() => {
+      setStatus("sent");
+      navigate("/thank-you");
+    }, 1500);
   };
 
   return (
-    <div className="pt-32 pb-24 text-slate-900">
+    <div className="pt-32 pb-24 text-slate-900 bg-white min-h-screen">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div>
-            <h1 className="font-display text-5xl font-bold mb-8 text-slate-900">Let's <span className="text-premium-yellow">Talk Business.</span></h1>
-            <p className="text-lg text-slate-600 mb-12 leading-relaxed">
-              Have questions about a specific template? Facing a technical issue? Our support team is ready to assist you.
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          {/* Left Column - Details & FAQ */}
+          <div className="lg:col-span-5 space-y-12">
+            <div>
+              <h1 className="font-display text-5xl font-extrabold mb-6 text-slate-900 tracking-tight">
+                Let's <span className="text-premium-yellow italic font-normal">Connect.</span>
+              </h1>
+              <p className="text-base text-slate-600 leading-relaxed font-sans font-light">
+                Whether you need a ready-made business system, a custom operational dashboard, or strategic growth connections, we are here to support your venture.
+              </p>
+            </div>
 
-            <div className="space-y-8 mb-16 text-slate-900">
+            <div className="space-y-8 text-slate-900">
               <div className="flex gap-6 items-start">
                 <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center flex-none mt-1">
                   <Mail className="h-6 w-6 text-premium-yellow" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-slate-900">Email Support</h4>
-                  <p className="text-slate-500 text-sm mb-1">General inquiries & Support</p>
-                  <a href="mailto:support@twinaronnexus.com" className="text-premium-yellow font-semibold">support@twinaronnexus.com</a>
+                  <h4 className="font-bold text-lg text-slate-950 font-display">Email Support</h4>
+                  <p className="text-slate-500 text-xs mb-1">General inquiries & Custom project discussions</p>
+                  <a href="mailto:support@twinaronnexus.com" className="text-premium-yellow font-semibold text-sm hover:underline">support@twinaronnexus.com</a>
                 </div>
               </div>
               <div className="flex gap-6 items-start">
@@ -53,9 +91,9 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-slate-900">WhatsApp Support</h4>
-                  <p className="text-slate-500 text-sm mb-1">Instant support on the go</p>
-                  <a href="https://wa.me/919787333379" target="_blank" rel="noopener noreferrer" className="text-premium-yellow font-semibold">+91 97873 33379</a>
+                  <h4 className="font-bold text-lg text-slate-950 font-display">WhatsApp Support</h4>
+                  <p className="text-slate-500 text-xs mb-1">Direct advisory support channel</p>
+                  <a href="https://wa.me/919787333379" target="_blank" rel="noopener noreferrer" className="text-premium-yellow font-semibold text-sm hover:underline">+91 97873 33379</a>
                 </div>
               </div>
               <div className="flex gap-6 items-start">
@@ -63,28 +101,28 @@ export default function Contact() {
                   <MapPin className="h-6 w-6 text-premium-yellow" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-slate-900">Headquarters</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed">
-                    TwinaronNexus Office, Cyber Hub<br />
-                    Business District, New Delhi - 110001
+                  <h4 className="font-bold text-lg text-slate-955 font-display">Office Location</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed font-sans">
+                    TwinaronNexus Hub, Cyber City District,<br />
+                    New Delhi, India - 110001
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-bold text-xl mb-6 text-slate-900">Quick Help</h3>
+            <div className="space-y-4 pt-4 border-t border-slate-100">
+              <h3 className="font-bold text-xl mb-4 font-display text-slate-950">Quick Help</h3>
               {SUPPORT_FAQS.map((faq, i) => (
-                <div key={i} className="glass rounded-xl overflow-hidden border-slate-200/60">
+                <div key={i} className="glass rounded-xl overflow-hidden border-slate-200/60 bg-white">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex w-full items-center justify-between p-4 text-left text-slate-800 hover:text-slate-900"
+                    className="flex w-full items-center justify-between p-4 text-left text-slate-800 hover:text-slate-950 transition-colors"
                   >
-                    <span className="font-semibold text-sm">{faq.q}</span>
+                    <span className="font-semibold text-sm font-sans">{faq.q}</span>
                     {openFaq === i ? <Minus className="h-4 w-4 text-premium-yellow" /> : <Plus className="h-4 w-4 text-slate-400" />}
                   </button>
                   {openFaq === i && (
-                    <div className="px-4 pb-4 text-slate-500 text-xs leading-relaxed border-t border-slate-200/60 pt-3">
+                    <div className="px-4 pb-4 text-slate-500 text-xs leading-relaxed border-t border-slate-200/60 pt-3 font-sans font-light">
                       {faq.a}
                     </div>
                   )}
@@ -93,74 +131,165 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Right Column - Consultation Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 h-fit sticky top-32"
+            className="lg:col-span-7 glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 bg-white shadow-xl"
           >
-            <h3 className="text-2xl font-bold mb-8 font-display text-slate-900">Send a Message</h3>
-            <motion.form 
-              onSubmit={handleSubmit} 
-              className="space-y-6"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.08
-                  }
-                }
-              }}
-            >
-              <div className="grid grid-cols-2 gap-6">
-                <motion.div variants={formItemVariants}>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">First Name</label>
-                  <input required type="text" className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
-                </motion.div>
-                <motion.div variants={formItemVariants}>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Last Name</label>
-                  <input required type="text" className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
-                </motion.div>
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold font-display text-slate-950 mb-2">Schedule Business Consultation</h3>
+              <p className="text-xs text-slate-500">Provide details about your operations to help our analysts prepare for our discussion.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Full Name</label>
+                  <input 
+                    required 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Enter your name"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Company Name</label>
+                  <input 
+                    required 
+                    type="text" 
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    placeholder="Your company name"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                  />
+                </div>
               </div>
-              <motion.div variants={formItemVariants}>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Email Address</label>
-                <input required type="email" className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
-              </motion.div>
-              <motion.div variants={formItemVariants}>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Subject</label>
-                <select className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-colors appearance-none focus:scale-[1.01] duration-300">
-                  <option>Pre-sales Question</option>
-                  <option>Technical Support</option>
-                  <option>Custom Template Inquiry</option>
-                  <option>Payment Issue</option>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Industry</label>
+                  <input 
+                    required 
+                    type="text" 
+                    name="industry"
+                    value={formData.industry}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Manufacturing, Retail"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Business Size</label>
+                  <select 
+                    name="businessSize"
+                    value={formData.businessSize}
+                    onChange={handleInputChange}
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm appearance-none"
+                  >
+                    <option value="Solo">Solo Practitioner / Freelancer</option>
+                    <option value="1-10">1 - 10 Employees</option>
+                    <option value="11-50">11 - 50 Employees</option>
+                    <option value="51-200">51 - 200 Employees</option>
+                    <option value="200+">200+ Employees</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Email Address</label>
+                  <input 
+                    required 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="you@example.com"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Phone Number</label>
+                  <input 
+                    required 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Contact number"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">What support are you looking for?</label>
+                <select 
+                  name="support"
+                  value={formData.support}
+                  onChange={handleInputChange}
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm appearance-none"
+                >
+                  <option value="Business Analytics">Business Analytics & Intelligence</option>
+                  <option value="Customized Solution">Customized Dashboard / Solution</option>
+                  <option value="Business Growth">Business Growth Consulting</option>
+                  <option value="Business Matchmaking">Business Matchmaking</option>
+                  <option value="Global Business Opportunities">Global Business Opportunities</option>
+                  <option value="Other">Other Support</option>
                 </select>
-              </motion.div>
-              <motion.div variants={formItemVariants}>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Message</label>
-                <textarea required rows={4} className="w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300" />
-              </motion.div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Preferred Discussion Time</label>
+                <input 
+                  required 
+                  type="text" 
+                  name="preferredTime"
+                  value={formData.preferredTime}
+                  onChange={handleInputChange}
+                  placeholder="e.g. Weekdays 3 PM - 5 PM IST, or a specific date"
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-[10px] font-bold text-slate-550 uppercase tracking-widest px-1">Current Challenges</label>
+                <textarea 
+                  required 
+                  name="challenges"
+                  value={formData.challenges}
+                  onChange={handleInputChange}
+                  rows={4} 
+                  placeholder="Tell us about the main issues or bottlenecks you are facing..."
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-850 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-premium-yellow/50 transition-all focus:scale-[1.01] duration-300 font-sans text-sm" 
+                />
+              </div>
               
-              <motion.div variants={formItemVariants} className="flex justify-center pt-2">
-                <Magnetic strength={0.2}>
+              <div className="flex justify-center pt-2">
+                <Magnetic strength={0.15}>
                   <button
                     disabled={status !== "idle"}
                     type="submit"
                     className={cn(
-                      "rounded-full px-12 py-4.5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer",
+                      "rounded-full px-12 py-4.5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto",
                       status === "sent" 
                         ? "bg-green-500 text-white cursor-default" 
-                        : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] active:scale-95"
+                        : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] active:scale-95 disabled:opacity-50"
                     )}
                   >
-                    {status === "idle" && <><Send className="h-4 w-4" /> SEND DISPATCH</>}
+                    {status === "idle" && <><Send className="h-4 w-4" /> SUBMIT CONSULTATION REQUEST</>}
                     {status === "sending" && <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />}
                     {status === "sent" && "TRANSMITTED SUCCESSFULLY"}
                   </button>
                 </Magnetic>
-              </motion.div>
-            </motion.form>
+              </div>
+            </form>
           </motion.div>
         </div>
       </div>

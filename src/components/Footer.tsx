@@ -47,10 +47,10 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6 font-display">Products</h3>
             <ul className="space-y-4">
               {[
-                { name: "Online Business Tracker", slug: "online-business-tracker" },
-                { name: "Boutique Tracker", slug: "boutique-tracker" },
-                { name: "Freelancer Tracker", slug: "freelancer-tracker" },
-                { name: "Traders & Distributor Tracker", slug: "traders-distributor-tracker" }
+                { name: "Online Business System", slug: "online-business-system" },
+                { name: "Freelancer Business System", slug: "freelancer-business-system" },
+                { name: "Boutique Business System", slug: "boutique-business-system" },
+                { name: "Traders & Manufacturers System", slug: "traders-manufacturers-system" }
               ].map((item) => (
                 <li key={item.slug}>
                   <Link to={`/product/${item.slug}`} className="text-xs uppercase tracking-widest text-gray-600 hover:text-premium-yellow transition-colors font-display font-bold">

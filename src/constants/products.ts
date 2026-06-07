@@ -13,17 +13,17 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "online-business",
-    name: "Online Business Control System",
-    slug: "online-business-tracker",
-    price: 499,
+    name: "Online Business System",
+    slug: "online-business-system",
+    price: 1999,
     category: "Online Business",
-    description: "Track orders, customer payments, sales flow & business performance seamlessly.",
+    description: "Still managing orders, customers and sales manually? Organize your business activities with a simple and structured system designed for growing businesses.",
     features: [
-      "Revenue breakdown by platform",
-      "Ad spend tracking",
-      "Subscription management",
-      "Monthly profit analysis",
-      "Tax estimation"
+      "Order Tracking",
+      "Customer Management",
+      "Revenue Monitoring",
+      "Sales Reporting",
+      "Business Performance Tracking"
     ],
     specs: {
       "Compatible with": "Excel 2013+, Google Sheets",
@@ -34,40 +34,18 @@ export const PRODUCTS: Product[] = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
   },
   {
-    id: "boutique",
-    name: "Boutique Operations Tracker",
-    slug: "boutique-tracker",
-    price: 599,
-    category: "Boutique",
-    description: "Manage inventory, sales activity, customer orders & boutique finances efficiently.",
-    features: [
-      "Inventory valuation",
-      "Seasonal sales tracking",
-      "Supplier payment logs",
-      "Daily expense ledger",
-      "Profit margins per item"
-    ],
-    specs: {
-      "Compatible with": "Excel 2016+",
-      "Format": ".xlsx",
-      "License": "Lifetime",
-      "Delivery": "Instant"
-    },
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop"
-  },
-  {
     id: "freelancer",
-    name: "Freelancer Income & Project Tracker",
-    slug: "freelancer-tracker",
-    price: 299,
+    name: "Freelancer Business System",
+    slug: "freelancer-business-system",
+    price: 999,
     category: "Freelancer",
-    description: "Track clients, project workflow, invoices & payment records professionally.",
+    description: "Managing multiple clients, projects and payments can become difficult as your business grows. Track clients, income and project activities from one place.",
     features: [
-      "Project-wise income tracking",
-      "Invoicing status dashboard",
-      "Client expense reimbursement",
-      "Quarterly tax planner",
-      "Savings goal tracker"
+      "Client Tracking",
+      "Income Monitoring",
+      "Payment Reports",
+      "Project Management",
+      "Activity Tracking"
     ],
     specs: {
       "Compatible with": "Excel, Google Sheets",
@@ -78,18 +56,40 @@ export const PRODUCTS: Product[] = [
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
   },
   {
-    id: "trading",
-    name: "TradeFlow Business Ledger",
-    slug: "traders-distributor-tracker",
-    price: 1499,
-    category: "Traders and distributor",
-    description: "Monitor stock movement, distributor accounts & business transactions with clarity.",
+    id: "boutique",
+    name: "Boutique Business System",
+    slug: "boutique-business-system",
+    price: 2999,
+    category: "Boutique",
+    description: "Gain better visibility into inventory, sales and profitability. Designed specifically for boutiques and retail businesses.",
     features: [
-      "Inventory & supply logs",
-      "Distribution margins calculator",
-      "Win rate and order analytics",
-      "Profit & loss ledger",
-      "Risk/Reward ratio tracker"
+      "Inventory Management",
+      "Sales Tracking",
+      "Order Monitoring",
+      "Profit Reports",
+      "Product Performance Tracking"
+    ],
+    specs: {
+      "Compatible with": "Excel 2016+",
+      "Format": ".xlsx",
+      "License": "Lifetime",
+      "Delivery": "Instant"
+    },
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: "trading",
+    name: "Traders & Manufacturers System",
+    slug: "traders-manufacturers-system",
+    price: 4999,
+    category: "Traders and manufacturers",
+    description: "Monitor sales, inventory, dealer activities and business performance from one place. Designed for growing manufacturers, distributors and trading businesses.",
+    features: [
+      "Dealer Tracking",
+      "Outstanding Reports",
+      "Inventory Monitoring",
+      "Sales Performance Tracking",
+      "Business Reporting"
     ],
     specs: {
       "Compatible with": "Excel 2019+",
