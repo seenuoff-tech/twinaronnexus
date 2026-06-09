@@ -47,7 +47,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               to={link.path}
-              className="relative text-xs tracking-widest uppercase font-display font-extrabold text-gray-800 transition-colors hover:text-premium-yellow py-1 group"
+              className="relative text-xs tracking-widest uppercase font-display font-extrabold text-black transition-colors hover:text-premium-yellow py-1 group"
             >
               {link.name}
               {/* Luxury Sliding Underline */}
@@ -58,13 +58,13 @@ export default function Navbar() {
             href="#templates"
             className="flex items-center gap-2 rounded-full bg-black px-6 py-2 text-xs tracking-widest uppercase font-display font-extrabold text-white transition-all hover:bg-premium-yellow hover:text-black duration-300 shadow-md"
           >
-            ACQUIRE LEDGER
+            GET SYSTEM
           </a>
         </div>
  
         {/* Mobile Menu Button */}
         <button
-          className="rounded-lg p-2 text-gray-700 md:hidden hover:text-black transition-colors"
+          className="rounded-lg p-2 text-black md:hidden hover:text-black transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -85,7 +85,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="text-sm font-bold tracking-widest uppercase font-mono text-gray-800 hover:text-premium-yellow"
+                  className="text-sm font-bold tracking-widest uppercase font-mono text-black hover:text-premium-yellow"
                 >
                   {link.name}
                 </Link>
@@ -94,7 +94,7 @@ export default function Navbar() {
                 href="#templates"
                 className="flex items-center justify-center gap-2 rounded-xl bg-black px-6 py-3 font-display text-xs tracking-widest uppercase font-bold text-white hover:bg-premium-yellow hover:text-black transition-all"
               >
-                ACQUIRE LEDGER
+                GET SYSTEM
               </a>
             </div>
           </motion.div>

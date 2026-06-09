@@ -5,7 +5,7 @@ import Magnetic from "../components/Magnetic";
 
 export default function ThankYou() {
   return (
-    <div className="min-h-[80vh] flex items-center justify-center pt-24 pb-12 text-slate-900 px-6">
+    <div className="min-h-[80vh] flex items-center justify-center pt-24 pb-12 text-black px-6">
       <div className="mx-auto max-w-xl w-full text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -29,7 +29,7 @@ export default function ThankYou() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="font-display text-3xl font-extrabold mb-4 text-slate-950 tracking-tight"
+            className="font-display text-3xl font-extrabold mb-4 text-black tracking-tight"
           >
             Thank You!
           </motion.h1>
@@ -38,7 +38,7 @@ export default function ThankYou() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-slate-600 text-sm leading-relaxed mb-10 font-sans font-light"
+            className="text-black text-base leading-relaxed mb-10 font-sans font-normal"
           >
             Thank you for reaching out.<br />
             Our team will review your requirements and contact you shortly.

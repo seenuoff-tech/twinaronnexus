@@ -16,7 +16,13 @@ import {
   TrendingUp,
   Handshake,
   Globe,
-  ChevronRight
+  ChevronRight,
+  Factory,
+  HeartPulse,
+  Store,
+  Ship,
+  Construction,
+  Briefcase
 } from "lucide-react";
 import { useState } from "react";
 import { PRODUCTS } from "../constants/products";
@@ -38,48 +44,57 @@ const SERVICES = [
   {
     icon: BarChart3,
     title: "Business Intelligence & Analytics",
-    desc: "Understand where your business stands and identify growth opportunities through structured analysis and reporting."
+    desc: "Gain clarity on revenue, expenses, operational performance and growth opportunities through structured business analysis."
   },
   {
     icon: Cpu,
     title: "Customized Business Dashboards",
-    desc: "Tailored solutions designed around your business processes, operational goals and reporting requirements."
+    desc: "Customized management systems designed around your business operations, reporting requirements and decision-making needs."
   },
   {
     icon: Brain,
     title: "Business Growth Consulting",
-    desc: "Identify bottlenecks, improve performance and create practical growth strategies."
+    desc: "Identify business bottlenecks, improve operational efficiency and implement practical growth strategies."
   },
   {
     icon: Handshake,
     title: "Business Matchmaking",
-    desc: "Connect with potential buyers, suppliers, distributors, investors and strategic partners."
+    desc: "Connect with buyers, suppliers, distributors, investors and strategic business partners through curated business introductions."
   },
   {
     icon: Globe,
     title: "Global Business Connections",
-    desc: "Facilitating meaningful business introductions and international opportunities."
+    desc: "Explore international sourcing, distribution, export and partnership opportunities through global business networks."
   }
 ];
 
+const INDUSTRIES = [
+  { icon: Factory, name: "Manufacturing", desc: "Production tracking, supply chain visibility, efficiency optimization." },
+  { icon: HeartPulse, name: "Healthcare", desc: "Operational workflows, inventory management, performance dashboards." },
+  { icon: Store, name: "Retail & Distribution", desc: "Sales analysis, inventory tracking, channel management." },
+  { icon: Ship, name: "Export & Import", desc: "Global shipping logs, customs workflows, overseas market analysis." },
+  { icon: Construction, name: "Construction", desc: "Project cost tracking, resource allocation, vendor dashboards." },
+  { icon: Briefcase, name: "Professional Services", desc: "Billing efficiency, client management, resource utilization." }
+];
+
 const PROCESS_STEPS = [
-  { step: "Step 1", title: "Submit Consultation Request", desc: "Share details of your business operations and what you want to solve." },
-  { step: "Step 2", title: "Business Requirement Discussion", desc: "We schedule a dedicated call to dive deep into your workflow." },
-  { step: "Step 3", title: "Business Assessment", desc: "Our analysts examine your tracking bottlenecks and systems." },
-  { step: "Step 4", title: "Solution Recommendation", desc: "We map out a customized dashboard or strategic growth plan." },
+  { step: "Step 1", title: "Submit Business Requirement", desc: "Share details of your business operations and what you want to solve." },
+  { step: "Step 2", title: "Consultation & Discovery", desc: "We schedule a dedicated call to dive deep into your workflow." },
+  { step: "Step 3", title: "Requirement Analysis", desc: "Our analysts examine your tracking bottlenecks and systems." },
+  { step: "Step 4", title: "Proposed Solution", desc: "We map out a customized dashboard or strategic growth plan." },
   { step: "Step 5", title: "Proposal & Quotation", desc: "We deliver a detailed scope, project timeline, and pricing breakdown." },
   { step: "Step 6", title: "Implementation", desc: "We design, build, test, and implement your customized solution." }
 ];
 
 const WHY_CHOOSE_US = [
-  { t: "Business-Focused Approach", d: "Aligning analytical systems and strategy with your actual commercial and operational goals." },
-  { t: "Practical Growth Strategies", d: "Actionable growth pathways that reduce bottlenecks and build business connections." },
-  { t: "Customized Solutions", d: "Bespoke dashboards and intelligence frameworks designed uniquely around your workflows." },
-  { t: "Strategic Business Connections", d: "Connecting you to verified buyers, manufacturers, distributors, and global partners." },
-  { t: "Industry Understanding", d: "Deep expertise across manufacturing, trading, healthcare, retail, and international trade." },
-  { t: "Long-Term Value Creation", d: "Building robust infrastructure that you own forever with no hidden monthly software fees." },
-  { t: "Consultation-Based Engagement", d: "Every relationship starts with understanding your needs, not pushing generic software." },
-  { t: "Scalable Business Solutions", d: "Systems engineered to support growing volumes, multi-user entry, and complex analytics." }
+  { t: "Business-Focused Approach", d: "We focus on solving real business challenges, improving visibility and supporting growth." },
+  { t: "Practical Growth Strategies", d: "Action-oriented recommendations designed for implementation." },
+  { t: "Customized Solutions", d: "Solutions designed around your specific business operations and workflows." },
+  { t: "Strategic Business Connections", d: "Access relevant buyers, suppliers, distributors and growth opportunities." },
+  { t: "Industry Understanding", d: "Experience working across manufacturing, trading, healthcare, retail and export-oriented businesses." },
+  { t: "Long-Term Value Creation", d: "Build systems and processes you own without recurring software dependency." },
+  { t: "Consultation-Based Engagement", d: "Every solution begins with understanding your business needs." },
+  { t: "Scalable Business Solutions", d: "Designed to grow along with your business operations." }
 ];
 
 const FAQS = [
@@ -106,6 +121,22 @@ const FAQS = [
   {
     q: "Who are these solutions suitable for?",
     a: "Manufacturers, Traders, Exporters, Healthcare Businesses, Consultants, Service Providers, Retail Businesses, Startups and Growing Enterprises."
+  },
+  {
+    q: "Do you provide business matchmaking services?",
+    a: "Yes. We help connect businesses with potential buyers, suppliers, distributors, investors, and strategic partners through curated introductions."
+  },
+  {
+    q: "Can you connect us with buyers, distributors or strategic partners?",
+    a: "Yes. Through our matchmaking channels and partner network, we facilitate targeted connections to help expand your market reach."
+  },
+  {
+    q: "Are your solutions suitable for startups and SMEs?",
+    a: "Yes. Our systems and services are designed specifically to meet the needs and resource constraints of startups, small business owners, manufacturers, and growing enterprises."
+  },
+  {
+    q: "Do you offer consultation before implementation?",
+    a: "Yes. Every customized solution begins with a structured business requirement analysis and consultation to align with your operations."
   }
 ];
 
@@ -129,7 +160,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative isolate overflow-hidden bg-white min-h-screen text-slate-900">
+    <div className="relative isolate overflow-hidden bg-white min-h-screen text-black">
       {/* Editorial Golden Backlit Radial aura */}
       <div className="absolute inset-0 -z-10 luxury-gradient animate-float-glow" />
       
@@ -177,29 +208,29 @@ export default function Home() {
               className="lg:col-span-7 space-y-8"
             >
               <div className="inline-flex items-center gap-3 rounded-full border border-premium-yellow/20 bg-premium-yellow/[0.04] px-4 py-1.5 text-[10px] font-mono tracking-[0.2em] uppercase font-bold text-premium-yellow">
-                <span>✦ BUSINESS DECISION INTELLIGENCE ✦</span>
+                <span>✦ BUSINESS INTELLIGENCE, STRATEGIC PARTNERSHIPS & GROWTH SOLUTIONS ✦</span>
               </div>
               
-              <h1 className="font-display text-5xl font-extrabold tracking-tight sm:text-6xl leading-[1.1] text-slate-900">
+              <h1 className="font-display text-5xl font-extrabold tracking-tight sm:text-6xl leading-[1.1] text-black">
                 Transform Data Into <br />
                 <span className="font-display italic text-premium-yellow font-normal">Business Growth</span>
               </h1>
               
-              <p className="text-base sm:text-lg text-slate-650 leading-relaxed font-sans font-light max-w-2xl">
-                Helping Business Owners, Manufacturers, Traders, Healthcare Professionals, Exporters and Service Businesses gain clarity, improve decisions and unlock growth opportunities through business intelligence, strategic insights and business connections.
+              <p className="text-lg sm:text-xl text-black leading-relaxed font-sans font-normal max-w-2xl">
+                Helping Business Owners, Manufacturers, Traders, Healthcare Professionals and Exporters gain better visibility, improve decision-making, streamline operations and unlock new business opportunities.
               </p>
 
               <div className="border-l-2 border-premium-yellow/40 pl-4 py-1">
-                <p className="text-sm text-slate-500 italic font-sans font-light">
+                <p className="text-base text-black italic font-sans font-normal">
                   Whether you need a ready-to-use business system, a customized management dashboard or strategic business support, TwinaronNexus helps you make informed decisions with confidence.
                 </p>
               </div>
               
-              <div className="mt-10 flex flex-wrap gap-4 items-center">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                 <Magnetic strength={0.15}>
                   <button
                     onClick={() => scrollToSection("services")}
-                    className="rounded-full bg-premium-yellow px-8 py-4 text-xs tracking-widest font-display font-semibold text-black transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300 cursor-pointer"
+                    className="inline-block rounded-full bg-premium-yellow px-8 py-4 text-xs tracking-widest font-display font-semibold text-black transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300 cursor-pointer"
                   >
                     EXPLORE SOLUTIONS
                   </button>
@@ -207,18 +238,20 @@ export default function Home() {
                 <Magnetic strength={0.15}>
                   <Link
                     to="/contact?type=Customized%20Solution"
-                    className="rounded-full bg-black border border-black px-8 py-4 text-xs tracking-widest font-display font-semibold text-white transition-all hover:bg-slate-900 duration-300 text-center"
+                    className="inline-block rounded-full bg-black border border-black px-8 py-4 text-xs tracking-widest font-display font-semibold text-white transition-all hover:bg-slate-900 duration-300 text-center"
                   >
-                    SCHEDULE CONSULTATION
+                    REQUEST CONSULTATION
                   </Link>
                 </Magnetic>
                 <Magnetic strength={0.15}>
-                  <Link
-                    to="/contact?type=Business%20Matchmaking"
-                    className="rounded-full border border-slate-200 px-8 py-4 text-xs tracking-widest font-display font-semibold text-slate-800 transition-all hover:bg-slate-50 hover:border-slate-300 duration-300 text-center"
+                  <a
+                    href="https://aaryaworldconnect.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block rounded-full border border-slate-200 px-8 py-4 text-xs tracking-widest font-display font-semibold text-black transition-all hover:bg-slate-50 hover:border-slate-300 duration-300 text-center"
                   >
                     EXPLORE OPPORTUNITIES
-                  </Link>
+                  </a>
                 </Magnetic>
               </div>
 
@@ -236,14 +269,14 @@ export default function Home() {
                   <div 
                     className="h-11 w-11 rounded-full border-2 border-white bg-premium-yellow/15 flex items-center justify-center text-[10px] text-premium-yellow font-mono font-bold"
                   >
-                    +5K
+                    500+
                   </div>
                 </div>
                 <div>
-                  <p className="font-display font-bold text-sm tracking-wide text-slate-800 uppercase flex items-center gap-1.5">
-                    SOVEREIGN VENTURES EMPOWERED
+                  <p className="font-display font-bold text-sm tracking-wide text-black uppercase flex items-center gap-1.5">
+                    BUSINESS PROFESSIONALS CONNECTED
                   </p>
-                  <p className="text-slate-550 text-[11px] font-mono tracking-wider">GUIDED BY DATA INTELLIGENCE & MATCHMAKING CHANNELS</p>
+                  <p className="text-black text-xs font-mono tracking-wider">GUIDED BY BUSINESS OUTCOMES & MATCHMAKING CHANNELS</p>
                 </div>
               </div>
             </motion.div>
@@ -265,7 +298,7 @@ export default function Home() {
                       <div className="flex justify-between items-center mb-10 border-b border-slate-200/60 pb-4">
                         <div className="flex items-center gap-2">
                           <span className="h-2 w-2 rounded-full bg-premium-yellow animate-pulse" />
-                          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">ACTIVE QUANT CORE v3.0</span>
+                          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-black">ACTIVE QUANT CORE v3.0</span>
                         </div>
                         <div className="px-3 py-1 bg-premium-yellow/10 rounded-full border border-premium-yellow/20 text-[9px] font-mono font-bold text-premium-yellow uppercase tracking-widest">
                           UNLOCKED MATRIX
@@ -274,20 +307,20 @@ export default function Home() {
 
                       <div className="grid grid-cols-3 gap-4 mb-8">
                         <div className="glass rounded-2xl p-4 border-slate-200/60 hover:border-premium-yellow/10 transition-colors">
-                          <p className="text-[9px] text-slate-500 font-mono tracking-wider uppercase mb-1">REVISED NET FLOW</p>
-                          <p className="text-lg font-bold font-display text-slate-900 tracking-tight">
+                          <p className="text-[9px] text-black font-mono tracking-wider uppercase mb-1">REVISED NET FLOW</p>
+                          <p className="text-lg font-bold font-display text-black tracking-tight">
                             <AnimatedCounter value={428.9} decimals={1} prefix="$" suffix="K" />
                           </p>
                         </div>
                         <div className="glass rounded-2xl p-4 border-slate-200/60 hover:border-premium-yellow/10 transition-colors">
-                          <p className="text-[9px] text-slate-500 font-mono tracking-wider uppercase mb-1">OPERATIONAL MARGIN</p>
-                          <p className="text-lg font-bold font-display text-slate-900 tracking-tight">
+                          <p className="text-[9px] text-black font-mono tracking-wider uppercase mb-1">OPERATIONAL MARGIN</p>
+                          <p className="text-lg font-bold font-display text-black tracking-tight">
                             <AnimatedCounter value={22.3} decimals={1} suffix="%" />
                           </p>
                         </div>
                         <div className="glass rounded-2xl p-4 border-slate-200/60 hover:border-premium-yellow/10 transition-colors">
-                          <p className="text-[9px] text-slate-500 font-mono tracking-wider uppercase mb-1">INDEX COMPLIANT</p>
-                          <p className="text-lg font-bold font-display text-slate-900 tracking-tight">OBL-089</p>
+                          <p className="text-[9px] text-black font-mono tracking-wider uppercase mb-1">INDEX COMPLIANT</p>
+                          <p className="text-lg font-bold font-display text-black tracking-tight">OBL-089</p>
                         </div>
                       </div>
 
@@ -298,7 +331,7 @@ export default function Home() {
                           className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-premium-yellow to-transparent opacity-40 shadow-[0_0_12px_rgba(241,184,16,0.8)] z-10 pointer-events-none"
                         />
                         <div className="flex justify-between items-center mb-4 relative z-10">
-                          <span className="text-[10px] text-slate-800 tracking-widest font-mono">FINANCIAL FORECAST</span>
+                          <span className="text-[10px] text-black tracking-widest font-mono">FINANCIAL FORECAST</span>
                           <span className="text-[9px] text-premium-yellow font-mono">YEAR-OVER-YEAR SUITE</span>
                         </div>
                         <div className="flex items-end gap-2.5 h-32 pt-2 border-b border-slate-200/60 pb-2 relative z-10">
@@ -311,13 +344,13 @@ export default function Home() {
                                key={i} 
                                className="flex-1 bg-gradient-to-t from-premium-yellow/20 to-premium-yellow border-t border-premium-yellow/40 rounded-sm relative group"
                              >
-                               <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-slate-800 text-[9px] font-mono p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20 shadow-md">
+                               <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-black text-[9px] font-mono p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20 shadow-md">
                                  {h * 10} pts
                                 </div>
                              </motion.div>
                            ))}
                         </div>
-                        <div className="flex justify-between text-[8px] text-slate-500 font-mono tracking-wider pt-2">
+                        <div className="flex justify-between text-[8px] text-black font-mono tracking-wider pt-2">
                           <span>Q1_INIT</span>
                           <span>MID_PHASE</span>
                           <span>Q4_REAL</span>
@@ -349,6 +382,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats Row Section */}
+      <section className="py-12 border-t border-b border-slate-100 bg-slate-50/20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              { val: 500, suffix: "+", label: "Business Professionals Connected" },
+              { val: 50, suffix: "+", label: "Business Assessments Completed" },
+              { val: 10, suffix: "+", label: "Industries Served" },
+              { val: 100, suffix: "%", label: "Customized Approach" }
+            ].map((stat, idx) => (
+              <div key={idx} className="space-y-2">
+                <p className="text-4xl font-extrabold font-display text-black">
+                  <AnimatedCounter value={stat.val} suffix={stat.suffix} />
+                </p>
+                <p className="text-sm text-black font-sans tracking-wide uppercase">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* What We Help Businesses Achieve */}
       <section className="py-28 relative border-t border-slate-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -356,10 +410,10 @@ export default function Home() {
             <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
               ✦ CORE OUTCOMES ✦
             </span>
-            <h2 className="text-4xl font-extrabold tracking-tight font-display sm:text-5xl text-slate-900">
+            <h2 className="text-4xl font-extrabold tracking-tight font-display sm:text-5xl text-black">
               What We Help Businesses Achieve
             </h2>
-            <p className="mt-4 text-slate-600 max-w-lg mx-auto text-sm leading-relaxed font-sans font-light">
+            <p className="mt-4 text-black max-w-lg mx-auto text-base leading-relaxed font-sans font-normal">
               Practical metrics and strategic pathways engineered to unlock absolute clarity, connections, and sustainable revenue growth.
             </p>
           </div>
@@ -376,11 +430,16 @@ export default function Home() {
               >
                 <span className="absolute top-4 right-4 text-[9px] text-premium-yellow/20 font-display opacity-0 group-hover:opacity-100 transition-opacity">✦</span>
                 
-                <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20">
-                  <feature.icon className="h-5 w-5 text-premium-yellow" />
+                <div className="flex justify-between items-start mb-6">
+                  <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center border border-premium-yellow/20">
+                    <feature.icon className="h-5 w-5 text-premium-yellow" />
+                  </div>
+                  <span className="text-2xl font-extrabold font-display text-premium-yellow/20 group-hover:text-premium-yellow/40 transition-colors">
+                    0{i + 1}
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold font-display text-slate-900 group-hover:text-premium-yellow transition-colors">{feature.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed mt-2.5 font-sans font-light">{feature.desc}</p>
+                <h3 className="text-lg font-bold font-display text-black group-hover:text-premium-yellow transition-colors">{feature.title}</h3>
+                <p className="text-sm text-black leading-relaxed mt-2.5 font-sans font-normal">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -394,10 +453,10 @@ export default function Home() {
             <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
               ✦ BUSINESS SOLUTIONS ✦
             </span>
-            <h2 className="text-4xl font-extrabold tracking-tight font-display sm:text-5xl text-slate-900">
+            <h2 className="text-4xl font-extrabold tracking-tight font-display sm:text-5xl text-black">
               Services & Custom Solutions
             </h2>
-            <p className="mt-4 text-slate-650 max-w-lg mx-auto text-sm leading-relaxed font-sans font-light">
+            <p className="mt-4 text-black max-w-lg mx-auto text-base leading-relaxed font-sans font-normal">
               Professional business intelligence, tailored dashboards, performance consulting, and networking channels for growing ventures.
             </p>
           </div>
@@ -416,15 +475,20 @@ export default function Home() {
                   <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20">
                     <service.icon className="h-5 w-5 text-premium-yellow" />
                   </div>
-                  <h3 className="font-display text-lg font-bold text-slate-900 mb-3">{service.title}</h3>
-                  <p className="text-xs text-slate-550 leading-relaxed font-sans font-light">{service.desc}</p>
+                  <h3 className="font-display text-lg font-bold text-black mb-3">{service.title}</h3>
+                  <p className="text-sm text-black leading-relaxed font-sans font-normal">{service.desc}</p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
                   <Link 
                     to={`/contact?type=${encodeURIComponent(service.title)}`}
-                    className="flex items-center gap-1.5 text-[10px] tracking-wider font-bold text-premium-yellow hover:text-slate-900 transition-colors uppercase"
+                    className="flex items-center gap-1.5 text-[10px] tracking-wider font-bold text-premium-yellow hover:text-black transition-colors uppercase"
                   >
-                    Inquire <ArrowRight className="h-3 w-3" />
+                    {service.title === "Business Intelligence & Analytics" && "Request Consultation"}
+                    {service.title === "Customized Business Dashboards" && "Discuss Requirements"}
+                    {service.title === "Business Growth Consulting" && "Schedule Consultation"}
+                    {service.title === "Business Matchmaking" && "Find Business Matches"}
+                    {service.title === "Global Business Connections" && "Explore Global Opportunities"}
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
               </motion.div>
@@ -441,13 +505,13 @@ export default function Home() {
               <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
                 ✦ READY-TO-USE BUSINESS SYSTEMS ✦
               </span>
-              <h2 className="text-4xl font-extrabold font-display tracking-tight sm:text-5xl text-slate-900">
+              <h2 className="text-4xl font-extrabold font-display tracking-tight sm:text-5xl text-black">
                 Ready-to-Use <span className="text-premium-yellow italic font-display">Business Systems</span>
               </h2>
-              <p className="mt-4 text-slate-650 text-sm leading-relaxed font-sans font-light">
+              <p className="mt-4 text-black text-base leading-relaxed font-sans font-normal">
                 Affordable business management systems designed to help business owners organize operations and improve visibility. These systems are instantly downloadable after payment and can be implemented immediately.
               </p>
-              <p className="mt-2 text-slate-500 text-xs italic font-sans font-light">
+              <p className="mt-2 text-black text-sm italic font-sans font-normal">
                 For businesses requiring advanced customization, we also provide tailored solutions through consultation.
               </p>
             </div>
@@ -461,6 +525,16 @@ export default function Home() {
               <CategoryCard key={product.id} product={product} index={i} />
             ))}
           </div>
+
+          {/* Important Note for Templates */}
+          <div className="mt-16 glass rounded-[2rem] border-premium-yellow/20 bg-premium-yellow/[0.02] p-8 max-w-4xl mx-auto text-center">
+            <h5 className="font-display font-bold text-sm text-black uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-premium-yellow" /> Important Note
+            </h5>
+            <p className="text-sm sm:text-base text-black leading-relaxed font-sans font-normal">
+              These systems are ready-to-use business management templates designed for immediate implementation. Businesses requiring advanced customization can request a tailored solution through consultation.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -469,15 +543,15 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-20 max-w-3xl mx-auto">
             <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-              ✦ BESPOKE ENGINE DEVELOPMENT ✦
+              ✦ CUSTOM BUSINESS SOLUTIONS ✦
             </span>
-            <h2 className="text-4xl font-extrabold font-display sm:text-5xl text-slate-900 leading-tight">
+            <h2 className="text-4xl font-extrabold font-display sm:text-5xl text-black leading-tight">
               Need Something Built Specifically For Your Business?
             </h2>
-            <p className="mt-6 text-slate-600 text-sm leading-relaxed font-sans font-light">
+            <p className="mt-6 text-black text-base leading-relaxed font-sans font-normal">
               Every business is unique. While our ready-to-use systems help businesses get started quickly, some organizations require solutions tailored to their specific operations, workflows and reporting requirements.
             </p>
-            <p className="mt-3 text-slate-650 text-sm font-semibold">
+            <p className="mt-3 text-black text-base font-semibold">
               Our custom solutions are designed after understanding your business needs through a structured consultation process.
             </p>
           </div>
@@ -497,20 +571,22 @@ export default function Home() {
                   0{idx + 1}
                 </div>
                 <span className="text-[10px] font-mono tracking-widest text-premium-yellow font-bold uppercase block mb-2">{step.step}</span>
-                <h4 className="font-bold text-base text-slate-950 font-display mb-3 group-hover:text-premium-yellow transition-colors">{step.title}</h4>
-                <p className="text-xs text-slate-500 leading-relaxed font-sans font-light">{step.desc}</p>
+                <h4 className="font-bold text-base text-black font-display mb-3 group-hover:text-premium-yellow transition-colors">{step.title}</h4>
+                <p className="text-sm text-black leading-relaxed font-sans font-normal">{step.desc}</p>
               </motion.div>
             ))}
           </div>
 
           {/* Important Note Alert */}
           <div className="glass rounded-[2rem] border-premium-yellow/20 bg-premium-yellow/[0.02] p-8 max-w-4xl mx-auto text-center mb-12">
-            <h5 className="font-display font-bold text-sm text-slate-950 uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
+            <h5 className="font-display font-bold text-sm text-black uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
               <ShieldCheck className="h-4 w-4 text-premium-yellow" /> Important Note
             </h5>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans font-light">
-              Custom solutions are not downloadable templates. They are professionally designed based on your business requirements and are priced according to project scope, complexity and implementation requirements.
-            </p>
+            <div className="text-sm sm:text-base text-black leading-relaxed font-sans font-normal space-y-2">
+              <p>Custom solutions are designed after understanding your business requirements through a structured consultation process.</p>
+              <p>Pricing depends on project scope, complexity, integrations and implementation requirements.</p>
+              <p className="font-medium text-black">Custom solutions are not downloadable templates.</p>
+            </div>
           </div>
 
           <div className="text-center">
@@ -534,15 +610,15 @@ export default function Home() {
             {/* Left Column: Text & CTA */}
             <div className="lg:col-span-6 space-y-6">
               <div className="inline-flex items-center gap-3 rounded-full border border-premium-yellow/20 bg-premium-yellow/[0.04] px-4 py-1.5 text-[10px] font-mono tracking-[0.2em] uppercase font-bold text-premium-yellow">
-                <span>✦ BEYOND REPORTS & DASHBOARDS ✦</span>
+                <span>✦ BEYOND BUSINESS MANAGEMENT ✦</span>
               </div>
               
-              <h2 className="text-4xl font-extrabold font-display text-slate-900 leading-tight">
-                Looking Beyond Reports & Dashboards?
+              <h2 className="text-4xl font-extrabold font-display text-black leading-tight">
+                Beyond Business Management
               </h2>
               
-              <p className="text-base text-slate-650 leading-relaxed font-sans font-light">
-                Business growth often depends on the right connections. Explore opportunities to expand your network, access new markets, and connect with global partners.
+              <p className="text-lg text-black leading-relaxed font-sans font-normal">
+                Business growth is not only about tracking numbers. It is also about building the right relationships, accessing new markets and finding the right opportunities.
               </p>
               
               <div className="pt-4">
@@ -561,7 +637,7 @@ export default function Home() {
             
             {/* Right Column: Connection Checklist Card */}
             <div className="lg:col-span-6 glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-lg">
-              <p className="font-display font-bold text-sm text-slate-950 uppercase tracking-widest mb-6">
+              <p className="font-display font-bold text-sm text-black uppercase tracking-widest mb-6">
                 Explore opportunities to connect with:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -569,6 +645,10 @@ export default function Home() {
                   "Manufacturers",
                   "Exporters",
                   "Importers",
+                  "Retail Chains",
+                  "Procurement Teams",
+                  "Channel Partners",
+                  "Corporate Buyers",
                   "Hospitals",
                   "Medical Equipment Suppliers",
                   "Distributors",
@@ -579,12 +659,62 @@ export default function Home() {
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <span className="h-5 w-5 rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold">✔</span>
-                    <span className="text-xs text-slate-700 font-sans font-medium">{item}</span>
+                    <span className="text-sm text-black font-sans font-medium">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Industries We Serve Section */}
+      <section className="py-28 bg-white relative border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+              ✦ CORE SECTORS ✦
+            </span>
+            <h2 className="text-4xl font-extrabold font-display sm:text-5xl text-black">
+              Industries We Serve
+            </h2>
+            <p className="mt-4 text-black max-w-lg mx-auto text-base leading-relaxed font-sans font-normal">
+              Tailored analytics, operational systems, and strategic connections designed for your specific industry workflows.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {INDUSTRIES.map((ind, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="p-8 rounded-[2rem] glass border-slate-200/60 hover:border-premium-yellow/30 hover:bg-slate-50/50 transition-all duration-300 relative group overflow-hidden flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center border border-premium-yellow/20">
+                      <ind.icon className="h-5 w-5 text-premium-yellow" />
+                    </div>
+                    <span className="text-[20px] filter saturate-75 opacity-80 group-hover:opacity-100 transition-opacity">
+                      {idx === 0 && "🏭"}
+                      {idx === 1 && "🏥"}
+                      {idx === 2 && "🏪"}
+                      {idx === 3 && "🌍"}
+                      {idx === 4 && "🏗"}
+                      {idx === 5 && "💼"}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold font-display text-black group-hover:text-premium-yellow transition-colors flex items-center gap-2">
+                    {ind.name}
+                  </h3>
+                  <p className="text-sm text-black leading-relaxed mt-2.5 font-sans font-normal">{ind.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -598,7 +728,7 @@ export default function Home() {
               <span className="font-mono text-[10px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
                 ✦ BENCHMARK QUALITY ✦
               </span>
-              <h2 className="text-4xl font-extrabold font-display leading-[1.15] text-slate-900">
+              <h2 className="text-4xl font-extrabold font-display leading-[1.15] text-black">
                 Why Businesses Choose <br />
                 <span className="text-premium-yellow font-display italic font-normal">TwinaronNexus</span>
               </h2>
@@ -609,51 +739,39 @@ export default function Home() {
                       <span className="text-[10px] text-premium-yellow font-display font-black">✔</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-base text-slate-900 font-display tracking-tight">{item.t}</h4>
-                      <p className="mt-1 text-slate-550 text-xs leading-relaxed font-sans font-light">{item.d}</p>
+                      <h4 className="font-bold text-base text-black font-display tracking-tight">{item.t}</h4>
+                      <p className="mt-1 text-black text-sm leading-relaxed font-sans font-normal">{item.d}</p>
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="h-48 glass rounded-3xl p-6 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350 bg-white">
-                   <div className="text-premium-yellow font-mono text-xs uppercase tracking-wider font-bold">◆ LATENCY-FREE</div>
-                   <div>
-                     <p className="font-bold text-3xl font-display text-slate-900">
-                       <AnimatedCounter value={0.2} decimals={1} suffix="s" />
-                     </p>
-                     <p className="text-[11px] text-slate-500 mt-1 leading-snug">Instant automated digital courier delivers your template seconds after checkout.</p>
-                   </div>
-                </div>
-                <div className="h-64 bg-premium-yellow rounded-3xl flex items-center justify-center p-8 text-black border border-slate-200/40 shadow-lg">
-                   <div className="text-center">
-                      <p className="text-5xl font-extrabold font-display">
-                        <AnimatedCounter value={100} suffix="%" />
-                      </p>
-                      <p className="text-[11px] uppercase font-bold tracking-widest mt-2 opacity-80">UNLOCKED FORMULAS</p>
-                      <p className="text-xs mt-1 leading-normal opacity-60 max-w-[150px] mx-auto">Zero hidden sheets, macros, or arbitrary restrictions.</p>
-                   </div>
-                </div>
+            <div className="glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-10">
+                <ShieldCheck className="h-24 w-24 text-premium-yellow" />
               </div>
-              <div className="space-y-4 pt-12">
-                <div className="h-64 glass rounded-3xl p-8 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350 bg-white">
-                   <p className="font-bold text-2xl font-display text-slate-900">Ironclad<br />Payments</p>
-                   <div>
-                      <span className="inline-block text-[10px] bg-premium-yellow/10 text-premium-yellow border border-premium-yellow/30 px-2 py-0.5 rounded font-mono font-bold tracking-wider mb-2">RAZORPAY SECURED</span>
-                      <p className="text-xs text-slate-500">256-bit SSL encrypted transit & strict multi-factor authentication protocol.</p>
-                   </div>
-                </div>
-                <div className="h-48 glass rounded-3xl p-6 flex flex-col justify-between border-slate-200/60 transition-all hover:border-slate-350 bg-white">
-                   <div className="text-premium-yellow font-mono text-xs uppercase tracking-wider font-bold">◆ SATISFACTION</div>
-                   <div>
-                     <p className="font-bold text-3xl font-display text-slate-900">
-                       <AnimatedCounter value={4.9} decimals={1} suffix="★" />
-                     </p>
-                     <p className="text-[11px] text-slate-500 mt-1 leading-snug">Premium rating across boutique founders, agencies, and high-growth ventures.</p>
-                   </div>
-                </div>
+              <h3 className="font-display font-bold text-xl text-black uppercase tracking-widest mb-8">
+                Why Clients Prefer Us
+              </h3>
+              <div className="space-y-6">
+                {[
+                  { title: "Business-Centric Solutions", desc: "We design tools and strategies centered around your operations, not complex software." },
+                  { title: "Customized Implementation", desc: "No generic templates for custom needs—every custom project is tailored to your workflow." },
+                  { title: "Direct Expert Consultation", desc: "Work directly with business analysts and consultants to solve bottlenecks." },
+                  { title: "Global Business Network", desc: "Access direct connections with buyers, distributors, and exporters." },
+                  { title: "No Monthly Software Lock-In", desc: "Own your systems forever with zero recurring subscription fees." },
+                  { title: "Scalable Systems", desc: "Robust data architectures built to support your growing business volume." }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 items-start">
+                    <div className="mt-1 h-5 w-5 flex-none rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold">
+                      ✔
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-black font-display tracking-tight">{item.title}</h4>
+                      <p className="text-black text-sm leading-normal mt-0.5 font-sans font-normal">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -667,7 +785,7 @@ export default function Home() {
             <div className="h-10 w-10 rounded-full bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center mx-auto mb-6">
               <span className="text-[10px] text-premium-yellow font-mono font-bold">?</span>
             </div>
-            <h2 className="text-4xl font-extrabold font-display text-slate-900">Frequently Asked Questions</h2>
+            <h2 className="text-4xl font-extrabold font-display text-black">Frequently Asked Questions</h2>
           </div>
           <div className="space-y-4">
             {FAQS.map((faq, i) => (
@@ -676,7 +794,7 @@ export default function Home() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="flex w-full items-center justify-between p-6 text-left hover:bg-slate-50/50 transition-colors group"
                 >
-                  <span className="font-semibold text-base text-slate-800 group-hover:text-slate-950 transition-colors">{faq.q}</span>
+                  <span className="font-semibold text-base text-black group-hover:text-black transition-colors">{faq.q}</span>
                   <motion.div
                     animate={{ rotate: openFaq === i ? 135 : 0 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -692,7 +810,7 @@ export default function Home() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                     >
-                      <div className="px-6 pb-6 text-slate-650 text-xs leading-relaxed border-t border-slate-200/60 pt-4 font-sans font-light whitespace-pre-line">
+                      <div className="px-6 pb-6 text-black text-sm leading-relaxed border-t border-slate-200/60 pt-4 font-sans font-normal whitespace-pre-line">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -709,10 +827,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl rounded-[3rem] bg-premium-yellow p-12 lg:p-24 text-black text-center relative overflow-hidden group border border-white/10 shadow-[0_0_50px_rgba(255,221,0,0.15)]">
           <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-black/[0.03] blur-3xl transition-transform group-hover:scale-110" />
           <h2 className="text-4xl lg:text-5xl font-display font-extrabold mb-8 tracking-tight text-black leading-tight">
-            Turn Business Data Into Better Decisions
+            Transform Your Business With Data, Strategy & Opportunities
           </h2>
-          <p className="text-black/70 text-sm sm:text-base max-w-xl mx-auto mb-12 font-sans font-light leading-relaxed">
-            Whether you’re looking for a ready-to-use business system, a customized solution or strategic business growth support, TwinaronNexus is here to help.
+          <p className="text-black/80 text-base sm:text-lg max-w-2xl mx-auto mb-12 font-sans font-normal leading-relaxed">
+            Whether you need a business system, custom solution, strategic consulting or business connections, TwinaronNexus helps you move forward with clarity and confidence.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
             <Magnetic strength={0.15}>
@@ -732,12 +850,14 @@ export default function Home() {
               </Link>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <Link 
-                to="/contact?type=Business%20Matchmaking" 
+              <a 
+                href="https://aaryaworldconnect.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border border-black/20 hover:border-black rounded-full px-8 py-4.5 font-display text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-all text-center block"
               >
                 EXPLORE OPPORTUNITIES
-              </Link>
+              </a>
             </Magnetic>
           </div>
         </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -9,13 +9,13 @@
   --color-dark-surface: #FFFFFF;
   --color-dark-card: #FFFFFF;
   
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 antialiased selection:bg-premium-yellow selection:text-black;
+    @apply bg-white text-black antialiased selection:bg-premium-yellow selection:text-black;
   }
 }
 

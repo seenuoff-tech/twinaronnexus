@@ -108,10 +108,10 @@ export default function ProductDetail() {
     <div className="pt-24 pb-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-xs text-slate-500 mb-8">
-          <Link to="/" className="hover:text-slate-800">Home</Link>
+        <div className="flex items-center gap-2 text-sm text-black mb-8">
+          <Link to="/" className="hover:text-black">Home</Link>
           <ChevronRight className="h-3 w-3" />
-          <span className="text-slate-700">{product.name}</span>
+          <span className="text-black text-base font-normal">{product.name}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -143,7 +143,7 @@ export default function ProductDetail() {
               ))}
             </div>
 
-            <div className="glass rounded-3xl p-8 border-slate-200/60 text-slate-900">
+            <div className="glass rounded-3xl p-8 border-slate-200/60 text-black">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                 <ShieldCheck className="h-6 w-6 text-premium-yellow" />
                 Technical Specifications
@@ -151,8 +151,8 @@ export default function ProductDetail() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {Object.entries(product.specs).map(([key, value]) => (
                   <div key={key}>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{key}</p>
-                    <p className="text-sm font-semibold text-slate-800">{value}</p>
+                    <p className="text-sm text-black uppercase tracking-wider mb-1">{key}</p>
+                    <p className="text-base font-semibold text-black">{value}</p>
                   </div>
                 ))}
               </div>
@@ -165,18 +165,13 @@ export default function ProductDetail() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex text-premium-yellow">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className={cn("h-4 w-4 fill-current", i === 5 && "opacity-50")} />
-                  ))}
-                </div>
-                <span className="text-sm text-slate-500 font-medium">4.8 (124 reviews)</span>
+              <div className="flex items-center gap-2 mb-4 text-base text-black font-medium">
+                <span className="text-premium-yellow font-bold">✔</span> Trusted by Growing Businesses
               </div>
-              <h1 className="font-display text-4xl font-bold tracking-tight mb-4 sm:text-5xl lg:text-6xl text-slate-900">
+              <h1 className="font-display text-4xl font-bold tracking-tight mb-4 sm:text-5xl lg:text-6xl text-black">
                 {product.name}
               </h1>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              <p className="text-xl text-black mb-8 leading-relaxed">
                 {product.description}
               </p>
 
@@ -184,31 +179,31 @@ export default function ProductDetail() {
                 {product.features.map((feature, i) => (
                   <div key={i} className="flex gap-3">
                     <CheckCircle2 className="h-5 w-5 text-premium-yellow flex-none mt-0.5" />
-                    <span className="text-slate-700">{feature}</span>
+                    <span className="text-black text-base font-normal">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="glass p-8 rounded-[2rem] border-premium-yellow/20 mb-8 relative overflow-hidden text-slate-900">
+              <div className="glass p-8 rounded-[2rem] border-premium-yellow/20 mb-8 relative overflow-hidden text-black">
                 <div className="absolute top-0 right-0 p-8">
                   <div className="h-12 w-12 rounded-full border border-premium-yellow/20 flex items-center justify-center animate-pulse">
                     <Info className="h-5 w-5 text-premium-yellow" />
                   </div>
                 </div>
-                <p className="text-sm text-slate-500 mb-2 uppercase tracking-widest font-bold">Price</p>
+                <p className="text-base text-black mb-2 uppercase tracking-widest font-bold">Price</p>
                 <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-5xl font-bold font-display text-slate-900">{formatCurrency(product.price)}</span>
+                  <span className="text-5xl font-bold font-display text-black">{formatCurrency(product.price)}</span>
                   <span className="text-slate-400 line-through text-lg">{formatCurrency(product.price * 2)}</span>
                   <span className="text-premium-yellow text-sm font-bold bg-premium-yellow/10 px-2 py-0.5 rounded ml-2">50% OFF</span>
                 </div>
-
+ 
                  <div className="space-y-4 flex flex-col items-center">
                    <Magnetic strength={0.15}>
                      <button
                        onClick={handleBuyNow}
                        disabled={loading || success}
                        className={cn(
-                          "rounded-full px-12 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer",
+                          "rounded-full px-12 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto",
                           success 
                             ? "bg-green-500 text-white cursor-default" 
                             : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] active:scale-95 disabled:opacity-50"
@@ -221,38 +216,99 @@ export default function ProductDetail() {
                            <CheckCircle2 className="h-5 w-5" /> PAYMENT SUCCESSFUL
                          </>
                        ) : (
-                         <>SECURE ACQUISITION & DOWNLOAD <ChevronRight className="h-4 w-4" /></>
+                         <>PURCHASE TEMPLATE <ChevronRight className="h-4 w-4" /></>
                        )}
                      </button>
                    </Magnetic>
-                   <p className="text-center text-xs text-gray-500 flex items-center justify-center gap-2 pt-2">
+
+                   <Magnetic strength={0.15}>
+                     <Link
+                       to="/contact?type=Customized%20Solution"
+                       className="rounded-full px-12 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto bg-black text-white hover:bg-slate-900 border border-black text-center"
+                     >
+                       REQUEST CUSTOM SOLUTION <ChevronRight className="h-4 w-4 text-premium-yellow" />
+                     </Link>
+                   </Magnetic>
+
+                   <p className="text-center text-xs text-black italic pt-2">
+                     Need a customized version for your business? Schedule a consultation with our team.
+                   </p>
+
+                   <p className="text-center text-xs text-black flex items-center justify-center gap-2 pt-2">
                      <ShieldCheck className="h-3.5 w-3.5 text-premium-yellow" /> Secure checkout transfer protocol via Razorpay
                    </p>
                  </div>
               </div>
 
               {/* Delivery Info */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 glass rounded-[1.5rem] border-slate-200/60 shadow-sm">
-                  <div className="h-10 w-10 flex-none rounded-xl bg-slate-100 flex items-center justify-center">
-                    <Download className="h-5 w-5 text-slate-500" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div className="flex items-center gap-4 p-5 glass rounded-[1.5rem] border-slate-200/60 shadow-sm bg-white">
+                  <div className="h-12 w-12 flex-none rounded-xl bg-slate-100 flex items-center justify-center">
+                    <ShieldCheck className="h-6 w-6 text-premium-yellow" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-900 mb-1 uppercase tracking-wider">Instant</p>
-                    <p className="text-[10px] text-slate-500">Download Link</p>
+                    <p className="text-sm font-bold text-black mb-1 uppercase tracking-wider">One-Time Purchase</p>
+                    <p className="text-xs text-black">Download & Use</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 glass rounded-[1.5rem] border-slate-200/60 shadow-sm">
-                  <div className="h-10 w-10 flex-none rounded-xl bg-slate-100 flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-slate-500" />
+                <div className="flex items-center gap-4 p-5 glass rounded-[1.5rem] border-slate-200/60 shadow-sm bg-white">
+                  <div className="h-12 w-12 flex-none rounded-xl bg-slate-100 flex items-center justify-center">
+                    <Download className="h-6 w-6 text-premium-yellow" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-900 mb-1 uppercase tracking-wider">Lifetime</p>
-                    <p className="text-[10px] text-slate-500">Free Updates</p>
+                    <p className="text-sm font-bold text-black mb-1 uppercase tracking-wider">Digital Delivery</p>
+                    <p className="text-xs text-black">Template will be provided after successful purchase confirmation.</p>
                   </div>
                 </div>
               </div>
+
+              {/* Looking for a Customized Business Solution Box */}
+              <div className="glass rounded-[2rem] border-premium-yellow/20 bg-premium-yellow/[0.02] p-8 text-black mb-8">
+                <h3 className="font-display font-bold text-lg mb-2">Looking for a Customized Business Solution?</h3>
+                <p className="text-sm text-black leading-relaxed mb-6 font-sans font-normal">
+                  Our ready-to-use systems are designed for common business needs. If your business requires customized reports, dashboards, tracking systems or operational solutions, schedule a consultation with our team.
+                </p>
+                <Link
+                  to="/contact?type=Customized%20Solution"
+                  className="inline-block rounded-full bg-premium-yellow px-8 py-3 text-xs tracking-widest font-display font-semibold text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300 text-center"
+                >
+                  REQUEST CUSTOM SOLUTION
+                </Link>
+              </div>
             </motion.div>
+          </div>
+        </div>
+
+        {/* New sections: Who Is This For & Challenges */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-slate-100 pt-16">
+          {/* Who Is This For? */}
+          <div className="glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-sm">
+            <h3 className="font-display font-bold text-xl text-black uppercase tracking-widest mb-6">
+              Who Is This For?
+            </h3>
+            <div className="space-y-4">
+              {product.whoIsFor.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3">
+                  <span className="h-5 w-5 rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none">✔</span>
+                  <span className="text-sm text-black font-sans font-normal">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Common Business Challenges Solved */}
+          <div className="glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-sm">
+            <h3 className="font-display font-bold text-xl text-black uppercase tracking-widest mb-6">
+              Common Business Challenges Solved
+            </h3>
+            <div className="space-y-4">
+              {product.challenges.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3">
+                  <span className="h-5 w-5 rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none">✔</span>
+                  <span className="text-sm text-black font-sans font-normal">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -286,7 +342,7 @@ export default function ProductDetail() {
                 </a>
                 <button 
                   onClick={() => setSuccess(false)}
-                  className="text-gray-500 text-sm hover:text-white"
+                  className="text-black text-sm hover:text-white"
                 >
                   Close Window
                 </button>
@@ -295,6 +351,32 @@ export default function ProductDetail() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Customized Consultation Callout Section */}
+      <section className="py-20 mt-20 border-t border-slate-100 bg-slate-50/10">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <h2 className="text-3xl font-extrabold font-display mb-4 text-black">Need Something More Customized?</h2>
+          <p className="text-base text-black leading-relaxed mb-8 max-w-2xl mx-auto font-sans font-normal">
+            Every business operates differently. If you need customized dashboards, business reporting, operational tracking or industry-specific solutions, our team can help.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              to="/contact?type=Customized%20Solution"
+              className="inline-block rounded-full bg-premium-yellow px-10 py-4.5 text-xs tracking-widest font-display font-semibold text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] duration-300 transition-transform"
+            >
+              REQUEST CONSULTATION
+            </Link>
+            <a
+              href="https://wa.me/919787333379"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-full bg-black text-white px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-900 duration-300 transition-all text-center border border-black"
+            >
+              WHATSAPP US
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

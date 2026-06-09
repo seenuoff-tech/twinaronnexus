@@ -39,16 +39,16 @@ export default function CategoryCard({ product, index }: CategoryCardProps) {
           <span className="text-[9px] uppercase tracking-[0.25em] text-premium-yellow font-extrabold font-mono">
             {product.category}
           </span>
-          <h3 className="font-display text-lg font-bold leading-snug text-slate-900 group-hover:text-premium-yellow transition-colors tracking-tight">
+          <h3 className="font-display text-lg font-bold leading-snug text-black group-hover:text-premium-yellow transition-colors tracking-tight">
             {product.name}
           </h3>
-          <p className="mt-2 text-xs text-slate-500 line-clamp-2 leading-relaxed font-sans font-light">
+          <p className="mt-2 text-sm text-black line-clamp-2 leading-relaxed font-sans font-normal">
             {product.description}
           </p>
           <div className="mt-6 flex items-center justify-between border-t border-slate-200/60 pt-4">
-            <span className="text-base font-extrabold font-display text-slate-900 tracking-wide">{formatCurrency(product.price)}</span>
-            <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold text-slate-400 group-hover:text-slate-800 transition-colors">
-              ACQUIRE <ChevronRight className="h-3 w-3 text-premium-yellow" />
+            <span className="text-base font-extrabold font-display text-black tracking-wide">{formatCurrency(product.price)}</span>
+            <span className="flex items-center gap-1 text-xs uppercase tracking-wider font-bold text-slate-400 group-hover:text-black transition-colors">
+              GET SYSTEM <ChevronRight className="h-3 w-3 text-premium-yellow" />
             </span>
           </div>
         </div>
