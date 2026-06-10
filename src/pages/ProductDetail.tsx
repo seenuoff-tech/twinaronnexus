@@ -280,37 +280,66 @@ export default function ProductDetail() {
         </div>
 
         {/* New sections: Who Is This For & Challenges */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-slate-100 pt-16">
+        <div className="mt-20 space-y-10 border-t border-slate-100 pt-16">
           {/* Who Is This For? */}
-          <div className="glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-sm">
-            <h3 className="font-display font-bold text-xl text-black uppercase tracking-widest mb-6">
-              Who Is This For?
-            </h3>
-            <div className="space-y-4">
-              {product.whoIsFor.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <span className="h-5 w-5 rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none">✔</span>
-                  <span className="text-sm text-black font-sans font-normal">{item}</span>
-                </div>
-              ))}
+          <div className="glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <div className="lg:col-span-4 flex flex-col justify-start lg:justify-center">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Target Audience ✦
+              </span>
+              <h3 className="font-display font-bold text-2xl lg:text-3xl text-black leading-tight">
+                Who Is This For?
+              </h3>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 rounded-full" />
+            </div>
+            
+            <div className="lg:col-span-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.whoIsFor.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="glass rounded-2xl p-5 border-slate-100 bg-slate-50/30 hover:border-premium-yellow/20 hover:bg-white hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4 group"
+                  >
+                    <span className="h-7 w-7 rounded-lg bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                      ✔
+                    </span>
+                    <span className="text-sm text-black font-sans font-normal leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Common Business Challenges Solved */}
-          <div className="glass rounded-[2.5rem] p-8 lg:p-10 border-slate-200/60 bg-white shadow-sm">
-            <h3 className="font-display font-bold text-xl text-black uppercase tracking-widest mb-6">
-              Common Business Challenges Solved
-            </h3>
-            <div className="space-y-4">
-              {product.challenges.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <span className="h-5 w-5 rounded-full bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none">✔</span>
-                  <span className="text-sm text-black font-sans font-normal">{item}</span>
-                </div>
-              ))}
+          {/* Common Business Challenges This System Solves */}
+          <div className="glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <div className="lg:col-span-4 flex flex-col justify-start lg:justify-center">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Problem Solver ✦
+              </span>
+              <h3 className="font-display font-bold text-2xl lg:text-3xl text-black leading-tight">
+                Common Business Challenges This System Solves
+              </h3>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 rounded-full" />
+            </div>
+            
+            <div className="lg:col-span-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.challenges.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="glass rounded-2xl p-5 border-slate-100 bg-slate-50/30 hover:border-premium-yellow/20 hover:bg-white hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4 group"
+                  >
+                    <span className="h-7 w-7 rounded-lg bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                      ✔
+                    </span>
+                    <span className="text-sm text-black font-sans font-normal leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+
 
         {/* Success Modal */}
         <AnimatePresence>
