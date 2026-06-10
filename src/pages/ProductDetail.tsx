@@ -290,17 +290,19 @@ export default function ProductDetail() {
                 <Magnetic strength={0.15}>
                   <button
                     onClick={() => scrollToSection("pricing")}
-                    className="rounded-full bg-premium-yellow text-black px-10 py-5 text-xs font-bold tracking-widest uppercase hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.35)] active:scale-95 duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover shadow-md font-display"
+                    className="rounded-full bg-premium-yellow text-black px-12 py-[18px] text-xs font-extrabold tracking-widest uppercase hover:scale-105 hover:shadow-lg active:scale-95 duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover font-display flex items-center justify-center gap-3.5"
                   >
-                    VIEW PRICING & BUY <ChevronRight className="inline-block h-4 w-4 ml-1.5" />
+                    <span>VIEW PRICING & BUY</span>
+                    <ChevronRight className="h-4 w-4 text-black" strokeWidth={3} />
                   </button>
                 </Magnetic>
                 <Magnetic strength={0.15}>
                   <button
                     onClick={() => scrollToSection("details-hub")}
-                    className="rounded-full bg-black text-white px-10 py-5 text-xs font-bold tracking-widest uppercase hover:bg-slate-900 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover shadow-sm font-display"
+                    className="rounded-full bg-black text-white px-12 py-[18px] text-xs font-extrabold tracking-widest uppercase hover:scale-105 hover:shadow-lg active:scale-95 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover font-display flex items-center justify-center gap-3.5"
                   >
-                    EXPLORE FEATURES <ChevronRight className="inline-block h-4 w-4 ml-1.5 text-premium-yellow" />
+                    <span>EXPLORE FEATURES</span>
+                    <ChevronRight className="h-4 w-4 text-premium-yellow" strokeWidth={3} />
                   </button>
                 </Magnetic>
               </div>
@@ -624,10 +626,10 @@ export default function ProductDetail() {
                     onClick={handleBuyNow}
                     disabled={loading || success}
                     className={cn(
-                      "rounded-full px-16 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto luxury-shine-hover shadow-md font-display",
+                      "rounded-full px-16 py-[18px] text-xs font-extrabold tracking-widest uppercase flex items-center justify-center gap-3.5 transition-all duration-300 cursor-pointer w-full sm:w-auto luxury-shine-hover shadow-md font-display",
                       success 
                         ? "bg-green-500 text-white cursor-default" 
-                        : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] active:scale-95 disabled:opacity-50"
+                        : "bg-premium-yellow text-black hover:scale-105 hover:shadow-lg active:scale-95 disabled:opacity-50"
                     )}
                   >
                     {loading ? (
@@ -637,7 +639,10 @@ export default function ProductDetail() {
                         <CheckCircle2 className="h-5 w-5" /> PAYMENT SUCCESSFUL
                       </>
                     ) : (
-                      <>PURCHASE TEMPLATE <ChevronRight className="h-4 w-4" /></>
+                      <>
+                        <span>PURCHASE TEMPLATE</span>
+                        <ChevronRight className="h-4 w-4 text-black" strokeWidth={3} />
+                      </>
                     )}
                   </button>
                 </Magnetic>
