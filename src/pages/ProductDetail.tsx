@@ -15,7 +15,8 @@ import {
   Laptop,
   Layers,
   Settings,
-  HelpCircle
+  HelpCircle,
+  Play
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PRODUCTS } from "../constants/products";
@@ -23,28 +24,54 @@ import { formatCurrency, cn } from "../lib/utils";
 import { loadRazorpay } from "../lib/razorpay";
 import Magnetic from "../components/Magnetic";
 
-const FAQ_ITEMS = [
-  {
-    q: "How do I receive the template after purchase?",
-    a: "Immediately after a successful payment, a download link will be displayed on the screen. Additionally, we will send an automated email containing the download link to your registered email address."
-  },
-  {
-    q: "Do I need any special software to use this system?",
-    a: "No special software is required. The system is built in standard Excel (.xlsx) format. It works perfectly on Microsoft Excel (2016 or newer) and Google Sheets."
-  },
-  {
-    q: "Is this a one-time purchase or a subscription?",
-    a: "This is a strictly one-time purchase. You get lifetime access to use the template with zero recurring monthly or annual subscription fees."
-  },
-  {
-    q: "Can I customize the sheets and formulas myself?",
-    a: "Yes. The files are fully unlocked. You can add sheets, edit columns, customize formulas, and apply your own branding/logo as needed."
-  },
-  {
-    q: "Do you offer customer support if I have questions?",
-    a: "Yes. We provide dedicated support for download issues and basic setup. You can reach out to us via email or WhatsApp for quick assistance."
+const GET_FAQ_ITEMS = (slug: string) => {
+  if (slug === "freelancer-business-system") {
+    return [
+      {
+        q: "What does this template include?",
+        a: "The template includes a Client Database, Project Tracker, Invoice Tracker, Payment Tracker, Income Dashboard, Monthly Performance Summary, and a high-level Business Analytics Overview."
+      },
+      {
+        q: "Can I manage multiple clients?",
+        a: "Yes, you can register and manage details, contact info, and active billing histories for multiple clients in one centralized client database."
+      },
+      {
+        q: "Can I track invoices and pending payments?",
+        a: "Yes, the Invoice & Payment Tracker lets you log invoice status, tracking payment due dates, pending collections, and monthly income trends."
+      },
+      {
+        q: "Can I customize the template?",
+        a: "Yes, the spreadsheet file is 100% unlocked. You can customize branding, colors, sheets, and formulas to match your service workflow."
+      },
+      {
+        q: "Can I upgrade to a customized dashboard later?",
+        a: "Yes! As your business grows, we can convert your sheet tracking process into a fully customized reporting dashboard using advanced BI tools."
+      }
+    ];
   }
-];
+  return [
+    {
+      q: "How do I receive the template after purchase?",
+      a: "Immediately after a successful payment, a download link will be displayed on the screen. Additionally, we will send an automated email containing the download link to your registered email address."
+    },
+    {
+      q: "Do I need any special software to use this system?",
+      a: "No special software is required. The system is built in standard Excel (.xlsx) format. It works perfectly on Microsoft Excel (2016 or newer) and Google Sheets."
+    },
+    {
+      q: "Is this a one-time purchase or a subscription?",
+      a: "This is a strictly one-time purchase. You get lifetime access to use the template with zero recurring monthly or annual subscription fees."
+    },
+    {
+      q: "Can I customize the sheets and formulas myself?",
+      a: "Yes. The files are fully unlocked. You can add sheets, edit columns, customize formulas, and apply your own branding/logo as needed."
+    },
+    {
+      q: "Do you offer customer support if I have questions?",
+      a: "Yes. We provide dedicated support for download issues and basic setup. You can reach out to us via email or WhatsApp for quick assistance."
+    }
+  ];
+};
 
 const PARTICLES = Array.from({ length: 22 }, (_, i) => ({
   id: i,
@@ -309,12 +336,20 @@ export default function ProductDetail() {
 
               {/* Quick Spec Badges */}
               <div className="grid grid-cols-2 gap-4 border-t border-slate-100 pt-8 mt-6">
-                {[
-                  "Instant Download",
-                  "Lifetime Access",
-                  "100% Unlocked File",
-                  "Sheets & Excel ready"
-                ].map((item, i) => (
+                {(product.slug === "freelancer-business-system"
+                  ? [
+                      "Client Management",
+                      "Project Tracking",
+                      "Invoice & Payment Monitoring",
+                      "Business Dashboard"
+                    ]
+                  : [
+                      "Instant Download",
+                      "Lifetime Access",
+                      "100% Unlocked File",
+                      "Sheets & Excel ready"
+                    ]
+                ).map((item, i) => (
                   <div key={i} className="flex items-center gap-2 text-slate-700">
                     <CheckCircle2 className="h-4 w-4 text-premium-yellow flex-none" />
                     <span className="text-xs font-bold uppercase tracking-wider font-mono">{item}</span>
@@ -336,47 +371,74 @@ export default function ProductDetail() {
         <div id="benefits" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-              ✦ Strategic Advantages ✦
+              {product.slug === "freelancer-business-system" ? "✦ Freelancer Focus ✦" : "✦ Strategic Advantages ✦"}
             </span>
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
-              Why Choose Our Ready-To-Use Systems?
+              {product.slug === "freelancer-business-system" ? "Why Freelancers Choose This System" : "Why Choose Our Ready-To-Use Systems?"}
             </h2>
             <p className="mt-4 text-base text-slate-600 font-sans font-normal leading-relaxed">
-              Skip development delays and developer cost pools. Deploy a professional operational system designed to immediately clean up metrics tracking.
+              {product.slug === "freelancer-business-system"
+                ? "Skip expensive subscription software. Our spreadsheet template is designed to streamline your freelance workflow instantly."
+                : "Skip development delays and developer cost pools. Deploy a professional operational system designed to immediately clean up metrics tracking."
+              }
             </p>
             <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Instant Setup & Deployment",
-                desc: "No waiting for development cycles or complex configurations. Download, open in Excel or Google Sheets, and start tracking your business operations in minutes.",
-                icon: Clock
-              },
-              {
-                title: "One-Time Cost, Lifetime Use",
-                desc: "Forget expensive monthly software subscriptions. Pay once and own the entire system forever, with zero recurring charges or unexpected maintenance fees.",
-                icon: ShieldCheck
-              },
-              {
-                title: "100% Customization Freedom",
-                desc: "Unlike rigid SaaS applications, our systems are fully unlocked. Edit formulas, add custom columns, create new dashboards, and adapt it exactly to your growing team.",
-                icon: Download
-              }
-            ].map((benefit, i) => (
-              <div 
-                key={i} 
-                className="glass glass-hover luxury-shine-hover rounded-[2rem] p-10 bg-white relative group overflow-hidden shadow-sm hover:-translate-y-1"
-              >
-                <div className="h-14 w-14 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-8 border border-premium-yellow/20 text-premium-yellow group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
-                  <benefit.icon className="h-6 w-6" />
+          {product.slug === "freelancer-business-system" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { title: "Manage Multiple Clients", desc: "Keep client contacts, billing history, and active project histories consolidated in one clear client registry." },
+                { title: "Track Project Status & Deadlines", desc: "Never miss client deliverables with active project logs and visual milestone progress alerts." },
+                { title: "Monitor Invoices & Payments", desc: "Identify outstanding invoice collections, follow up on time, and eliminate lost revenue." },
+                { title: "Analyze Monthly Income", desc: "Gain visibility into your monthly billing streams, growth spikes, and annual earnings forecasting." },
+                { title: "Reduce Manual Admin Work", desc: "Automate calculation of totals, tax estimates, and invoice balances to save hours every single week." },
+                { title: "Improve Business Visibility", desc: "Use clean charts and reports to know exactly where your freelance business stands financially." }
+              ].map((benefit, i) => (
+                <div 
+                  key={i} 
+                  className="glass glass-hover rounded-[2rem] p-8 bg-white relative group overflow-hidden shadow-sm hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="h-10 w-10 rounded-full bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center mb-6 text-premium-yellow">
+                    ✓
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-black mb-3 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
+                  <p className="text-xs text-slate-650 leading-relaxed font-sans font-normal">{benefit.desc}</p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-black mb-4 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
-                <p className="text-sm text-slate-650 leading-relaxed font-sans font-normal">{benefit.desc}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Instant Setup & Deployment",
+                  desc: "No waiting for development cycles or complex configurations. Download, open in Excel or Google Sheets, and start tracking your business operations in minutes.",
+                  icon: Clock
+                },
+                {
+                  title: "One-Time Cost, Lifetime Use",
+                  desc: "Forget expensive monthly software subscriptions. Pay once and own the entire system forever, with zero recurring charges or unexpected maintenance fees.",
+                  icon: ShieldCheck
+                },
+                {
+                  title: "100% Customization Freedom",
+                  desc: "Unlike rigid SaaS applications, our systems are fully unlocked. Edit formulas, add custom columns, create new dashboards, and adapt it exactly to your growing team.",
+                  icon: Download
+                }
+              ].map((benefit, i) => (
+                <div 
+                  key={i} 
+                  className="glass glass-hover luxury-shine-hover rounded-[2rem] p-10 bg-white relative group overflow-hidden shadow-sm hover:-translate-y-1"
+                >
+                  <div className="h-14 w-14 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-8 border border-premium-yellow/20 text-premium-yellow group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                    <benefit.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-black mb-4 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
+                  <p className="text-sm text-slate-650 leading-relaxed font-sans font-normal">{benefit.desc}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Details & Specs Dynamic Tab Hub (Reduces Scrolling, Extremely Professional) */}
@@ -438,10 +500,18 @@ export default function ProductDetail() {
                       <div>
                         <h4 className="font-display font-bold text-base text-black mb-2 group-hover:text-premium-yellow transition-colors">{feature}</h4>
                         <p className="text-xs text-slate-500 leading-relaxed font-sans font-normal">
-                          {product.slug === "online-business-system"
-                            ? "Easily track and organize your daily operations to improve visibility, reporting, and business growth."
-                            : "Simple and easy-to-use tool to improve visibility, reporting, and performance monitoring."
-                          }
+                          {product.slug === "freelancer-business-system" ? (
+                            feature === "Client Tracking" ? "Store client details, contact information and project history." :
+                            feature === "Income Monitoring" ? "Track revenue, payments received and pending collections." :
+                            feature === "Payment Reports" ? "Monitor invoice status, due payments and payment trends." :
+                            feature === "Project Management" ? "Track active, completed and upcoming projects." :
+                            feature === "Activity Tracking" ? "Monitor daily work, tasks and productivity." :
+                            "Consolidated tracker built within the spreadsheet template."
+                          ) : product.slug === "online-business-system" ? (
+                            "Easily track and organize your daily operations to improve visibility, reporting, and business growth."
+                          ) : (
+                            "Simple and easy-to-use tool to improve visibility, reporting, and performance monitoring."
+                          )}
                         </p>
                       </div>
                     </div>
@@ -633,6 +703,124 @@ export default function ProductDetail() {
           </div>
         )}
 
+        {/* Demo Section (Only for Freelancer Business System) */}
+        {product.slug === "freelancer-business-system" && (
+          <div className="border-t border-slate-100 pt-24 mb-24">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Watch Demo ✦
+              </span>
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+                See The System In Action
+              </h2>
+              <p className="mt-4 text-sm text-slate-500 font-sans leading-relaxed">
+                Watch how freelancers manage clients, projects, invoices and payments using this system.
+              </p>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+            </div>
+
+            <div className="max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden border border-slate-200/80 shadow-lg relative aspect-video group bg-slate-900 cursor-pointer">
+              {/* Workspace spreadsheet poster image */}
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" 
+                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+                alt="Freelancer Business Dashboard Demo"
+              />
+              
+              {/* Dark overlay & Play Button */}
+              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors duration-300 flex items-center justify-center">
+                <div className="h-20 w-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl scale-95 group-hover:scale-100 group-hover:bg-premium-yellow group-hover:text-black transition-all duration-300 relative">
+                  <Play className="h-8 w-8 fill-current ml-1" />
+                  <span className="absolute inset-0 rounded-full border-2 border-white/40 group-hover:border-premium-yellow/60 animate-ping pointer-events-none" />
+                </div>
+              </div>
+
+              {/* Bottom bar inside video player */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-xs font-mono tracking-wider">0:00 / 3:45 • Freelancer System Overview</span>
+                <span className="text-xs font-semibold uppercase bg-premium-yellow text-black px-2.5 py-1 rounded">1080p HD</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* What Is Included Section (Only for Freelancer Business System) */}
+        {product.slug === "freelancer-business-system" && (
+          <div className="border-t border-slate-100 pt-24 mb-24">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Package Details ✦
+              </span>
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+                What Is Included?
+              </h2>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {[
+                { title: "Client Database", desc: "A clean client registry to store contacts, billing terms, and historic project summaries." },
+                { title: "Project Tracker", desc: "Track project pipelines, active workflows, timelines, and status logs." },
+                { title: "Invoice Tracker", desc: "Generate simple references, log invoice numbers, payment due dates, and totals." },
+                { title: "Payment Tracker", desc: "Log payments received, pending dues, and track payment schedules." },
+                { title: "Income Dashboard", desc: "Visualize monthly earnings streams and outstanding dues charts." },
+                { title: "Monthly Summary", desc: "Automated performance tracking reports summarizing periodic business growth." },
+                { title: "Business Analytics Overview", desc: "High-level performance monitoring metrics dashboard for tracking activity." }
+              ].map((item, idx) => (
+                <div key={idx} className={cn(
+                  "glass glass-hover rounded-[2rem] p-8 bg-white/40 border-slate-100 flex flex-col justify-between group transition-all duration-300",
+                  idx === 6 && "lg:col-span-2 w-full"
+                )}>
+                  <div>
+                    <span className="h-2 w-2 rounded-full bg-premium-yellow block mb-4" />
+                    <h4 className="font-display font-bold text-base text-slate-900 mb-2">{item.title}</h4>
+                    <p className="text-xs text-slate-650 leading-relaxed font-sans">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* What You Can Achieve Section (Only for Freelancer Business System) */}
+        {product.slug === "freelancer-business-system" && (
+          <div className="border-t border-slate-100 pt-24 mb-24">
+            <div className="max-w-4xl mx-auto bg-slate-950 text-white rounded-[2.5rem] p-10 lg:p-14 relative overflow-hidden shadow-xl border border-slate-800">
+              <div className="absolute right-0 top-0 w-64 h-64 bg-premium-yellow/[0.02] blur-[80px] rounded-full pointer-events-none" />
+              
+              <div className="text-center mb-12">
+                <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                  ✦ Business Results ✦
+                </span>
+                <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white leading-tight">
+                  What You Can Achieve
+                </h2>
+                <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {[
+                  "Track all clients from one place",
+                  "Reduce missed payments",
+                  "Improve project visibility",
+                  "Understand monthly income trends",
+                  "Save hours of manual work every week"
+                ].map((point, index) => (
+                  <div key={index} className={cn(
+                    "flex items-start gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm hover:border-premium-yellow/20 transition-all duration-300",
+                    index === 4 && "md:col-span-2 md:max-w-md md:mx-auto w-full"
+                  )}>
+                    <span className="h-6 w-6 rounded-full bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none">
+                      ✓
+                    </span>
+                    <span className="text-sm text-slate-300 leading-relaxed font-sans font-medium">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Pricing Section (Centered Box Card Styling) */}
         <div id="pricing" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -662,7 +850,17 @@ export default function ProductDetail() {
                   One-Time Investment
                 </span>
                 <h3 className="font-display font-extrabold text-2xl mt-4 text-black">{product.name}</h3>
-                <p className="text-sm text-slate-500 mt-2">Fully unlocked .xlsx spreadsheet template</p>
+                <p className="text-sm text-slate-500 mt-2 font-medium">
+                  {product.slug === "freelancer-business-system"
+                    ? "Ready-to-use Freelancer Business Tracking Template"
+                    : "Fully unlocked .xlsx spreadsheet template"
+                  }
+                </p>
+                {product.slug === "freelancer-business-system" && (
+                  <p className="text-xs text-slate-500 mt-2 max-w-lg mx-auto font-sans leading-relaxed">
+                    Includes Client Tracking, Project Management, Invoice Monitoring, Payment Reports and Business Dashboard.
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-center justify-center mb-10">
@@ -869,7 +1067,7 @@ export default function ProductDetail() {
             </div>
             
             <div className="space-y-4">
-              {FAQ_ITEMS.map((faq, i) => (
+              {GET_FAQ_ITEMS(product?.slug || "").map((faq, i) => (
                 <div key={i} className="glass rounded-2xl overflow-hidden border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-shadow">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}

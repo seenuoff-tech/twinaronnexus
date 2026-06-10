@@ -68,7 +68,7 @@ export const PRODUCTS: Product[] = [
     slug: "freelancer-business-system",
     price: 999,
     category: "Freelancer",
-    description: "Organize client information, project status, invoices and payments in one place. Designed for freelancers, consultants and service professionals.",
+    description: "Manage Clients, Projects, Invoices, Payments and Business Performance from a single dashboard. Built for Freelancers, Consultants, Coaches and Independent Professionals who want to save time and grow faster.",
     features: [
       "Client Tracking",
       "Income Monitoring",
