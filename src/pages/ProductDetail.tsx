@@ -292,7 +292,7 @@ export default function ProductDetail() {
                     onClick={() => scrollToSection("pricing")}
                     className="rounded-full bg-premium-yellow text-black px-10 py-5 text-xs font-bold tracking-widest uppercase hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.35)] active:scale-95 duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover shadow-md font-display"
                   >
-                    GET TEMPLATE NOW <ChevronRight className="inline-block h-4 w-4 ml-1.5" />
+                    VIEW PRICING & BUY <ChevronRight className="inline-block h-4 w-4 ml-1.5" />
                   </button>
                 </Magnetic>
                 <Magnetic strength={0.15}>
@@ -300,7 +300,7 @@ export default function ProductDetail() {
                     onClick={() => scrollToSection("details-hub")}
                     className="rounded-full bg-black text-white px-10 py-5 text-xs font-bold tracking-widest uppercase hover:bg-slate-900 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover shadow-sm font-display"
                   >
-                    EXPLORE SPECS <ChevronRight className="inline-block h-4 w-4 ml-1.5 text-premium-yellow" />
+                    EXPLORE FEATURES <ChevronRight className="inline-block h-4 w-4 ml-1.5 text-premium-yellow" />
                   </button>
                 </Magnetic>
               </div>
