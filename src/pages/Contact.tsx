@@ -353,7 +353,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-lg text-black font-display">Email Support</h4>
                   <p className="text-black text-sm mb-1">General inquiries & Custom project discussions</p>
-                  <a href="mailto:support@twinaronnexus.com" className="text-premium-yellow font-semibold text-sm hover:underline">support@twinaronnexus.com</a>
+                  <a href="mailto:info@twinaronnexus.com" className="text-premium-yellow font-semibold text-sm hover:underline">info@twinaronnexus.com</a>
                 </div>
               </div>
               <div className="flex gap-6 items-start">

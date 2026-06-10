@@ -28,7 +28,7 @@ export default function Privacy() {
 
           <section>
             <h2 className="text-xl font-bold text-black mb-4">5. Contact Information</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at support@twinaronnexus.com.</p>
+            <p>If you have any questions about this Privacy Policy, please contact us at info@twinaronnexus.com.</p>
           </section>
         </div>
       </div>

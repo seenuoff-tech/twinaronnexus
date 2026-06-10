@@ -9,6 +9,7 @@ export interface Product {
   specs: Record<string, string>;
   image: string;
   whoIsFor: string[];
+  whoIsForDescription: string;
   challenges: string[];
 }
 
@@ -42,11 +43,16 @@ export const PRODUCTS: Product[] = [
       "Startups",
       "Entrepreneurs managing customers, orders and sales manually"
     ],
+    whoIsForDescription: "Designed for small business owners, startups, online sellers, and service providers looking to streamline operations and improve daily visibility.",
     challenges: [
       "Customer information scattered across multiple files",
-      "Difficulty tracking orders and sales",
-      "Lack of business visibility",
-      "Manual reporting processes"
+      "Difficulty tracking orders and sales progress",
+      "Lack of real-time business performance visibility",
+      "Manual and time-consuming reporting processes",
+      "Delayed follow-ups with customers due to missing logs",
+      "No centralized, secure business record database",
+      "Inconsistent sales tracking across different channels",
+      "Difficulty measuring business growth and key metrics"
     ]
   },
   {
@@ -78,11 +84,16 @@ export const PRODUCTS: Product[] = [
       "Designers & Developers",
       "Independent Service Providers managing multiple clients and projects"
     ],
+    whoIsForDescription: "Designed for freelancers, consultants, coaches, and independent professionals looking to manage clients, projects, and invoices in one organized place.",
     challenges: [
-      "Managing multiple clients manually",
-      "Tracking payments and invoices",
-      "Monitoring project progress",
-      "Organizing business records"
+      "Managing multiple clients manually with text documents",
+      "Tracking payments, invoice due dates, and client dues",
+      "Monitoring project progress and milestone deliverables",
+      "Organizing historical business records and tax info",
+      "Unclear income projection and payment schedules",
+      "Difficulty tracking billable hours and task efficiency",
+      "Inefficient follow-ups for outstanding invoice payments",
+      "Hours wasted on manual administrative work weekly"
     ]
   },
   {
@@ -114,11 +125,16 @@ export const PRODUCTS: Product[] = [
       "Beauty & Lifestyle Stores",
       "Businesses looking to track inventory, sales and profitability"
     ],
+    whoIsForDescription: "Designed for boutique owners and retail businesses looking to gain clear visibility into inventory, sales, and overall profitability.",
     challenges: [
-      "Inventory management challenges",
-      "Difficulty tracking sales trends",
-      "Stock monitoring issues",
-      "Lack of profitability visibility"
+      "Inventory management challenges and stockouts",
+      "Difficulty tracking sales trends over weeks and months",
+      "Stock monitoring issues and manual count discrepancy",
+      "Lack of product-level profitability visibility",
+      "Difficulty identifying top-selling and slow-moving items",
+      "Inefficient customer order fulfillment tracking",
+      "Difficulty managing customer preferences and history",
+      "Manual bookkeeping prone to errors and calculation slips"
     ]
   },
   {
@@ -150,11 +166,16 @@ export const PRODUCTS: Product[] = [
       "Exporters",
       "Businesses managing inventory, dealers and sales operations"
     ],
+    whoIsForDescription: "Designed for manufacturers, traders, distributors, and wholesalers looking to track dealer performance, inventory, and outstanding payments.",
     challenges: [
-      "Dealer tracking difficulties",
-      "Outstanding payment monitoring",
-      "Inventory visibility issues",
-      "Manual business reporting"
+      "Dealer tracking difficulties and communication gap",
+      "Outstanding payment monitoring and credit tracking",
+      "Inventory visibility issues across multiple storage blocks",
+      "Manual business reporting which delays key decisions",
+      "Inconsistent tracking of raw materials and finished goods",
+      "Delayed updates on order processing and supply status",
+      "Difficulty measuring dealer-wise sales performance",
+      "Lack of centralized dashboard for high-level operations"
     ]
   }
 ];

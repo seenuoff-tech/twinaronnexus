@@ -162,7 +162,15 @@ export default function Admin() {
         "License": "Lifetime Personal Use",
         "Delivery": "Instant Mail Drop"
       },
-      image: defaultImg
+      image: defaultImg,
+      whoIsFor: ["Small Business Owners", "Startups", "Online Sellers"],
+      whoIsForDescription: "Designed for small business owners and startups looking to streamline operations and improve daily visibility.",
+      challenges: [
+        "Customer information scattered across multiple files",
+        "Difficulty tracking orders and sales progress",
+        "Lack of real-time business performance visibility",
+        "Manual and time-consuming reporting processes"
+      ]
     };
 
     setProducts(prev => [newProg, ...prev]);

@@ -39,7 +39,7 @@ export default function Footer() {
               </a>
               <a href="#" className="text-black hover:text-premium-yellow hover:scale-110 transition-all duration-200" title="Twitter"><Twitter className="h-5 w-5" /></a>
               <a href="#" className="text-black hover:text-premium-yellow hover:scale-110 transition-all duration-200" title="Linkedin"><Linkedin className="h-5 w-5" /></a>
-              <a href="mailto:support@twinaronnexus.com" className="text-black hover:text-premium-yellow hover:scale-110 transition-all duration-200" title="Email Support"><Mail className="h-5 w-5" /></a>
+              <a href="mailto:info@twinaronnexus.com" className="text-black hover:text-premium-yellow hover:scale-110 transition-all duration-200" title="Email Support"><Mail className="h-5 w-5" /></a>
             </div>
           </div>
 
