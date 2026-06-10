@@ -679,19 +679,19 @@ export default function ProductDetail() {
 
         {/* Customized Consultation Callout Section (Yellow background) */}
         <section id="custom-cta" className="mb-24 pt-10">
-          <div className="mx-auto max-w-4xl rounded-[3rem] bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] p-10 lg:p-16 text-black text-center relative overflow-hidden group shadow-[0_20px_55px_rgba(243,174,27,0.25)] border border-white/10">
+          <div className="mx-auto max-w-6xl rounded-[3rem] bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] py-10 px-6 sm:px-12 lg:py-12 lg:px-20 text-black text-center relative overflow-hidden group shadow-[0_20px_55px_rgba(243,174,27,0.25)] border border-white/10">
             {/* Background design elements */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-black/[0.04] blur-3xl transition-transform duration-500 group-hover:scale-110 pointer-events-none" />
             <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-white/[0.1] blur-2xl pointer-events-none" />
 
             <div className="relative z-10">
-              <span className="font-mono text-[9px] tracking-[0.25em] text-black font-extrabold uppercase block mb-4">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-black font-extrabold uppercase block mb-3">
                 ✦ Tailored Solutions ✦
               </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold font-display mb-4 tracking-tight text-black leading-tight">
+              <h2 className="text-3xl lg:text-4xl font-extrabold font-display mb-3 tracking-tight text-black leading-tight">
                 Need a Customized Dashboard, Reporting System or Business Tracking Solution?
               </h2>
-              <p className="text-black/85 text-sm sm:text-base max-w-2xl mx-auto mb-10 font-sans font-normal leading-relaxed">
+              <p className="text-black/85 text-sm sm:text-base max-w-3xl mx-auto mb-8 font-sans font-normal leading-relaxed">
                 Every business operations model is unique. Book a free consultation call with our analyst team, and we will build a custom-tailored system designed specifically around your workflow.
               </p>
               
