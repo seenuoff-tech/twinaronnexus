@@ -12,7 +12,7 @@ import {
   Plus,
   Minus
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PRODUCTS } from "../constants/products";
 import { formatCurrency, cn } from "../lib/utils";
 import { loadRazorpay } from "../lib/razorpay";
@@ -41,17 +41,33 @@ const FAQ_ITEMS = [
   }
 ];
 
+const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
+  id: i,
+  size: Math.random() * 3 + 1,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  duration: Math.random() * 12 + 10,
+  delay: Math.random() * 6,
+}));
+
 export default function ProductDetail() {
   const { slug } = useParams();
   const product = PRODUCTS.find((p) => p.slug === slug);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeImage, setActiveImage] = useState(product?.image || "");
+
+  useEffect(() => {
+    if (product) {
+      setActiveImage(product.image);
+    }
+  }, [product]);
 
   if (!product) {
     return (
       <div className="flex h-[60vh] flex-col items-center justify-center pt-24">
-        <h1 className="text-2xl font-bold mb-4">Template not found</h1>
+        <h1 className="text-2xl font-bold mb-4 font-display">Template not found</h1>
         <Link to="/" className="text-premium-yellow hover:underline">Return Home</Link>
       </div>
     );
@@ -137,55 +153,101 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="pt-24 pb-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="relative isolate overflow-hidden bg-white min-h-screen text-black pt-24 pb-32">
+      {/* Editorial Golden Backlit Radial aura */}
+      <div className="absolute inset-0 -z-10 luxury-gradient animate-float-glow" />
+      
+      {/* Floating Stardust Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        {PARTICLES.map((p) => (
+          <motion.div
+            key={p.id}
+            className="absolute rounded-full bg-premium-yellow/20"
+            style={{
+              width: p.size,
+              height: p.size,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+            }}
+            animate={{
+              y: [0, -60, 0],
+              x: [0, Math.random() * 30 - 15, 0],
+              opacity: [0.1, 0.5, 0.1],
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: p.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Geometric Framing Orthogonal Lines */}
+      <div className="absolute left-1/4 top-0 bottom-0 w-px bg-slate-200/30 -z-10 hidden lg:block" />
+      <div className="absolute right-1/4 top-0 bottom-0 w-px bg-slate-200/30 -z-10 hidden lg:block" />
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         {/* Breadcrumbs */}
         <div className="flex items-center gap-2 text-sm text-black mb-8">
-          <Link to="/" className="hover:text-black font-medium transition-colors">Home</Link>
+          <Link to="/" className="hover:text-black font-semibold transition-colors">Home</Link>
           <ChevronRight className="h-3 w-3 text-slate-400" />
           <span className="text-slate-600 text-sm font-normal">{product.name}</span>
         </div>
 
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left: Visuals & Tech Specs */}
+          {/* Left: visuals & Specs */}
           <div className="space-y-8">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="aspect-video glass rounded-[2rem] overflow-hidden border-slate-200/60 relative group"
+              className="aspect-video glass rounded-[2rem] overflow-hidden border-slate-200/60 relative group shadow-lg"
             >
               <img 
-                src={product.image} 
+                src={activeImage} 
                 alt={product.name} 
-                className="h-full w-full object-cover transition-all duration-700"
+                className="h-full w-full object-cover transition-all duration-500 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-8 left-8">
-                <span className="text-premium-yellow text-xs font-bold uppercase tracking-widest bg-slate-900/10 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200/20">
+                <span className="text-premium-yellow text-xs font-bold uppercase tracking-widest bg-slate-900/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-premium-yellow/20">
                   {product.category}
                 </span>
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-3 gap-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="aspect-square glass rounded-2xl border-slate-200/60 opacity-60 overflow-hidden">
-                   <img src={product.image} className="h-full w-full object-cover blur-[1px]" />
-                </div>
+            {/* Interactive Thumbnail Previews */}
+            <div className="grid grid-cols-4 gap-4">
+              {product.previews.map((imgUrl, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => setActiveImage(imgUrl)}
+                  className={cn(
+                    "aspect-square glass rounded-2xl border-slate-200/60 overflow-hidden cursor-pointer transition-all duration-300 relative group",
+                    activeImage === imgUrl ? "ring-2 ring-premium-yellow opacity-100 scale-102" : "opacity-50 hover:opacity-80"
+                  )}
+                >
+                   <img src={imgUrl} className="h-full w-full object-cover" />
+                </button>
               ))}
             </div>
 
-            <div className="glass rounded-3xl p-8 border-slate-200/60 text-black bg-white/50">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+            {/* Specifications Card */}
+            <div className="glass rounded-3xl p-8 border-slate-200/60 text-black bg-white/60 backdrop-blur-md shadow-sm relative overflow-hidden">
+              <div className="absolute -right-8 -bottom-8 opacity-[0.03] text-black">
+                <ShieldCheck className="h-32 w-32" />
+              </div>
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 font-display">
                 <ShieldCheck className="h-6 w-6 text-premium-yellow" />
                 Technical Specifications
               </h3>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 relative z-10">
                 {Object.entries(product.specs).map(([key, value]) => (
-                  <div key={key}>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">{key}</p>
-                    <p className="text-base font-semibold text-black">{value}</p>
+                  <div key={key} className="border-b border-slate-100 pb-3 last:border-b-0">
+                    <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-1.5 font-bold font-mono">{key}</p>
+                    <p className="text-base font-semibold text-black font-sans">{value}</p>
                   </div>
                 ))}
               </div>
@@ -198,12 +260,14 @@ export default function ProductDetail() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <div className="flex items-center gap-2 mb-4 text-base text-black font-semibold">
-                <span className="text-premium-yellow font-bold">✔</span> Trusted by Growing Businesses
+              <div className="flex items-center gap-2 mb-4 text-base text-black font-bold">
+                <span className="text-premium-yellow font-bold text-lg">✔</span> Trusted by Growing Businesses
               </div>
-              <h1 className="font-display text-4xl font-bold tracking-tight mb-6 sm:text-5xl lg:text-6xl text-black">
+              <h1 className="font-display text-4xl font-bold tracking-tight mb-4 sm:text-5xl lg:text-6xl text-black">
                 {product.name}
               </h1>
+              <div className="h-1 w-20 bg-premium-yellow mb-8 rounded-full" />
+              
               <p className="text-xl text-slate-700 mb-8 leading-relaxed font-normal">
                 {product.description}
               </p>
@@ -213,7 +277,7 @@ export default function ProductDetail() {
                 <Magnetic strength={0.15}>
                   <button
                     onClick={() => scrollToSection("pricing")}
-                    className="rounded-full bg-premium-yellow text-black px-10 py-5 text-xs font-bold tracking-widest uppercase hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] duration-300 transition-all cursor-pointer text-center w-full sm:w-auto"
+                    className="rounded-full bg-premium-yellow text-black px-10 py-5 text-xs font-bold tracking-widest uppercase hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover"
                   >
                     VIEW PRICING & BUY <ChevronRight className="inline-block h-4 w-4 ml-1" />
                   </button>
@@ -221,7 +285,7 @@ export default function ProductDetail() {
                 <Magnetic strength={0.15}>
                   <button
                     onClick={() => scrollToSection("features")}
-                    className="rounded-full bg-black text-white px-10 py-5 text-xs font-bold tracking-widest uppercase hover:bg-slate-900 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto"
+                    className="rounded-full bg-black text-white px-10 py-5 text-xs font-bold tracking-widest uppercase hover:bg-slate-900 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover"
                   >
                     EXPLORE FEATURES <ChevronRight className="inline-block h-4 w-4 ml-1 text-premium-yellow" />
                   </button>
@@ -286,12 +350,12 @@ export default function ProductDetail() {
             ].map((benefit, i) => (
               <div 
                 key={i} 
-                className="glass rounded-3xl p-8 border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-all duration-300 relative group overflow-hidden"
+                className="glass glass-hover luxury-shine-hover rounded-3xl p-8 border-slate-200/60 bg-white relative group overflow-hidden"
               >
-                <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20">
-                  <benefit.icon className="h-5 w-5 text-premium-yellow" />
+                <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20 text-premium-yellow group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                  <benefit.icon className="h-5 w-5" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-black mb-3">{benefit.title}</h3>
+                <h3 className="font-display text-lg font-bold text-black mb-3 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed font-sans font-normal">{benefit.desc}</p>
               </div>
             ))}
@@ -317,15 +381,15 @@ export default function ProductDetail() {
             {product.features.map((feature, i) => (
               <div 
                 key={i} 
-                className="glass rounded-2xl p-6 border-slate-100 bg-slate-50/20 hover:border-premium-yellow/30 hover:bg-white hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4 group"
+                className="glass glass-hover rounded-2xl p-6 border-slate-100 bg-slate-50/20 flex items-start gap-4 group transition-all duration-300"
               >
-                <div className="h-9 w-9 rounded-xl bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-premium-yellow font-bold flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
-                  <CheckCircle2 className="h-5 w-5" />
+                <div className="h-10 w-10 rounded-xl bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-premium-yellow font-bold flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                  <span className="text-sm font-display font-extrabold">0{i + 1}</span>
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-base text-black mb-1">{feature}</h4>
-                  <p className="text-xs text-slate-500 leading-relaxed font-sans font-normal">
-                    Streamlined interface component engineered specifically for tracking and operational optimization.
+                  <h4 className="font-display font-bold text-base text-black mb-1.5 group-hover:text-premium-yellow transition-colors">{feature}</h4>
+                  <p className="text-xs text-slate-505 leading-relaxed font-sans font-normal">
+                    Pre-engineered dashboard workspace designed to automate calculations and operational data visualization.
                   </p>
                 </div>
               </div>
@@ -353,12 +417,12 @@ export default function ProductDetail() {
               {product.whoIsFor.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className="glass rounded-2xl p-5 border-slate-100 bg-slate-50/30 hover:border-premium-yellow/20 hover:bg-white hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4 group"
+                  className="glass glass-hover rounded-2xl p-6 border-slate-100 bg-slate-50/30 flex items-start gap-4 group"
                 >
                   <span className="h-7 w-7 rounded-lg bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
                     ✔
                   </span>
-                  <span className="text-sm text-black font-sans font-semibold leading-relaxed">{item}</span>
+                  <span className="text-sm text-slate-800 font-sans font-semibold leading-relaxed group-hover:text-slate-950 transition-colors">{item}</span>
                 </div>
               ))}
             </div>
@@ -385,12 +449,12 @@ export default function ProductDetail() {
               {product.challenges.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className="glass rounded-2xl p-5 border-slate-100 bg-slate-50/30 hover:border-premium-yellow/20 hover:bg-white hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4 group"
+                  className="glass glass-hover rounded-2xl p-6 border-slate-100 bg-slate-50/30 flex items-start gap-4 group"
                 >
-                  <span className="h-7 w-7 rounded-lg bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
-                    ✔
+                  <span className="h-7 w-7 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-[10px] text-red-500 font-bold mt-0.5 flex-none group-hover:bg-red-500 group-hover:text-white transition-colors duration-300">
+                    ✕
                   </span>
-                  <span className="text-sm text-black font-sans font-semibold leading-relaxed">{item}</span>
+                  <span className="text-sm text-slate-800 font-sans font-semibold leading-relaxed group-hover:text-slate-955 transition-colors">{item}</span>
                 </div>
               ))}
             </div>
@@ -413,7 +477,7 @@ export default function ProductDetail() {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="glass p-8 lg:p-12 rounded-[2.5rem] border-premium-yellow/20 bg-white shadow-lg relative overflow-hidden text-black">
+            <div className="glass p-8 lg:p-12 rounded-[2.5rem] border-premium-yellow/20 bg-gradient-to-b from-white to-slate-50/20 shadow-[0_20px_50px_rgba(243,174,27,0.06)] relative overflow-hidden text-black">
               {/* Premium Glow Accent */}
               <div className="absolute top-0 right-0 p-8">
                 <div className="h-12 w-12 rounded-full border border-premium-yellow/20 flex items-center justify-center animate-pulse">
@@ -439,10 +503,10 @@ export default function ProductDetail() {
                     onClick={handleBuyNow}
                     disabled={loading || success}
                     className={cn(
-                      "rounded-full px-16 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto",
+                      "rounded-full px-16 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto luxury-shine-hover shadow-md",
                       success 
                         ? "bg-green-500 text-white cursor-default" 
-                        : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] active:scale-95 disabled:opacity-50"
+                        : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] active:scale-95 disabled:opacity-50"
                     )}
                   >
                     {loading ? (
@@ -470,7 +534,7 @@ export default function ProductDetail() {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-black mb-1 uppercase tracking-wider">One-Time Purchase</p>
-                    <p className="text-[11px] text-slate-500">Download once, use forever. No subscriptions or hidden fees.</p>
+                    <p className="text-[11px] text-slate-505">Download once, use forever. No subscriptions or hidden fees.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-4 glass rounded-[1.5rem] border-slate-100 bg-slate-50/30">
@@ -479,7 +543,7 @@ export default function ProductDetail() {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-black mb-1 uppercase tracking-wider">Instant Delivery</p>
-                    <p className="text-[11px] text-slate-500">Get immediate access on the screen and via email after purchase.</p>
+                    <p className="text-[11px] text-slate-550">Get immediate access on the screen and via email after purchase.</p>
                   </div>
                 </div>
               </div>
@@ -509,7 +573,7 @@ export default function ProductDetail() {
                 <Magnetic strength={0.15}>
                   <Link
                     to="/contact?type=Customized%20Solution"
-                    className="inline-block rounded-full bg-black text-white px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-900 transition-all duration-300 shadow-lg cursor-pointer text-center w-full sm:w-auto"
+                    className="inline-block rounded-full bg-black text-white px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-900 transition-all duration-300 shadow-lg cursor-pointer text-center w-full sm:w-auto luxury-shine-hover"
                   >
                     REQUEST CONSULTATION
                   </Link>
@@ -519,7 +583,7 @@ export default function ProductDetail() {
                     href="https://wa.me/919787333379"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block rounded-full bg-white text-black px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-100 transition-all duration-300 shadow-md text-center border border-white w-full sm:w-auto"
+                    className="inline-block rounded-full bg-white text-black px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-105 transition-all duration-300 shadow-md text-center border border-white w-full sm:w-auto luxury-shine-hover"
                   >
                     WHATSAPP US
                   </a>
@@ -598,7 +662,7 @@ export default function ProductDetail() {
                   <Download className="h-10 w-10 text-premium-yellow" />
                 </div>
                 <h2 className="text-3xl font-bold mb-4 font-display text-black">Thank You!</h2>
-                <p className="text-slate-600 mb-8 text-sm">
+                <p className="text-slate-650 mb-8 text-sm">
                   Your payment was successful. We have sent the download link to your email. You can also download it directly below.
                 </p>
                 <a 

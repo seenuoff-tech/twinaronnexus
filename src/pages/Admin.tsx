@@ -163,6 +163,7 @@ export default function Admin() {
         "Delivery": "Instant Mail Drop"
       },
       image: defaultImg,
+      previews: [defaultImg, defaultImg, defaultImg, defaultImg],
       whoIsFor: ["Small Business Owners", "Startups", "Online Sellers"],
       whoIsForDescription: "Designed for small business owners and startups looking to streamline operations and improve daily visibility.",
       challenges: [

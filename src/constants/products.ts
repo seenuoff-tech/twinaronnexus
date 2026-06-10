@@ -8,6 +8,7 @@ export interface Product {
   features: string[];
   specs: Record<string, string>;
   image: string;
+  previews: string[];
   whoIsFor: string[];
   whoIsForDescription: string;
   challenges: string[];
@@ -35,6 +36,12 @@ export const PRODUCTS: Product[] = [
       "Compatibility": "Excel / Google Sheets"
     },
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    previews: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542744094-3a31f103e35f?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop"
+    ],
     whoIsFor: [
       "Small Business Owners",
       "Home-Based Businesses",
@@ -76,6 +83,12 @@ export const PRODUCTS: Product[] = [
       "Compatibility": "Excel / Google Sheets"
     },
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
+    previews: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581291518655-9523c932dedf?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
+    ],
     whoIsFor: [
       "Freelancers",
       "Consultants",
@@ -117,6 +130,12 @@ export const PRODUCTS: Product[] = [
       "Compatibility": "Excel"
     },
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
+    previews: [
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1441984969893-c5a6e0a8b248?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=800&auto=format&fit=crop"
+    ],
     whoIsFor: [
       "Boutique Owners",
       "Retail Store Owners",
@@ -158,6 +177,12 @@ export const PRODUCTS: Product[] = [
       "Delivery": "Digital Download"
     },
     image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop",
+    previews: [
+      "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1601597111158-2fceff270190?q=80&w=800&auto=format&fit=crop"
+    ],
     whoIsFor: [
       "Manufacturers",
       "Distributors",
