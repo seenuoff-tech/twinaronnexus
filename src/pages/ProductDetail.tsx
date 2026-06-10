@@ -301,7 +301,7 @@ export default function ProductDetail() {
                     onClick={() => scrollToSection("details-hub")}
                     className="rounded-full bg-black text-white px-12 py-[18px] text-xs font-extrabold tracking-widest uppercase hover:scale-105 hover:shadow-lg active:scale-95 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover font-display flex items-center justify-center gap-3.5 whitespace-nowrap"
                   >
-                    <span>EXPLORE FEATURES</span>
+                    <span>{product.slug === "online-business-system" ? "SEE WHAT'S INCLUDED" : "EXPLORE FEATURES"}</span>
                     <ChevronRight className="h-4 w-4 text-premium-yellow" strokeWidth={3} />
                   </button>
                 </Magnetic>
@@ -321,6 +321,13 @@ export default function ProductDetail() {
                   </div>
                 ))}
               </div>
+
+              {product.slug === "online-business-system" && (
+                <div className="mt-8 p-4.5 rounded-2xl bg-amber-500/[0.03] border border-premium-yellow/20 text-xs text-slate-700 leading-relaxed font-sans font-normal">
+                  <strong className="text-black font-semibold uppercase tracking-wider block mb-1">Important Note</strong>
+                  This ready-to-use template is designed to help business owners experience structured business tracking and reporting before exploring customized solutions.
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
@@ -379,7 +386,7 @@ export default function ProductDetail() {
               ✦ System Blueprint ✦
             </span>
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
-              Explore The System Structure
+              {product.slug === "online-business-system" ? "What You’ll Be Able To Manage" : "Explore The System Structure"}
             </h2>
             <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
           </div>
@@ -431,7 +438,10 @@ export default function ProductDetail() {
                       <div>
                         <h4 className="font-display font-bold text-base text-black mb-2 group-hover:text-premium-yellow transition-colors">{feature}</h4>
                         <p className="text-xs text-slate-500 leading-relaxed font-sans font-normal">
-                          Engineered interface element providing quick parameters inputs, real-time recalculations, and visual graphing logic.
+                          {product.slug === "online-business-system"
+                            ? "Easily track and organize your daily operations to improve visibility, reporting, and business growth."
+                            : "Simple and easy-to-use tool to improve visibility, reporting, and performance monitoring."
+                          }
                         </p>
                       </div>
                     </div>
@@ -525,7 +535,7 @@ export default function ProductDetail() {
                 ✦ Key Challenges Solved ✦
               </span>
               <h3 className="font-display font-extrabold text-3xl lg:text-4xl leading-tight text-white mb-6">
-                Tired Of Manual Chaos?
+                {product.slug === "online-business-system" ? "Are You Facing These Challenges?" : "Tired Of Manual Chaos?"}
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-10 max-w-md font-sans">
                 Operating a growing enterprise shouldn't translate to endless hours of administrative stress. We solve these critical bottlenecks:
@@ -584,6 +594,45 @@ export default function ProductDetail() {
           </div>
         </div>
 
+        {/* Why Business Owners Start Here Section (Only for Online Business System) */}
+        {product.slug === "online-business-system" && (
+          <div className="border-t border-slate-100 pt-24 mb-24">
+            <div className="max-w-4xl mx-auto bg-slate-50 border border-slate-100 rounded-[2.5rem] p-10 lg:p-14 relative overflow-hidden">
+              <div className="absolute right-0 top-0 w-48 h-48 bg-premium-yellow/[0.03] blur-[60px] rounded-full pointer-events-none" />
+              
+              <div className="text-center mb-10">
+                <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                  ✦ Value Foundation ✦
+                </span>
+                <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+                  Why Business Owners Start Here
+                </h2>
+                <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {[
+                  "Organize business information in one place",
+                  "Improve visibility into daily operations",
+                  "Track sales and customer activity",
+                  "Understand business performance more clearly",
+                  "Experience structured business management"
+                ].map((point, index) => (
+                  <div key={index} className={cn(
+                    "flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-100/80 shadow-[0_4px_20px_rgb(0,0,0,0.01)] hover:shadow-sm transition-all duration-300",
+                    index === 4 && "md:col-span-2 md:max-w-md md:mx-auto w-full"
+                  )}>
+                    <span className="h-6 w-6 rounded-full bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none">
+                      ✓
+                    </span>
+                    <span className="text-sm text-slate-700 leading-relaxed font-sans font-medium">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Pricing Section (Centered Box Card Styling) */}
         <div id="pricing" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -618,6 +667,19 @@ export default function ProductDetail() {
 
               <div className="flex flex-col items-center justify-center mb-10">
                 <span className="text-5xl lg:text-6xl font-extrabold font-display text-black">{formatCurrency(product.price)}</span>
+                {product.slug === "online-business-system" && (
+                  <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-500 font-sans">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> One-Time Purchase
+                    </span>
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> No Subscription Fees
+                    </span>
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> Instant Access After Purchase
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div className="space-y-4 flex flex-col items-center">
@@ -677,47 +739,121 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Customized Consultation Callout Section (Yellow background) */}
+        {/* Customized Consultation Callout Section (Dynamic styling based on template type) */}
         <section id="custom-cta" className="mb-24 pt-10">
-          <div className="mx-auto max-w-6xl rounded-[3rem] bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] py-10 px-6 sm:px-12 lg:py-12 lg:px-20 text-black text-center relative overflow-hidden group shadow-[0_20px_55px_rgba(243,174,27,0.25)] border border-white/10">
+          <div className={cn(
+            "mx-auto max-w-6xl rounded-[3rem] py-10 px-6 sm:px-12 lg:py-12 lg:px-20 text-center relative overflow-hidden group border transition-all duration-300",
+            product.slug === "online-business-system"
+              ? "bg-[#111625] text-white border-slate-800 shadow-xl"
+              : "bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] text-black border-white/10 shadow-[0_20px_55px_rgba(243,174,27,0.25)]"
+          )}>
             {/* Background design elements */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-black/[0.04] blur-3xl transition-transform duration-500 group-hover:scale-110 pointer-events-none" />
             <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-white/[0.1] blur-2xl pointer-events-none" />
 
             <div className="relative z-10">
-              <span className="font-mono text-[9px] tracking-[0.25em] text-black font-extrabold uppercase block mb-3">
+              <span className={cn(
+                "font-mono text-[9px] tracking-[0.25em] font-extrabold uppercase block mb-3",
+                product.slug === "online-business-system" ? "text-premium-yellow" : "text-black"
+              )}>
                 ✦ Tailored Solutions ✦
               </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold font-display mb-3 tracking-tight text-black leading-tight">
-                Need a Customized Dashboard, Reporting System or Business Tracking Solution?
+              <h2 className={cn(
+                "text-3xl lg:text-4xl font-extrabold font-display mb-3 tracking-tight leading-tight",
+                product.slug === "online-business-system" ? "text-white" : "text-black"
+              )}>
+                {product.slug === "online-business-system"
+                  ? "Ready To Move Beyond Templates?"
+                  : "Need a Customized Dashboard, Reporting System or Business Tracking Solution?"
+                }
               </h2>
-              <p className="text-black/85 text-sm sm:text-base max-w-3xl mx-auto mb-8 font-sans font-normal leading-relaxed">
-                Every business operations model is unique. Book a free consultation call with our analyst team, and we will build a custom-tailored system designed specifically around your workflow.
+              <p className={cn(
+                "text-sm sm:text-base max-w-3xl mx-auto mb-8 font-sans font-normal leading-relaxed",
+                product.slug === "online-business-system" ? "text-slate-300" : "text-black/85"
+              )}>
+                {product.slug === "online-business-system" ? (
+                  <>
+                    As your business grows, you may require customized dashboards, reporting systems, business analytics or operational tracking solutions tailored to your specific needs.
+                    <br className="hidden md:block" />
+                    Our team can help design and implement a solution built around your business.
+                  </>
+                ) : (
+                  "Every business operations model is unique. Book a free consultation call with our analyst team, and we will build a custom-tailored system designed specifically around your workflow."
+                )}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Magnetic strength={0.15}>
                   <Link
                     to="/contact?type=Customized%20Solution"
-                    className="inline-block rounded-full bg-black text-white px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-900 transition-all duration-300 shadow-lg cursor-pointer text-center w-full sm:w-auto luxury-shine-hover"
+                    className={cn(
+                      "inline-block rounded-full px-10 py-4.5 text-xs tracking-widest font-display font-semibold transition-all duration-300 shadow-lg cursor-pointer text-center w-full sm:w-auto luxury-shine-hover whitespace-nowrap",
+                      product.slug === "online-business-system"
+                        ? "bg-premium-yellow text-black hover:bg-amber-500"
+                        : "bg-black text-white hover:bg-slate-900"
+                    )}
                   >
-                    REQUEST CONSULTATION
+                    {product.slug === "online-business-system" ? "REQUEST CONSULTATION" : "REQUEST CONSULTATION"}
                   </Link>
                 </Magnetic>
                 <Magnetic strength={0.15}>
-                  <a
-                    href="https://wa.me/919787333379"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block rounded-full bg-white text-black px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-105 transition-all duration-300 shadow-md text-center border border-white w-full sm:w-auto luxury-shine-hover"
-                  >
-                    WHATSAPP US
-                  </a>
+                  {product.slug === "online-business-system" ? (
+                    <a
+                      href="https://wa.me/919787333379"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block rounded-full bg-black text-white border border-slate-800 px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-900 transition-all duration-300 shadow-md text-center w-full sm:w-auto luxury-shine-hover whitespace-nowrap"
+                    >
+                      DISCUSS YOUR REQUIREMENTS
+                    </a>
+                  ) : (
+                    <a
+                      href="https://wa.me/919787333379"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block rounded-full bg-white text-black px-10 py-4.5 text-xs tracking-widest font-display font-semibold hover:bg-slate-105 transition-all duration-300 shadow-md text-center border border-white w-full sm:w-auto luxury-shine-hover"
+                    >
+                      WHATSAPP US
+                    </a>
+                  )}
                 </Magnetic>
               </div>
             </div>
           </div>
         </section>
+
+        {/* What Happens After Purchase? Section (Only for Online Business System) */}
+        {product.slug === "online-business-system" && (
+          <section id="post-purchase" className="border-t border-slate-100 pt-24 mb-24">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Order Flow ✦
+              </span>
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+                What Happens After Purchase?
+              </h2>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+              {[
+                { step: "1️⃣", title: "Complete Your Purchase", desc: "Checkout securely via Razorpay in seconds." },
+                { step: "2️⃣", title: "Receive Your Template", desc: "Instant download file link on screen & in your email inbox." },
+                { step: "3️⃣", title: "Set Up Your Information", desc: "Open the Excel/Sheets file and enter your operational values." },
+                { step: "4️⃣", title: "Start Tracking Operations", desc: "Begin logging daily logs, orders, and sales data." },
+                { step: "5️⃣", title: "Upgrade When Ready", desc: "Easily transition to customized solutions as your operations scale." }
+              ].map((item, idx) => (
+                <div key={idx} className="glass glass-hover rounded-[2rem] p-6 bg-white/40 border-slate-100 flex flex-col justify-between group transition-all duration-300">
+                  <div>
+                    <span className="text-3xl block mb-4">{item.step}</span>
+                    <h4 className="font-display font-bold text-sm text-slate-900 mb-2 leading-snug">{item.title}</h4>
+                    <p className="text-[11px] text-slate-500 leading-relaxed font-sans">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* FAQ Section */}
         <section id="faq" className="border-t border-slate-100 pt-24">

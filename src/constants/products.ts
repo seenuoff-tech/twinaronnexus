@@ -17,17 +17,17 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "online-business",
-    name: "Online Business System",
+    name: "Online Business Management Template",
     slug: "online-business-system",
     price: 1999,
     category: "Online Business",
-    description: "Still managing orders, customers and sales manually? Organize your business activities with a simple and structured system designed for growing businesses.",
+    description: "Track customers, orders, sales and business performance through a structured business management template designed for growing businesses.",
     features: [
-      "Track Customers",
-      "Monitor Sales",
-      "Manage Orders",
-      "View Business Performance",
-      "Organize Daily Operations"
+      "Customer Records",
+      "Sales Performance",
+      "Order Tracking",
+      "Business Reporting",
+      "Daily Operations"
     ],
     specs: {
       "License": "Single Purchase Usage",
