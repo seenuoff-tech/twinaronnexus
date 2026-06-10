@@ -10,7 +10,12 @@ import {
   Star,
   Info,
   Plus,
-  Minus
+  Minus,
+  FileText,
+  Laptop,
+  Layers,
+  Settings,
+  HelpCircle
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PRODUCTS } from "../constants/products";
@@ -41,13 +46,13 @@ const FAQ_ITEMS = [
   }
 ];
 
-const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
+const PARTICLES = Array.from({ length: 22 }, (_, i) => ({
   id: i,
-  size: Math.random() * 3 + 1,
+  size: Math.random() * 3.5 + 1.2,
   left: Math.random() * 100,
   top: Math.random() * 100,
-  duration: Math.random() * 12 + 10,
-  delay: Math.random() * 6,
+  duration: Math.random() * 15 + 12,
+  delay: Math.random() * 8,
 }));
 
 export default function ProductDetail() {
@@ -57,6 +62,7 @@ export default function ProductDetail() {
   const [success, setSuccess] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeImage, setActiveImage] = useState(product?.image || "");
+  const [activeTab, setActiveTab] = useState<"features" | "specs" | "usage">("features");
 
   useEffect(() => {
     if (product) {
@@ -66,7 +72,7 @@ export default function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="flex h-[60vh] flex-col items-center justify-center pt-24">
+      <div className="flex h-[60vh] flex-col items-center justify-center pt-24 bg-white">
         <h1 className="text-2xl font-bold mb-4 font-display">Template not found</h1>
         <Link to="/" className="text-premium-yellow hover:underline">Return Home</Link>
       </div>
@@ -154,9 +160,10 @@ export default function ProductDetail() {
 
   return (
     <div className="relative isolate overflow-hidden bg-white min-h-screen text-black pt-24 pb-32">
-      {/* Editorial Golden Backlit Radial aura */}
+      {/* Editorial Luxury Radial Background Glow */}
       <div className="absolute inset-0 -z-10 luxury-gradient animate-float-glow" />
-      
+      <div className="absolute top-1/3 left-1/4 -z-10 w-[600px] h-[600px] bg-premium-yellow/[0.03] blur-[150px] rounded-full pointer-events-none" />
+
       {/* Floating Stardust Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         {PARTICLES.map((p) => (
@@ -170,9 +177,9 @@ export default function ProductDetail() {
               top: `${p.top}%`,
             }}
             animate={{
-              y: [0, -60, 0],
-              x: [0, Math.random() * 30 - 15, 0],
-              opacity: [0.1, 0.5, 0.1],
+              y: [0, -90, 0],
+              x: [0, Math.random() * 40 - 20, 0],
+              opacity: [0.1, 0.6, 0.1],
             }}
             transition={{
               duration: p.duration,
@@ -184,148 +191,149 @@ export default function ProductDetail() {
         ))}
       </div>
 
-      {/* Geometric Framing Orthogonal Lines */}
-      <div className="absolute left-1/4 top-0 bottom-0 w-px bg-slate-200/30 -z-10 hidden lg:block" />
-      <div className="absolute right-1/4 top-0 bottom-0 w-px bg-slate-200/30 -z-10 hidden lg:block" />
+      {/* Thin Orthogonal Lines to structure page grid */}
+      <div className="absolute left-[12%] top-0 bottom-0 w-px bg-slate-100 -z-10 hidden xl:block" />
+      <div className="absolute right-[12%] top-0 bottom-0 w-px bg-slate-100 -z-10 hidden xl:block" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+        
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-sm text-black mb-8">
-          <Link to="/" className="hover:text-black font-semibold transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-xs text-slate-500 mb-8 border-b border-slate-100 pb-4">
+          <Link to="/" className="hover:text-premium-yellow font-bold uppercase tracking-widest transition-colors">Home</Link>
           <ChevronRight className="h-3 w-3 text-slate-400" />
-          <span className="text-slate-600 text-sm font-normal">{product.name}</span>
+          <span className="text-slate-400 font-bold uppercase tracking-widest">{product.name}</span>
         </div>
 
         {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left: visuals & Specs */}
-          <div className="space-y-8">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="aspect-video glass rounded-[2rem] overflow-hidden border-slate-200/60 relative group shadow-lg"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-24">
+          
+          {/* Left Column: Visual Showcase (Browser mockup) */}
+          <div className="lg:col-span-7 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="relative rounded-[2rem] bg-slate-900 shadow-[0_25px_60px_rgba(0,0,0,0.15)] border border-slate-800 overflow-hidden group"
             >
-              <img 
-                src={activeImage} 
-                alt={product.name} 
-                className="h-full w-full object-cover transition-all duration-500 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-8 left-8">
-                <span className="text-premium-yellow text-xs font-bold uppercase tracking-widest bg-slate-900/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-premium-yellow/20">
-                  {product.category}
-                </span>
+              {/* Mac OS Browser header */}
+              <div className="bg-slate-950 px-6 py-4 flex items-center justify-between border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-[#FF5F56] block" />
+                  <span className="h-3 w-3 rounded-full bg-[#FFBD2E] block" />
+                  <span className="h-3 w-3 rounded-full bg-[#27C93F] block" />
+                </div>
+                <div className="bg-slate-900 border border-slate-800 px-6 py-1 rounded-lg text-[10px] font-mono text-slate-500 w-1/2 text-center uppercase tracking-widest truncate">
+                  twinaronnexus.com/templates/{product.slug}
+                </div>
+                <div className="w-8" />
+              </div>
+
+              {/* Main Active Image Display */}
+              <div className="aspect-video relative overflow-hidden bg-slate-900">
+                <img 
+                  src={activeImage} 
+                  alt={product.name} 
+                  className="h-full w-full object-cover transition-all duration-700 ease-out scale-100 group-hover:scale-103"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+                
+                {/* Active Category Tag */}
+                <div className="absolute bottom-6 left-6">
+                  <span className="text-premium-yellow text-[9px] font-bold uppercase tracking-widest bg-slate-950/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-premium-yellow/20">
+                    ✦ {product.category} ✦
+                  </span>
+                </div>
               </div>
             </motion.div>
 
-            {/* Interactive Thumbnail Previews */}
+            {/* Thumbnail Controls (Interactive) */}
             <div className="grid grid-cols-4 gap-4">
               {product.previews.map((imgUrl, i) => (
-                <button 
-                  key={i} 
+                <button
+                  key={i}
                   onClick={() => setActiveImage(imgUrl)}
                   className={cn(
-                    "aspect-square glass rounded-2xl border-slate-200/60 overflow-hidden cursor-pointer transition-all duration-300 relative group",
-                    activeImage === imgUrl ? "ring-2 ring-premium-yellow opacity-100 scale-102" : "opacity-50 hover:opacity-80"
+                    "aspect-video rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 relative border",
+                    activeImage === imgUrl 
+                      ? "border-premium-yellow ring-2 ring-premium-yellow shadow-md opacity-100 scale-105" 
+                      : "border-slate-200/60 opacity-60 hover:opacity-100"
                   )}
                 >
-                   <img src={imgUrl} className="h-full w-full object-cover" />
+                  <img src={imgUrl} className="h-full w-full object-cover" />
                 </button>
               ))}
             </div>
-
-            {/* Specifications Card */}
-            <div className="glass rounded-3xl p-8 border-slate-200/60 text-black bg-white/60 backdrop-blur-md shadow-sm relative overflow-hidden">
-              <div className="absolute -right-8 -bottom-8 opacity-[0.03] text-black">
-                <ShieldCheck className="h-32 w-32" />
-              </div>
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 font-display">
-                <ShieldCheck className="h-6 w-6 text-premium-yellow" />
-                Technical Specifications
-              </h3>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 relative z-10">
-                {Object.entries(product.specs).map(([key, value]) => (
-                  <div key={key} className="border-b border-slate-100 pb-3 last:border-b-0">
-                    <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-1.5 font-bold font-mono">{key}</p>
-                    <p className="text-base font-semibold text-black font-sans">{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right: info */}
-          <div className="flex flex-col justify-center lg:pt-4">
+          {/* Right Column: Key Details */}
+          <div className="lg:col-span-5 space-y-8">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
             >
-              <div className="flex items-center gap-2 mb-4 text-base text-black font-bold">
-                <span className="text-premium-yellow font-bold text-lg">✔</span> Trusted by Growing Businesses
+              <div className="inline-flex items-center gap-2 rounded-full border border-premium-yellow/20 bg-premium-yellow/[0.04] px-4 py-1.5 text-[9px] font-mono tracking-[0.2em] uppercase font-bold text-premium-yellow">
+                <span>✦ PREMIUM BUSINESS SOLUTION ✦</span>
               </div>
-              <h1 className="font-display text-4xl font-bold tracking-tight mb-4 sm:text-5xl lg:text-6xl text-black">
+              
+              <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
                 {product.name}
               </h1>
-              <div className="h-1 w-20 bg-premium-yellow mb-8 rounded-full" />
-              
-              <p className="text-xl text-slate-700 mb-8 leading-relaxed font-normal">
+
+              <div className="h-1 w-16 bg-premium-yellow rounded-full" />
+
+              <p className="text-lg text-slate-700 leading-relaxed font-sans font-normal">
                 {product.description}
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              {/* Action Trigger Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Magnetic strength={0.15}>
                   <button
                     onClick={() => scrollToSection("pricing")}
-                    className="rounded-full bg-premium-yellow text-black px-10 py-5 text-xs font-bold tracking-widest uppercase hover:scale-105 hover:shadow-[0_0_30px_rgba(255,221,0,0.3)] duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover"
+                    className="rounded-full bg-premium-yellow text-black px-10 py-5 text-xs font-bold tracking-widest uppercase hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.35)] active:scale-95 duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover shadow-md font-display"
                   >
-                    VIEW PRICING & BUY <ChevronRight className="inline-block h-4 w-4 ml-1" />
+                    GET TEMPLATE NOW <ChevronRight className="inline-block h-4 w-4 ml-1.5" />
                   </button>
                 </Magnetic>
                 <Magnetic strength={0.15}>
                   <button
-                    onClick={() => scrollToSection("features")}
-                    className="rounded-full bg-black text-white px-10 py-5 text-xs font-bold tracking-widest uppercase hover:bg-slate-900 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover"
+                    onClick={() => scrollToSection("details-hub")}
+                    className="rounded-full bg-black text-white px-10 py-5 text-xs font-bold tracking-widest uppercase hover:bg-slate-900 border border-black duration-300 transition-all cursor-pointer text-center w-full sm:w-auto luxury-shine-hover shadow-sm font-display"
                   >
-                    EXPLORE FEATURES <ChevronRight className="inline-block h-4 w-4 ml-1 text-premium-yellow" />
+                    EXPLORE SPECS <ChevronRight className="inline-block h-4 w-4 ml-1.5 text-premium-yellow" />
                   </button>
                 </Magnetic>
               </div>
 
-              {/* Core Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-100 pt-8">
-                <div className="flex items-center gap-3 text-black">
-                  <CheckCircle2 className="h-5 w-5 text-premium-yellow flex-none" />
-                  <span className="text-sm font-semibold">Instant Digital Download</span>
-                </div>
-                <div className="flex items-center gap-3 text-black">
-                  <CheckCircle2 className="h-5 w-5 text-premium-yellow flex-none" />
-                  <span className="text-sm font-semibold">One-Time Pay, Lifetime Access</span>
-                </div>
-                <div className="flex items-center gap-3 text-black">
-                  <CheckCircle2 className="h-5 w-5 text-premium-yellow flex-none" />
-                  <span className="text-sm font-semibold">100% Fully Unlocked & Edit-ready</span>
-                </div>
-                <div className="flex items-center gap-3 text-black">
-                  <CheckCircle2 className="h-5 w-5 text-premium-yellow flex-none" />
-                  <span className="text-sm font-semibold">Excel & Google Sheets Compatible</span>
-                </div>
+              {/* Quick Spec Badges */}
+              <div className="grid grid-cols-2 gap-4 border-t border-slate-100 pt-8 mt-6">
+                {[
+                  "Instant Download",
+                  "Lifetime Access",
+                  "100% Unlocked File",
+                  "Sheets & Excel ready"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-slate-700">
+                    <CheckCircle2 className="h-4 w-4 text-premium-yellow flex-none" />
+                    <span className="text-xs font-bold uppercase tracking-wider font-mono">{item}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Benefits Section */}
-        <div id="benefits" className="mt-28 border-t border-slate-100 pt-20">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Benefits Section (SaaS Bento Grid Layout) */}
+        <div id="benefits" className="border-t border-slate-100 pt-24 mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
               ✦ Strategic Advantages ✦
             </span>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-black leading-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
               Why Choose Our Ready-To-Use Systems?
             </h2>
             <p className="mt-4 text-base text-slate-600 font-sans font-normal leading-relaxed">
-              Skip weeks of custom development and thousands in setup costs. Get a professional business tracking layout designed for immediate operational clarity.
+              Skip development delays and developer cost pools. Deploy a professional operational system designed to immediately clean up metrics tracking.
             </p>
             <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
           </div>
@@ -350,124 +358,237 @@ export default function ProductDetail() {
             ].map((benefit, i) => (
               <div 
                 key={i} 
-                className="glass glass-hover luxury-shine-hover rounded-3xl p-8 border-slate-200/60 bg-white relative group overflow-hidden"
+                className="glass glass-hover luxury-shine-hover rounded-[2rem] p-10 bg-white relative group overflow-hidden shadow-sm hover:-translate-y-1"
               >
-                <div className="h-12 w-12 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-6 border border-premium-yellow/20 text-premium-yellow group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
-                  <benefit.icon className="h-5 w-5" />
+                <div className="h-14 w-14 rounded-2xl bg-premium-yellow/10 flex items-center justify-center mb-8 border border-premium-yellow/20 text-premium-yellow group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                  <benefit.icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-black mb-3 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-sans font-normal">{benefit.desc}</p>
+                <h3 className="font-display text-xl font-bold text-black mb-4 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
+                <p className="text-sm text-slate-650 leading-relaxed font-sans font-normal">{benefit.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Features Section */}
-        <div id="features" className="mt-28 border-t border-slate-100 pt-20">
+        {/* Details & Specs Dynamic Tab Hub (Reduces Scrolling, Extremely Professional) */}
+        <div id="details-hub" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-              ✦ Powerful Features ✦
+              ✦ System Blueprint ✦
             </span>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-black leading-tight">
-              Key Capabilities of the System
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+              Explore The System Structure
             </h2>
-            <p className="mt-4 text-base text-slate-600 font-sans font-normal leading-relaxed">
-              Every section of the dashboard is engineered to provide absolute control and visual insight into your daily operations.
-            </p>
             <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {product.features.map((feature, i) => (
-              <div 
-                key={i} 
-                className="glass glass-hover rounded-2xl p-6 border-slate-100 bg-slate-50/20 flex items-start gap-4 group transition-all duration-300"
-              >
-                <div className="h-10 w-10 rounded-xl bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-premium-yellow font-bold flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
-                  <span className="text-sm font-display font-extrabold">0{i + 1}</span>
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-base text-black mb-1.5 group-hover:text-premium-yellow transition-colors">{feature}</h4>
-                  <p className="text-xs text-slate-505 leading-relaxed font-sans font-normal">
-                    Pre-engineered dashboard workspace designed to automate calculations and operational data visualization.
-                  </p>
-                </div>
-              </div>
-            ))}
+          {/* Tab Selector Header */}
+          <div className="flex justify-center mb-12">
+            <div className="bg-slate-100 p-1.5 rounded-full flex gap-1 border border-slate-200">
+              {[
+                { id: "features", label: "Core Features", icon: Layers },
+                { id: "specs", label: "Technical Specs", icon: FileText },
+                { id: "usage", label: "Usage Model", icon: Laptop }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={cn(
+                    "flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer font-display",
+                    activeTab === tab.id 
+                      ? "bg-white text-black shadow-sm" 
+                      : "text-slate-550 hover:text-black"
+                  )}
+                >
+                  <tab.icon className="h-4 w-4" />
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab Content Display */}
+          <div className="min-h-[350px]">
+            <AnimatePresence mode="wait">
+              {activeTab === "features" && (
+                <motion.div
+                  key="features"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                  {product.features.map((feature, i) => (
+                    <div 
+                      key={i} 
+                      className="glass glass-hover rounded-[1.5rem] p-6 border-slate-100 bg-slate-50/20 flex items-start gap-4 group transition-all duration-300"
+                    >
+                      <div className="h-10 w-10 rounded-xl bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-premium-yellow font-bold flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                        <span className="text-sm font-display font-extrabold">0{i + 1}</span>
+                      </div>
+                      <div>
+                        <h4 className="font-display font-bold text-base text-black mb-2 group-hover:text-premium-yellow transition-colors">{feature}</h4>
+                        <p className="text-xs text-slate-500 leading-relaxed font-sans font-normal">
+                          Engineered interface element providing quick parameters inputs, real-time recalculations, and visual graphing logic.
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+
+              {activeTab === "specs" && (
+                <motion.div
+                  key="specs"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  className="max-w-3xl mx-auto"
+                >
+                  <div className="glass rounded-[2rem] overflow-hidden border-slate-200/60 bg-white shadow-sm">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="bg-slate-50 border-b border-slate-150">
+                          <th className="p-6 text-xs font-mono font-black text-slate-400 uppercase tracking-widest">Specification Parameter</th>
+                          <th className="p-6 text-xs font-mono font-black text-slate-400 uppercase tracking-widest">Detail Specification</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Object.entries(product.specs).map(([key, value], idx) => (
+                          <tr key={key} className={cn("border-b border-slate-100 last:border-b-0", idx % 2 === 1 && "bg-slate-50/10")}>
+                            <td className="p-6 text-sm font-bold text-slate-900 font-display">{key}</td>
+                            <td className="p-6 text-sm text-slate-650 font-sans">{value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === "usage" && (
+                <motion.div
+                  key="usage"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8"
+                >
+                  {[
+                    {
+                      step: "01",
+                      title: "Secure Purchase Download",
+                      desc: "Pay securely via Razorpay. Your file starts downloading instantly, and is simultaneously delivered to your registered email address."
+                    },
+                    {
+                      step: "02",
+                      title: "Launch in Sheets / Excel",
+                      desc: "Double-click the downloaded .xlsx file to open it in Microsoft Excel, or drag & drop it directly into Google Drive to use it in Google Sheets."
+                    },
+                    {
+                      step: "03",
+                      title: "Input Base Settings",
+                      desc: "Enter your base currency, tax rates, sales channels, or target values in the structured configurations module to set up your equations."
+                    },
+                    {
+                      step: "04",
+                      title: "Daily Ledger Operations",
+                      desc: "Begin cataloging client entries, transactions records, or orders. Watch the dashboard automatically populate with trends graphs."
+                    }
+                  ].map((step, i) => (
+                    <div key={i} className="glass glass-hover rounded-[2rem] p-8 bg-white/40 border-slate-100 flex gap-6">
+                      <span className="text-3xl font-display font-extrabold text-premium-yellow/30">{step.step}</span>
+                      <div>
+                        <h4 className="font-display font-bold text-base text-slate-900 mb-2">{step.title}</h4>
+                        <p className="text-xs text-slate-600 leading-relaxed font-sans">{step.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
-        {/* Who Is This For Section */}
-        <div id="audience" className="mt-28 border-t border-slate-100 pt-20">
-          <div className="glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-                ✦ Target Audience ✦
+        {/* Split problem-solution split canvas (Modern, High Contrast) */}
+        <div id="split-solution" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24 pt-10">
+          
+          {/* Left Panel: Common Business Challenges (Deep Slate Card) */}
+          <div className="bg-[#111625] text-white rounded-[3rem] p-10 lg:p-14 border border-slate-800 shadow-xl relative overflow-hidden flex flex-col justify-between">
+            {/* Ambient gold glow decoration */}
+            <div className="absolute right-0 bottom-0 w-64 h-64 bg-premium-yellow/[0.02] blur-[80px] rounded-full pointer-events-none" />
+            
+            <div className="relative z-10">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-[#FF5F56] font-bold uppercase block mb-4">
+                ✦ Key Challenges Solved ✦
               </span>
-              <h3 className="font-display font-bold text-3.5xl text-black leading-tight mb-4">
-                Who Is This For?
+              <h3 className="font-display font-extrabold text-3xl lg:text-4xl leading-tight text-white mb-6">
+                Tired Of Manual Chaos?
               </h3>
-              <p className="text-base text-slate-600 font-sans font-normal leading-relaxed">
+              <p className="text-slate-400 text-sm leading-relaxed mb-10 max-w-md font-sans">
+                Operating a growing enterprise shouldn't translate to endless hours of administrative stress. We solve these critical bottlenecks:
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.challenges.map((challenge, idx) => (
+                  <div key={idx} className="flex items-start gap-3.5 group">
+                    <span className="h-6 w-6 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-[10px] text-red-400 font-bold mt-0.5 flex-none group-hover:bg-red-500 group-hover:text-white transition-colors duration-300">
+                      ✕
+                    </span>
+                    <span className="text-xs text-slate-300 leading-relaxed font-sans">{challenge}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="pt-10 mt-10 border-t border-slate-800 flex justify-between items-center text-xs font-mono text-slate-500">
+              <span>PROBLEM SET</span>
+              <span className="text-[#FF5F56]">LOCKED</span>
+            </div>
+          </div>
+
+          {/* Right Panel: Target Audience & ideal fits (Clean White/Gold Card) */}
+          <div className="glass rounded-[3rem] p-10 lg:p-14 border-slate-200/60 bg-white shadow-xl relative overflow-hidden flex flex-col justify-between">
+            {/* Ambient gold glow decoration */}
+            <div className="absolute right-0 bottom-0 w-64 h-64 bg-premium-yellow/[0.04] blur-[80px] rounded-full pointer-events-none" />
+            
+            <div className="relative z-10">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-bold uppercase block mb-4">
+                ✦ Who is this for? ✦
+              </span>
+              <h3 className="font-display font-extrabold text-3xl lg:text-4xl leading-tight text-slate-900 mb-6">
+                Designed For Growth
+              </h3>
+              <p className="text-slate-650 text-sm leading-relaxed mb-10 max-w-md font-sans">
                 {product.whoIsForDescription}
               </p>
-              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.whoIsFor.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3.5 group">
+                    <span className="h-6 w-6 rounded-lg bg-premium-yellow/10 border border-premium-yellow/30 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
+                      ✔
+                    </span>
+                    <span className="text-xs text-slate-700 leading-relaxed font-sans font-semibold">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {product.whoIsFor.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="glass glass-hover rounded-2xl p-6 border-slate-100 bg-slate-50/30 flex items-start gap-4 group"
-                >
-                  <span className="h-7 w-7 rounded-lg bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center text-[10px] text-premium-yellow font-bold mt-0.5 flex-none group-hover:bg-premium-yellow group-hover:text-black transition-colors duration-300">
-                    ✔
-                  </span>
-                  <span className="text-sm text-slate-800 font-sans font-semibold leading-relaxed group-hover:text-slate-950 transition-colors">{item}</span>
-                </div>
-              ))}
+            <div className="pt-10 mt-10 border-t border-slate-100 flex justify-between items-center text-xs font-mono text-slate-400">
+              <span>TARGET SPACE</span>
+              <span className="text-premium-yellow font-bold">MATCHED</span>
             </div>
           </div>
         </div>
 
-        {/* Business Challenges Solved Section */}
-        <div id="challenges" className="mt-28 border-t border-slate-100 pt-20">
-          <div className="glass rounded-[2.5rem] p-8 lg:p-12 border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-                ✦ Problem Solver ✦
-              </span>
-              <h3 className="font-display font-bold text-3.5xl text-black leading-tight mb-4">
-                Common Business Challenges This System Solves
-              </h3>
-              <p className="text-base text-slate-600 font-sans font-normal leading-relaxed">
-                Running a business shouldn't mean drowning in administrative tasks. Our pre-built systems are explicitly engineered to resolve these daily operational pain points.
-              </p>
-              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {product.challenges.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="glass glass-hover rounded-2xl p-6 border-slate-100 bg-slate-50/30 flex items-start gap-4 group"
-                >
-                  <span className="h-7 w-7 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-[10px] text-red-500 font-bold mt-0.5 flex-none group-hover:bg-red-500 group-hover:text-white transition-colors duration-300">
-                    ✕
-                  </span>
-                  <span className="text-sm text-slate-800 font-sans font-semibold leading-relaxed group-hover:text-slate-955 transition-colors">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Pricing Section */}
-        <div id="pricing" className="mt-28 border-t border-slate-100 pt-20">
+        {/* Pricing Section (Centered Box Card Styling) */}
+        <div id="pricing" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
               ✦ Pricing Plan ✦
             </span>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-black leading-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
               Simple, Transparent Pricing
             </h2>
             <p className="mt-4 text-base text-slate-600 font-sans font-normal leading-relaxed">
@@ -477,7 +598,7 @@ export default function ProductDetail() {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="glass p-8 lg:p-12 rounded-[2.5rem] border-premium-yellow/20 bg-gradient-to-b from-white to-slate-50/20 shadow-[0_20px_50px_rgba(243,174,27,0.06)] relative overflow-hidden text-black">
+            <div className="glass p-8 lg:p-12 rounded-[2.5rem] border-premium-yellow/20 bg-gradient-to-b from-white to-slate-50/20 shadow-[0_25px_60px_rgba(241,184,16,0.06)] relative overflow-hidden text-black">
               {/* Premium Glow Accent */}
               <div className="absolute top-0 right-0 p-8">
                 <div className="h-12 w-12 rounded-full border border-premium-yellow/20 flex items-center justify-center animate-pulse">
@@ -486,15 +607,15 @@ export default function ProductDetail() {
               </div>
 
               <div className="text-center mb-8">
-                <span className="text-premium-yellow text-xs font-bold bg-premium-yellow/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                <span className="text-premium-yellow text-xs font-bold bg-premium-yellow/10 px-3 py-1 rounded-full uppercase tracking-wider font-mono">
                   One-Time Investment
                 </span>
-                <h3 className="font-display font-bold text-2xl mt-4 text-black">{product.name}</h3>
+                <h3 className="font-display font-extrabold text-2xl mt-4 text-black">{product.name}</h3>
                 <p className="text-sm text-slate-500 mt-2">Fully unlocked .xlsx spreadsheet template</p>
               </div>
 
               <div className="flex flex-col items-center justify-center mb-10">
-                <span className="text-5xl lg:text-6xl font-bold font-display text-black">{formatCurrency(product.price)}</span>
+                <span className="text-5xl lg:text-6xl font-extrabold font-display text-black">{formatCurrency(product.price)}</span>
               </div>
 
               <div className="space-y-4 flex flex-col items-center">
@@ -503,7 +624,7 @@ export default function ProductDetail() {
                     onClick={handleBuyNow}
                     disabled={loading || success}
                     className={cn(
-                      "rounded-full px-16 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto luxury-shine-hover shadow-md",
+                      "rounded-full px-16 py-5 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer w-full sm:w-auto luxury-shine-hover shadow-md font-display",
                       success 
                         ? "bg-green-500 text-white cursor-default" 
                         : "bg-premium-yellow text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(241,184,16,0.3)] active:scale-95 disabled:opacity-50"
@@ -533,8 +654,8 @@ export default function ProductDetail() {
                     <ShieldCheck className="h-5 w-5 text-premium-yellow" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-black mb-1 uppercase tracking-wider">One-Time Purchase</p>
-                    <p className="text-[11px] text-slate-505">Download once, use forever. No subscriptions or hidden fees.</p>
+                    <p className="text-xs font-bold text-black mb-1 uppercase tracking-wider font-mono">One-Time Purchase</p>
+                    <p className="text-[11px] text-slate-505 leading-relaxed">Download once, use forever. No subscriptions or hidden fees.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-4 glass rounded-[1.5rem] border-slate-100 bg-slate-50/30">
@@ -542,8 +663,8 @@ export default function ProductDetail() {
                     <Download className="h-5 w-5 text-premium-yellow" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-black mb-1 uppercase tracking-wider">Instant Delivery</p>
-                    <p className="text-[11px] text-slate-550">Get immediate access on the screen and via email after purchase.</p>
+                    <p className="text-xs font-bold text-black mb-1 uppercase tracking-wider font-mono">Instant Delivery</p>
+                    <p className="text-[11px] text-slate-500 leading-relaxed">Get immediate access on the screen and via email after purchase.</p>
                   </div>
                 </div>
               </div>
@@ -551,9 +672,9 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Customized Consultation Callout Section */}
-        <section id="custom-cta" className="mt-28 border-t border-slate-100 pt-20">
-          <div className="mx-auto max-w-4xl rounded-[3rem] bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] p-10 lg:p-16 text-black text-center relative overflow-hidden group shadow-[0_15px_50px_rgba(243,174,27,0.25)] border border-white/10">
+        {/* Customized Consultation Callout Section (Yellow background) */}
+        <section id="custom-cta" className="mb-24 pt-10">
+          <div className="mx-auto max-w-4xl rounded-[3rem] bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] p-10 lg:p-16 text-black text-center relative overflow-hidden group shadow-[0_20px_55px_rgba(243,174,27,0.25)] border border-white/10">
             {/* Background design elements */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-black/[0.04] blur-3xl transition-transform duration-500 group-hover:scale-110 pointer-events-none" />
             <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-white/[0.1] blur-2xl pointer-events-none" />
@@ -565,7 +686,7 @@ export default function ProductDetail() {
               <h2 className="text-3xl lg:text-4xl font-extrabold font-display mb-4 tracking-tight text-black leading-tight">
                 Need a Customized Dashboard, Reporting System or Business Tracking Solution?
               </h2>
-              <p className="text-black/80 text-sm sm:text-base max-w-2xl mx-auto mb-10 font-sans font-normal leading-relaxed">
+              <p className="text-black/85 text-sm sm:text-base max-w-2xl mx-auto mb-10 font-sans font-normal leading-relaxed">
                 Every business operations model is unique. Book a free consultation call with our analyst team, and we will build a custom-tailored system designed specifically around your workflow.
               </p>
               
@@ -594,7 +715,7 @@ export default function ProductDetail() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="mt-28 border-t border-slate-100 pt-20">
+        <section id="faq" className="border-t border-slate-100 pt-24">
           <div className="mx-auto max-w-3xl">
             <div className="text-center mb-16">
               <div className="h-10 w-10 rounded-full bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center mx-auto mb-6">
@@ -611,7 +732,7 @@ export default function ProductDetail() {
                 <div key={i} className="glass rounded-2xl overflow-hidden border-slate-200/60 bg-white shadow-sm hover:shadow-md transition-shadow">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex w-full items-center justify-between p-6 text-left hover:bg-slate-50/50 transition-colors group"
+                    className="flex w-full items-center justify-between p-6 text-left hover:bg-slate-50/50 transition-colors group cursor-pointer"
                   >
                     <span className="font-semibold text-base text-black group-hover:text-black transition-colors">{faq.q}</span>
                     <motion.div
