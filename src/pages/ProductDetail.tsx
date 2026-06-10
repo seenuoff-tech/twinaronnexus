@@ -430,13 +430,7 @@ export default function ProductDetail() {
               </div>
 
               <div className="flex flex-col items-center justify-center mb-10">
-                <div className="flex items-baseline gap-2.5">
-                  <span className="text-5xl lg:text-6xl font-bold font-display text-black">{formatCurrency(product.price)}</span>
-                  <span className="text-slate-400 line-through text-xl">{formatCurrency(product.price * 2)}</span>
-                </div>
-                <span className="text-premium-yellow text-xs font-bold bg-premium-yellow/15 px-3 py-1 rounded-full mt-3 uppercase tracking-wider">
-                  50% OFF (Limited Time Offer)
-                </span>
+                <span className="text-5xl lg:text-6xl font-bold font-display text-black">{formatCurrency(product.price)}</span>
               </div>
 
               <div className="space-y-4 flex flex-col items-center">
