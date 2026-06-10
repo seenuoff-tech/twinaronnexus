@@ -25,50 +25,122 @@ import { loadRazorpay } from "../lib/razorpay";
 import Magnetic from "../components/Magnetic";
 
 const GET_FAQ_ITEMS = (slug: string) => {
+  if (slug === "online-business-system") {
+    return [
+      {
+        q: "How do I receive the template after purchase?",
+        a: "After successful payment, the Online Business Management Template will be instantly available for download on your screen and sent directly to your email."
+      },
+      {
+        q: "Do I need any special software to use this system?",
+        a: "No. The template can be used with Microsoft Excel and Google Sheets. You can access it from your desktop or mobile."
+      },
+      {
+        q: "Is this a one-time purchase or a subscription?",
+        a: "This is a one-time purchase with no recurring subscription fees. You get lifetime access to use it for your business."
+      },
+      {
+        q: "Will this system work for my business?",
+        a: "Yes, this system is designed based on common operational tracking, customer management, and order monitoring requirements for online sellers, startups, and growing internet brands."
+      },
+      {
+        q: "What if my business requires more advanced tracking or reporting?",
+        a: "As your online business grows, your reporting and operational requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable custom dashboards or custom tracking solutions."
+      }
+    ];
+  }
   if (slug === "freelancer-business-system") {
     return [
       {
-        q: "What does this template include?",
-        a: "The template includes a Client Database, Project Tracker, Invoice Tracker, Payment Tracker, Income Dashboard, Monthly Performance Summary, and a high-level Business Analytics Overview."
+        q: "How do I receive the template after purchase?",
+        a: "After successful payment, the Freelancer Business Tracking Template will be instantly available for download and also sent directly to your inbox."
       },
       {
-        q: "Can I manage multiple clients?",
-        a: "Yes, you can register and manage details, contact info, and active billing histories for multiple clients in one centralized client database."
+        q: "Do I need any special software to use this system?",
+        a: "No. The template can be used with Microsoft Excel and Google Sheets, allowing you to manage your freelance work anywhere."
       },
       {
-        q: "Can I track invoices and pending payments?",
-        a: "Yes, the Invoice & Payment Tracker lets you log invoice status, tracking payment due dates, pending collections, and monthly income trends."
+        q: "Is this a one-time purchase or a subscription?",
+        a: "This is a one-time purchase with no recurring subscription fees. You own the sheet forever with lifetime access."
       },
       {
-        q: "Can I customize the template?",
-        a: "Yes, the spreadsheet file is 100% unlocked. You can customize branding, colors, sheets, and formulas to match your service workflow."
+        q: "Will this system work for my business?",
+        a: "Yes, this system is designed based on common operational requirements for freelancers, consultants, coaches, and independent professionals who manage clients, projects, invoices, and payments."
       },
       {
-        q: "Can I upgrade to a customized dashboard later?",
-        a: "Yes! As your business grows, we can convert your sheet tracking process into a fully customized reporting dashboard using advanced BI tools."
+        q: "What if my business requires more advanced tracking or reporting?",
+        a: "As your freelance business grows, your reporting and client tracking requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable custom reporting solutions or dashboards."
+      }
+    ];
+  }
+  if (slug === "boutique-business-system") {
+    return [
+      {
+        q: "How do I receive the template after purchase?",
+        a: "After successful payment, the Boutique Business Tracking Template will be immediately available for download and sent to your email address."
+      },
+      {
+        q: "Do I need any special software to use this system?",
+        a: "No. The template can be used with Microsoft Excel and Google Sheets, making it easy to track stock and sales in your boutique."
+      },
+      {
+        q: "Is this a one-time purchase or a subscription?",
+        a: "This is a one-time purchase with no recurring subscription fees. Download it once and use it to track store operations forever."
+      },
+      {
+        q: "Will this system work for my business?",
+        a: "Yes, this system is designed based on common operational requirements within the boutique, apparel, and retail store business category, including inventory tracking and sales monitoring."
+      },
+      {
+        q: "What if my business requires more advanced tracking or reporting?",
+        a: "As your boutique business grows, your inventory management, sales reporting, and operational requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable retail dashboards or custom tracking solutions."
+      }
+    ];
+  }
+  if (slug === "traders-manufacturers-system") {
+    return [
+      {
+        q: "How do I receive the template after purchase?",
+        a: "After successful payment, the Traders & Manufacturers Tracking Template will be instantly available for download on screen and emailed to you."
+      },
+      {
+        q: "Do I need any special software to use this system?",
+        a: "No. The template can be used with Microsoft Excel and Google Sheets, allowing you to manage production, raw materials, and invoices easily."
+      },
+      {
+        q: "Is this a one-time purchase or a subscription?",
+        a: "This is a one-time purchase with no recurring subscription fees. You own the entire system forever with zero recurring charges."
+      },
+      {
+        q: "Will this system work for my business?",
+        a: "Yes, this system is designed based on common operational requirements within the trading, wholesale, distribution, and manufacturing business sectors, helping you track raw materials, invoices, and sales."
+      },
+      {
+        q: "What if my business requires more advanced tracking or reporting?",
+        a: "As your trading or manufacturing business scales, your invoice tracking, supply chain, and operational requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore custom ERP/reporting systems."
       }
     ];
   }
   return [
     {
       q: "How do I receive the template after purchase?",
-      a: "Immediately after a successful payment, a download link will be displayed on the screen. Additionally, we will send an automated email containing the download link to your registered email address."
+      a: "After successful payment, the template will be available for download."
     },
     {
       q: "Do I need any special software to use this system?",
-      a: "No special software is required. The system is built in standard Excel (.xlsx) format. It works perfectly on Microsoft Excel (2016 or newer) and Google Sheets."
+      a: "No. The template can be used with Microsoft Excel and Google Sheets."
     },
     {
       q: "Is this a one-time purchase or a subscription?",
-      a: "This is a strictly one-time purchase. You get lifetime access to use the template with zero recurring monthly or annual subscription fees."
+      a: "This is a one-time purchase with no recurring subscription fees."
     },
     {
-      q: "Can I customize the sheets and formulas myself?",
-      a: "Yes. The files are fully unlocked. You can add sheets, edit columns, customize formulas, and apply your own branding/logo as needed."
+      q: "Will this system work for my business?",
+      a: "This system is designed based on common operational requirements within the respective business category."
     },
     {
-      q: "Do you offer customer support if I have questions?",
-      a: "Yes. We provide dedicated support for download issues and basic setup. You can reach out to us via email or WhatsApp for quick assistance."
+      q: "What if my business requires more advanced tracking or reporting?",
+      a: "As businesses grow, reporting and operational requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable solutions."
     }
   ];
 };
