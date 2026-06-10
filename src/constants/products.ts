@@ -115,13 +115,17 @@ export const PRODUCTS: Product[] = [
     slug: "boutique-business-system",
     price: 2999,
     category: "Boutique",
-    description: "Gain better visibility into inventory, sales and profitability. Designed specifically for boutiques and retail businesses.",
+    description: "Track Inventory, Sales, Orders & Profitability in One Simple Dashboard. Built for Boutique Owners who want complete visibility over stock movement, sales performance and business growth.",
     features: [
-      "Inventory Management",
-      "Sales Tracking",
-      "Order Monitoring",
-      "Profit Reports",
-      "Product Performance Tracking"
+      "Product Inventory Tracker",
+      "Daily Sales Tracker",
+      "Order Management System",
+      "Purchase Tracker",
+      "Customer Database",
+      "Stock Alert Dashboard",
+      "Best Selling Product Analysis",
+      "Monthly Profit & Loss Summary",
+      "Executive Business Dashboard"
     ],
     specs: {
       "Usage": "Single Purchase",
@@ -129,12 +133,12 @@ export const PRODUCTS: Product[] = [
       "Format": ".xlsx",
       "Compatibility": "Excel"
     },
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
+    image: "/img/boutique_dashboard_main.png",
     previews: [
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=800&auto=format&fit=crop"
+      "/img/boutique_inventory_sheet.png",
+      "/img/boutique_dashboard_main.png"
     ],
     whoIsFor: [
       "Boutique Owners",
@@ -153,7 +157,11 @@ export const PRODUCTS: Product[] = [
       "Difficulty identifying top-selling and slow-moving items",
       "Inefficient customer order fulfillment tracking",
       "Difficulty managing customer preferences and history",
-      "Manual bookkeeping prone to errors and calculation slips"
+      "Manual bookkeeping prone to errors and calculation slips",
+      "Excess inventory blocking cash flow",
+      "Difficulty forecasting demand",
+      "Lack of product-wise profit visibility",
+      "No consolidated business dashboard"
     ]
   },
   {
@@ -162,13 +170,13 @@ export const PRODUCTS: Product[] = [
     slug: "traders-manufacturers-system",
     price: 4999,
     category: "Traders and manufacturers",
-    description: "Track sales, stock movement, dealer performance and outstanding payments from a single business management system.",
+    description: "Manage inventory, dealer performance, outstanding payments and sales operations from a single business tracking system.",
     features: [
       "Dealer Management",
       "Outstanding Tracking",
       "Inventory Visibility",
       "Sales Performance Monitoring",
-      "Business Reporting"
+      "Business Performance Reporting"
     ],
     specs: {
       "Usage": "Single Purchase",
@@ -176,9 +184,9 @@ export const PRODUCTS: Product[] = [
       "Compatibility": "Excel",
       "Delivery": "Digital Download"
     },
-    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop",
+    image: "/img/traders_warehouse_main.png",
     previews: [
-      "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop",
+      "/img/traders_warehouse_main.png",
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop"
@@ -189,6 +197,7 @@ export const PRODUCTS: Product[] = [
       "Wholesalers",
       "Traders",
       "Exporters",
+      "Importers",
       "Businesses managing inventory, dealers and sales operations"
     ],
     whoIsForDescription: "Designed for manufacturers, traders, distributors, and wholesalers looking to track dealer performance, inventory, and outstanding payments.",
@@ -200,7 +209,8 @@ export const PRODUCTS: Product[] = [
       "Inconsistent tracking of raw materials and finished goods",
       "Delayed updates on order processing and supply status",
       "Difficulty measuring dealer-wise sales performance",
-      "Lack of centralized dashboard for high-level operations"
+      "Lack of centralized dashboard for high-level operations",
+      "Difficulty tracking stock movement across locations"
     ]
   }
 ];

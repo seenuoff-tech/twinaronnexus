@@ -46,6 +46,14 @@ const GET_FAQ_ITEMS = (slug: string) => {
       {
         q: "What if my business requires more advanced tracking or reporting?",
         a: "As your online business grows, your reporting and operational requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable custom dashboards or custom tracking solutions."
+      },
+      {
+        q: "Can I track sales from multiple channels?",
+        a: "Yes. The system can be used to monitor orders, sales, and performance across different business channels."
+      },
+      {
+        q: "Can this system be used for both trading and manufacturing businesses?",
+        a: "Yes. The system is designed to support common operational tracking requirements for traders, distributors, wholesalers and manufacturers, helping businesses monitor inventory, sales performance, dealer relationships and outstanding transactions."
       }
     ];
   }
@@ -70,6 +78,10 @@ const GET_FAQ_ITEMS = (slug: string) => {
       {
         q: "What if my business requires more advanced tracking or reporting?",
         a: "As your freelance business grows, your reporting and client tracking requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable custom reporting solutions or dashboards."
+      },
+      {
+        q: "Can I manage multiple clients and projects?",
+        a: "Yes. The system allows you to organize client information, projects, invoices, payments, and business performance in one place."
       }
     ];
   }
@@ -94,6 +106,10 @@ const GET_FAQ_ITEMS = (slug: string) => {
       {
         q: "What if my business requires more advanced tracking or reporting?",
         a: "As your boutique business grows, your inventory management, sales reporting, and operational requirements may become more specialized. You can schedule a consultation with our team to discuss your requirements and explore suitable retail dashboards or custom tracking solutions."
+      },
+      {
+        q: "Can I track multiple products and categories?",
+        a: "Yes. The system is designed to manage multiple products, categories, inventory movements, and sales records."
       }
     ];
   }
@@ -443,14 +459,26 @@ export default function ProductDetail() {
         <div id="benefits" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
-              {product.slug === "freelancer-business-system" ? "✦ Freelancer Focus ✦" : "✦ Strategic Advantages ✦"}
+              {product.slug === "freelancer-business-system" 
+                ? "✦ Freelancer Focus ✦" 
+                : product.slug === "boutique-business-system" 
+                ? "✦ Boutique Focus ✦" 
+                : "✦ Strategic Advantages ✦"
+              }
             </span>
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
-              {product.slug === "freelancer-business-system" ? "Why Freelancers Choose This System" : "Why Choose Our Ready-To-Use Systems?"}
+              {product.slug === "freelancer-business-system" 
+                ? "Why Freelancers Choose This System" 
+                : product.slug === "boutique-business-system" 
+                ? "What Boutique Owners Achieve" 
+                : "Why Choose Our Ready-To-Use Systems?"
+              }
             </h2>
             <p className="mt-4 text-base text-slate-600 font-sans font-normal leading-relaxed">
               {product.slug === "freelancer-business-system"
                 ? "Skip expensive subscription software. Our spreadsheet template is designed to streamline your freelance workflow instantly."
+                : product.slug === "boutique-business-system"
+                ? "Skip expensive monthly tools. Our system is built specifically to clean up metrics tracking and give you complete control."
                 : "Skip development delays and developer cost pools. Deploy a professional operational system designed to immediately clean up metrics tracking."
               }
             </p>
@@ -466,6 +494,30 @@ export default function ProductDetail() {
                 { title: "Analyze Monthly Income", desc: "Gain visibility into your monthly billing streams, growth spikes, and annual earnings forecasting." },
                 { title: "Reduce Manual Admin Work", desc: "Automate calculation of totals, tax estimates, and invoice balances to save hours every single week." },
                 { title: "Improve Business Visibility", desc: "Use clean charts and reports to know exactly where your freelance business stands financially." }
+              ].map((benefit, i) => (
+                <div 
+                  key={i} 
+                  className="glass glass-hover rounded-[2rem] p-8 bg-white relative group overflow-hidden shadow-sm hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="h-10 w-10 rounded-full bg-premium-yellow/10 border border-premium-yellow/20 flex items-center justify-center mb-6 text-premium-yellow">
+                    ✓
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-black mb-3 group-hover:text-premium-yellow transition-colors">{benefit.title}</h3>
+                  <p className="text-xs text-slate-650 leading-relaxed font-sans font-normal">{benefit.desc}</p>
+                </div>
+              ))}
+            </div>
+          ) : product.slug === "boutique-business-system" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { title: "Reduce stock shortages", desc: "Monitor raw materials, product items, and stock counts to prevent critical stockouts." },
+                { title: "Track fast-moving products", desc: "Identify high-demand collections and hot items to optimize store supply." },
+                { title: "Monitor daily sales instantly", desc: "Log sales transactions and instantly view day-to-day transaction records." },
+                { title: "Identify profitable products", desc: "Gain visibility on product margins and maximize boutique profits." },
+                { title: "Improve purchase planning", desc: "Forecast demand trends to manage vendor purchasing cycles effectively." },
+                { title: "Understand monthly profit clearly", desc: "Review automated P&L summaries and net income performance logs." },
+                { title: "Save hours of manual reporting", desc: "Automate accounting formulas, sales totals, and stock balances." },
+                { title: "Make data-driven business decisions", desc: "Leverage clean visual dashboards to guide your business growth." }
               ].map((benefit, i) => (
                 <div 
                   key={i} 
@@ -513,6 +565,46 @@ export default function ProductDetail() {
           )}
         </div>
 
+        {/* Demo Section (Only for Boutique Business System) */}
+        {product.slug === "boutique-business-system" && (
+          <div className="border-t border-slate-100 pt-24 mb-24">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Watch Demo ✦
+              </span>
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+                See The System In Action
+              </h2>
+              <p className="mt-4 text-sm text-slate-500 font-sans leading-relaxed">
+                Watch how inventory, sales and profitability are tracked inside the Boutique Business System.
+              </p>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+            </div>
+
+            <div className="max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden border border-slate-200/80 shadow-lg relative aspect-video group bg-slate-900 cursor-pointer">
+              <img 
+                src="/img/boutique_dashboard_main.png" 
+                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+                alt="Boutique Business Dashboard Demo"
+              />
+              
+              {/* Dark overlay & Play Button */}
+              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors duration-300 flex items-center justify-center">
+                <div className="h-20 w-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl scale-95 group-hover:scale-100 group-hover:bg-premium-yellow group-hover:text-black transition-all duration-300 relative">
+                  <Play className="h-8 w-8 fill-current ml-1" />
+                  <span className="absolute inset-0 rounded-full border-2 border-white/40 group-hover:border-premium-yellow/60 animate-ping pointer-events-none" />
+                </div>
+              </div>
+
+              {/* Bottom bar inside video player */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-xs font-mono tracking-wider">0:00 / 4:15 • Boutique System Overview</span>
+                <span className="text-xs font-semibold uppercase bg-premium-yellow text-black px-2.5 py-1 rounded">1080p HD</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Details & Specs Dynamic Tab Hub (Reduces Scrolling, Extremely Professional) */}
         <div id="details-hub" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -520,7 +612,12 @@ export default function ProductDetail() {
               ✦ System Blueprint ✦
             </span>
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
-              {product.slug === "online-business-system" ? "What You’ll Be Able To Manage" : "Explore The System Structure"}
+              {product.slug === "online-business-system"
+                ? "What You’ll Be Able To Manage"
+                : product.slug === "boutique-business-system"
+                ? "Included Modules"
+                : "Explore The System Structure"
+              }
             </h2>
             <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
           </div>
@@ -529,7 +626,7 @@ export default function ProductDetail() {
           <div className="flex justify-center mb-12">
             <div className="bg-slate-100 p-1.5 rounded-full flex gap-1 border border-slate-200">
               {[
-                { id: "features", label: "Core Features", icon: Layers },
+                { id: "features", label: product.slug === "boutique-business-system" ? "Included Modules" : "Core Features", icon: Layers },
                 { id: "specs", label: "Technical Specs", icon: FileText },
                 { id: "usage", label: "Usage Model", icon: Laptop }
               ].map((tab) => (
@@ -893,6 +990,51 @@ export default function ProductDetail() {
           </div>
         )}
 
+        {/* Results Section (Only for Boutique Business System) */}
+        {product.slug === "boutique-business-system" && (
+          <div className="border-t border-slate-100 pt-24 mb-24">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="font-mono text-[9px] tracking-[0.25em] text-premium-yellow font-extrabold uppercase block mb-3">
+                ✦ Key Indicators ✦
+              </span>
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-black leading-tight">
+                What You Can Monitor
+              </h2>
+              <p className="mt-4 text-base text-slate-650 font-sans leading-relaxed">
+                Take complete control of store financials and metrics using our pre-built monitoring dashboards.
+              </p>
+              <div className="h-1 w-12 bg-premium-yellow mt-4 mx-auto rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {[
+                "Total Inventory Value",
+                "Daily Sales",
+                "Monthly Revenue",
+                "Product-wise Performance",
+                "Gross Profit",
+                "Stock Movement",
+                "Pending Orders"
+              ].map((item, idx) => (
+                <div key={idx} className={cn(
+                  "glass glass-hover rounded-[2rem] p-8 bg-white/40 border-slate-100 flex flex-col justify-between group transition-all duration-300",
+                  idx === 6 && "lg:col-span-2 w-full"
+                )}>
+                  <div>
+                    <span className="h-6 w-6 rounded-full bg-premium-yellow/10 flex items-center justify-center text-[10px] text-premium-yellow font-bold mb-4">
+                      ✓
+                    </span>
+                    <h4 className="font-display font-bold text-base text-slate-900 leading-snug">{item}</h4>
+                    <p className="text-xs text-slate-500 mt-2 font-sans">
+                      Track and analyze this metric live inside your dashboard system.
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Pricing Section (Centered Box Card Styling) */}
         <div id="pricing" className="border-t border-slate-100 pt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -936,18 +1078,33 @@ export default function ProductDetail() {
               </div>
 
               <div className="flex flex-col items-center justify-center mb-10">
-                <span className="text-5xl lg:text-6xl font-extrabold font-display text-black">{formatCurrency(product.price)}</span>
-                {product.slug === "online-business-system" && (
-                  <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-500 font-sans">
+                {product.slug === "boutique-business-system" ? (
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-4 mb-2">
+                      <span className="text-2xl text-slate-400 line-through font-display font-semibold">{formatCurrency(4999)}</span>
+                      <span className="text-5xl lg:text-6xl font-extrabold font-display text-black">{formatCurrency(2999)}</span>
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Launch Offer</span>
+                  </div>
+                ) : (
+                  <span className="text-5xl lg:text-6xl font-extrabold font-display text-black">{formatCurrency(product.price)}</span>
+                )}
+                {(product.slug === "online-business-system" || product.slug === "boutique-business-system") && (
+                  <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-505 font-sans">
                     <span className="flex items-center gap-1.5 font-medium">
                       <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> One-Time Purchase
                     </span>
                     <span className="flex items-center gap-1.5 font-medium">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> No Subscription Fees
+                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> Lifetime Access
                     </span>
                     <span className="flex items-center gap-1.5 font-medium">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> Instant Access After Purchase
+                      <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> Instant Download
                     </span>
+                    {product.slug === "boutique-business-system" && (
+                      <span className="flex items-center gap-1.5 font-medium">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-premium-yellow" /> Google Sheets + Excel Compatible
+                      </span>
+                    )}
                   </div>
                 )}
               </div>
@@ -1018,9 +1175,7 @@ export default function ProductDetail() {
               : "bg-gradient-to-r from-premium-yellow via-[#F3AE1B] to-[#F1B810] text-black border-white/10 shadow-[0_20px_55px_rgba(243,174,27,0.25)]"
           )}>
             {/* Background design elements */}
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-black/[0.04] blur-3xl transition-transform duration-500 group-hover:scale-110 pointer-events-none" />
             <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-white/[0.1] blur-2xl pointer-events-none" />
-
             <div className="relative z-10">
               <span className={cn(
                 "font-mono text-[9px] tracking-[0.25em] font-extrabold uppercase block mb-3",
@@ -1032,24 +1187,53 @@ export default function ProductDetail() {
                 "text-3xl lg:text-4xl font-extrabold font-display mb-3 tracking-tight leading-tight",
                 product.slug === "online-business-system" ? "text-white" : "text-black"
               )}>
-                {product.slug === "online-business-system"
-                  ? "Ready To Move Beyond Templates?"
-                  : "Need a Customized Dashboard, Reporting System or Business Tracking Solution?"
-                }
+                Need a System Built Specifically for Your Business?
               </h2>
               <p className={cn(
-                "text-sm sm:text-base max-w-3xl mx-auto mb-8 font-sans font-normal leading-relaxed",
-                product.slug === "online-business-system" ? "text-slate-300" : "text-black/85"
+                "text-sm sm:text-base max-w-3xl mx-auto mb-2 font-sans font-bold leading-relaxed",
+                product.slug === "online-business-system" ? "text-premium-yellow" : "text-black"
               )}>
-                {product.slug === "online-business-system" ? (
-                  <>
-                    As your business grows, you may require customized dashboards, reporting systems, business analytics or operational tracking solutions tailored to your specific needs.
-                    <br className="hidden md:block" />
-                    Our team can help design and implement a solution built around your business.
-                  </>
-                ) : (
-                  "Every business operations model is unique. Book a free consultation call with our analyst team, and we will build a custom-tailored system designed specifically around your workflow."
-                )}
+                Every business operates differently.
+              </p>
+              <p className={cn(
+                "text-xs sm:text-sm max-w-2xl mx-auto mb-6 font-sans font-normal leading-relaxed",
+                product.slug === "online-business-system" ? "text-slate-300" : "text-black/80"
+              )}>
+                Book a one-to-one consultation with our team to discuss your business requirements and tracking needs:
+              </p>
+
+              <div className="max-w-md mx-auto grid grid-cols-1 gap-2.5 mb-8 text-left">
+                {[
+                  "What you need to track",
+                  "Which reports you need",
+                  "Which KPIs matter most",
+                  "How your current workflow operates",
+                  "What decisions you want to make using data"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3.5 pl-6 sm:pl-16">
+                    <span className={cn(
+                      "h-5 w-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-none",
+                      product.slug === "online-business-system" 
+                        ? "bg-premium-yellow/10 border border-premium-yellow/20 text-premium-yellow" 
+                        : "bg-black/10 border border-black/20 text-black"
+                    )}>
+                      ✓
+                    </span>
+                    <span className={cn(
+                      "text-xs sm:text-sm font-sans font-semibold",
+                      product.slug === "online-business-system" ? "text-slate-200" : "text-black/90"
+                    )}>
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <p className={cn(
+                "text-xs sm:text-sm max-w-3xl mx-auto mb-8 font-sans font-normal leading-relaxed",
+                product.slug === "online-business-system" ? "text-slate-400" : "text-black/75"
+              )}>
+                Based on your requirements, we will recommend and design a customized tracking and reporting solution tailored to your business.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -1063,7 +1247,7 @@ export default function ProductDetail() {
                         : "bg-black text-white hover:bg-slate-900"
                     )}
                   >
-                    {product.slug === "online-business-system" ? "REQUEST CONSULTATION" : "REQUEST CONSULTATION"}
+                    BOOK CONSULTATION
                   </Link>
                 </Magnetic>
                 <Magnetic strength={0.15}>
@@ -1087,6 +1271,29 @@ export default function ProductDetail() {
                     </a>
                   )}
                 </Magnetic>
+              </div>
+
+              <div className={cn(
+                "mt-8 text-[11px] font-sans font-medium tracking-wide leading-relaxed max-w-2xl mx-auto",
+                product.slug === "online-business-system" ? "text-slate-400" : "text-black/60"
+              )}>
+                Templates are designed for immediate implementation. Businesses requiring advanced reporting, automation or Power BI dashboards can request a customized solution.
+              </div>
+
+              {/* Trust line badges */}
+              <div className={cn(
+                "mt-6 pt-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-[10px] font-mono font-bold uppercase tracking-widest",
+                product.slug === "online-business-system" ? "border-t border-slate-800 text-premium-yellow" : "border-t border-black/10 text-black"
+              )}>
+                <span className="flex items-center gap-2">
+                  ✓ One-Time Purchase
+                </span>
+                <span className="flex items-center gap-2">
+                  ✓ Lifetime Access
+                </span>
+                <span className="flex items-center gap-2">
+                  ✓ No Monthly Subscription
+                </span>
               </div>
             </div>
           </div>
